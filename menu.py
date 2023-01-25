@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+from jatek import *
 def menu():
     os.system('cls')
     option = 0
@@ -10,7 +11,7 @@ def menu():
         os.system('cls')
         menu()
     if option == 1:
-            UjJatek()
+            Jatek()
     elif option == 2:
             SaveOlvas()
     elif option == 3:
