@@ -8,7 +8,8 @@ def menu():
     try:
         option = int(input("1 - Új játék\t2 - Játék folytatása\t3 - Kilépés\n"))
     except:
-        os.system('cls')
+        print("Számot adj meg!")
+        time.sleep(1)
         menu()
     if option == 1:
             Jatek()
