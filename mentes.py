@@ -5,4 +5,4 @@ def Mentes(hp, questek, inventory):
         f.write(f"{key};{value}")
     f.close
 
-def MentesOlvas():
+
