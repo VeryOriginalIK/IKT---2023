@@ -6,5 +6,3 @@ def Mentes(hp, questek, inventory):
     f.close
 
 def MentesOlvas():
-    f = open("save.txt", "r", encoding="utf-8")
-    
