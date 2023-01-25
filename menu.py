@@ -10,7 +10,7 @@ def menu():
         os.system('cls')
         menu()
     if option == 1:
-            KarakterGen()
+            UjJatek()
     elif option == 2:
             SaveOlvas()
     elif option == 3:
