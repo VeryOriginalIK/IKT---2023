@@ -1,4 +1,5 @@
 import os
+import time
 helyszin = "kocsma"
 def Choice1():
     try:

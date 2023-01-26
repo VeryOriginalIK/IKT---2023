@@ -2,6 +2,7 @@ import os
 import sys
 import time
 from jatek import *
+from mentes import *
 def menu():
     os.system('cls')
     option = 0
