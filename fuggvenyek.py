@@ -9,13 +9,31 @@ morale = 100
 helyszin = "kocsma"
 name = ""
 
+#def Mentes(hp, questek, inventory):
+        ##Nahajrá Domonkos
+
+#def MentesOlvas():
+    ##Nahajrá Domonkos
+
+def irdki(szoveg):
+    for i in range(len(szoveg)):
+        print(szoveg[i], end='', flush=True); 
+        time.sleep(0.005)
+
+        
+    #  basically animálja a printelést Undertale stílusban, csak a print helyett két sor
+    #  szoveg = (megadod a szöveget), aztán kövi sorban meghívod a függvényt a szoveg paraméterrel
+    #  egyetlen hátránya (egyelőre a mostani verzióban), hogy \n nem néz ki olyan jól, mintha újra nyomtatod. 
+
 def menu():
     os.system('cls')
-    option = 0
+    szoveg = f"1 - Új játék\t2 - Játék folytatása\t3 - Mentés és kilépés\t4 - Kilépés\n"
+    irdki(szoveg)
     try:
-        option = int(input("1 - Új játék\t2 - Játék folytatása\t3 - Kilépés\n"))
+        option = int(sys.stdin.readline().strip())
     except:
-        print("Számot adj meg!")
+        szoveg = "Nincs ilyen lehetőség!"
+        irdki(szoveg)
         time.sleep(1)
         menu()
     if option == 1:
@@ -25,65 +43,81 @@ def menu():
     elif option == 3:
         Mentes()
         sys.exit()
-    else:
-        print("Nincs ilyen lehetőség!")
-        time.sleep(1)
-        menu()
-
-def Mentes(hp, questek, inventory):
-    f = open("save.txt", "w", encoding="utf-8")
-    f.write(f"{hp}\n{inventory}")
-    for key, value in questek.items():
-        f.write(f"{key};{value}")
-    f.close
-
-#def MentesOlvas():
-    ##Nahajrá Domonkos
+    elif option == 4:
+        sys.exit()
     
 
 #def harc():
     #Hajrá Donát
 
-
 #sztori kezdete
 def Kocsma():
-    name = input("Hogy hívnak? ")
+    szoveg = "Hogy hívnak?\n- "
+    irdki(szoveg)
+    name = sys.stdin.readline().strip()
+    szoveg = f"Üdv a játékban, {name}. Ajánljuk, hogy a játék elején növeld a képernyőd méretét a neked megfelelőre.\n"
+    irdki(szoveg)
+    time.sleep(7)
+    szoveg = "Nyugi, megvárunk."
+    irdki(szoveg)
+    time.sleep(7)
     os.system('cls')
-    print(f"Épp kinyitod a WC ajtót, amikor egy szék repül el az arcod előtt.\nMegígérted otthon, hogy ma nem verekszel, de a barátaidnak segítség kell.\nMit teszel?")
+    print(f"                                ____                                     \n                   _           |---||            _                         \n                   ||__________|SSt||___________||                                \n                  /_ _ _ _ _ _ |:._|'_ _ _ _ _ _ _\`.                      \n                 /_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\:`.                   \n                /_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\::`.                 \t\t\t\t ____        _____           __                      __ \n               /:.___________________________________\:::`-._             \t\t\t\t/_   |     _/ ____\____     |__| ____ ________ _____/  |_  /\ \n           _.-'_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _`::::::`-.._        \t\t\t\t |   |     \   __\/ __ \    |  |/ __ \\___   // __ \   __\  \/          \t\t\t\t\t  _.-' _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ `:::::::::`-._    \t\t\t\t |   |      |  | \  ___/    |  \  ___/ /    /\  ___/|  |   /\                             ,'_:._________________________________________________`:_.::::-';`   \t\t\t\t |___| /\   |__|  \___>  \__|  |\____  \\_____ \____ |  |   \/       \n      `.'/ || |:::::`.'/::::::::`.'/::::::::`.'/::::::|.`.'/.|     :|     \t\t\t\t       \/             \/\______|    \/       \/     |____                 \n       ||  || |::::::||::::::::::||::::::::::||:::::::|..||..|     ||     \t\t\t\t   _____           \n       ||  || |  __  || ::  ___  || ::  __   || ::    |..||;||     ||     \t\t\t\t  /  _  \     |  | ______   ____   ______ _____ _____     \n       ||  || | |::| || :: |:::| || :: |::|  || ::    |.|||:||_____||__   \t\t\t\t  /  _  \     |  | ______   ____   ______ _____ _____ \n       ||  || | |::| || :: |:::| || :: |::|  || ::    |.|||:||_|_|_||,(   \t\t\t\t /  /_\  \    |  |/ /  _ \_/ ___\ /  ___//     \\__  \  \n       ||_.|| | |::| || :: |:::| || :: |::|  || ::    |.'||..|    _||,|   \t\t\t\t/    |    \   |    <  <_> )  \___ \___ \|  Y Y  \/ __\_ \n    .-'::_.:'.:-.--.-::--.-:.--:-::--.--.--.-::--.--.-:.-::,'.--.'_|| |   \t\t\t\t\____|__  /   |__|_ \____/ \_____>_____>|_| |__ (____ /\n     );||_|__||_|__|_||__|_||::|_||__|__|__|_||__|__|_|;-'|__|_(,' || '-  \t\t\t\t        \/         \/          \/                   \/\n     ||||  || |. . . ||. . . . . ||. . . . . ||. . . .|::||;''||   ||:'   \n     ||||.;  _|._._._||._._._._._||._._._._._||._._._.|:'||,, ||,,           \n     '''''           ''-         ''-         ''-         '''  '''         ")
+    time.sleep(3)
+    szoveg =f"\nÉpp kinyitod a WC ajtót, amikor egy szék repül el az arcod előtt.\nMegígérted otthon, hogy ma nem verekszel, de a barátaidnak segítség kell.\nMit teszel?"
+    irdki(szoveg)
     Choice1(stamina, morale, sörszam)
 
 sörszam = 0
 def Choice1(stamina, morale, sörszam):
-    try:
-        choice1 = int(input("1 - Beavatkozol\t\t2 - Kérsz egy sört\t3 - Kimész\n"))
-    except:
-        Choice1(stamina, morale, sörszam)
+    szoveg = f"\n1 - Beavatkozol\t\t2 - Kérsz egy sört\t3 - Kimész\n"
+    irdki(szoveg)
+    choice1 = sys.stdin.readline().strip()
     if choice1 == 1:
         KocsmaVerekedes()
         return 0
     elif choice1 == 2:
-        if sörszam < 9.5:
+        if sörszam < 9:
             stamina -= 20
             morale -= 10
             sörszam += 1
-            print(f"Már {sörszam} sört ittál.")
+            szoveg = f"Már {sörszam} sört ittál."
             Choice1(stamina, morale, sörszam)
         else:
-            print("Egy árokban ébredsz. Nem kellett volna annyit innod. Zúg a fejed. Lassan hazadülöngélsz. Anyád szobafogságra ítél, nem mintha amúgy kedved lenne bárhova is menni.\n\t\tVÉGE")
+            szoveg = f"Ez már a 10. sör volt. Forog veled a szoba, majd minden elsötétül."
+            irdki(szoveg)
+            time.sleep(4)
+            os.system('cls')
+            time.sleep(2)
+            for i in range(0,3):
+                print('.', end="")
+                time.sleep(1)
+            time.sleep(1)
+            szoveg =f"\nEgy árokban ébredsz. Nem kellett volna annyit innod. Zúg a fejed."
+            irdki(szoveg)
+            time.sleep(3)
+            szoveg ="Lassan hazadülöngélsz, már nincs kedved sehova menni."
+            irdki(szoveg)
+            time.sleep(3)
+            print(f"\n─────────────────────────────────────────────────────────────\n─██████──██████─██████████████─██████████████─██████████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██████████─██░░██████████─\n─██░░██──██░░██─██░░██─────────██░░██─────────██░░██─────────\n─██░░██──██░░██─██░░██████████─██░░██─────────██░░██████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░██──██████─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██──██░░██─██░░██████████─\n─██░░░░██░░░░██─██░░██─────────██░░██──██░░██─██░░██─────────\n─████░░░░░░████─██░░██████████─██░░██████░░██─██░░██████████─\n───████░░████───██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─────██████─────██████████████─██████████████─██████████████─\n─────────────────────────────────────────────────────────────")
     elif choice1 == 3:
-        helyszin = input("Válassz, hova mész:\n")
+        szoveg = f"Válassz, hova mész:\n"
+        helyszin = sys.stdin.readline().strip()
         #megírni
     else:
-        print("Nincs ilyen lehetőség!")
+        szoveg = "Nincs ilyen lehetőség!"
+        irdki(szoveg)
         time.sleep(1)
         os.system('cls')
         Choice1(stamina, morale, sörszam)
         
 def KocsmaItem():
-    try:
-        item = int(input("1 - Felkapod a széket\n2 - Fogsz egy sörösüveget\n3 - Puszta kézzel szállsz be a harcba\n4 - Mégsem akarsz még harcolni\n"))
-    except:
-        print("Számot adj meg!")
+    szoveg = f"1 - Felkapod a széket\n2 - Fogsz egy sörösüveget\n3 - Puszta kézzel szállsz be a harcba\n4 - Mégsem akarsz még harcolni\n"
+    irdki(szoveg)
+    item = sys.stdin.readline().strip()
+    if item.isnumeric == False:
+        szoveg = "Számot adj meg!"
+        irdki(szoveg)
         time.sleep(1)
         KocsmaItem()
     if item == 1:
@@ -95,7 +129,8 @@ def KocsmaItem():
     elif item == 4:
         Choice1(stamina, morale, sörszam)
     else:
-        print("Nincs ilyen lehetőség!")
+        szoveg = "Nincs ilyen lehetőség!"
+        irdki(szoveg)
         time.sleep(1)
         KocsmaItem()
 
@@ -104,6 +139,6 @@ def ItemValaszto(helyszin):
         KocsmaItem()
 
 def KocsmaVerekedes():
-    print("Úgy döntesz, segítesz barátaidnak, de előtte szükséged lesz egy fegyverre.")
+    szoveg = "Úgy döntesz, segítesz barátaidnak, de előtte szükséged lesz egy fegyverre."
+    irdki(szoveg)
     KocsmaItem()
-    

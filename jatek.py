@@ -1,2 +1,3 @@
 from fuggvenyek import *
+
 menu()
