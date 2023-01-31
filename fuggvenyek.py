@@ -2,7 +2,6 @@
 import os
 import sys
 import time
-from combat import *
 questek = {}
 fegyver = 0
 fegyverDurability = 0
@@ -181,7 +180,6 @@ def KocsmaVerekedes(fegyver, fegyverDurability, hp, attack):
 import os
 import sys
 import time
-from combat import *
 questek = {}
 fegyver = 0
 fegyverDurability = 0
