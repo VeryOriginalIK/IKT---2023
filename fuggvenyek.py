@@ -9,10 +9,8 @@ energiaital = 5
 hp = 100
 stamina = 100
 morale = 100
-helyszin = "kocsma"
 attack = (stamina+morale+fegyver)/10
 name = ""
-
 
 #def Mentes(hp, questek, inventory):
         ##Nahajrá Domonkos
@@ -147,7 +145,7 @@ def Choice1(stamina, morale, sörszam):
             irdki(szoveg)
             morale -= 30
 
-def KocsmaItem():
+def KocsmaItem(fegyver, fegyverDurability):
     szoveg = f"1 - Felkapod a széket\n2 - Fogsz egy sörösüveget\n3 - Puszta kézzel szállsz be a harcba\n4 - Mégsem akarsz még harcolni\n"
     irdki(szoveg)
     try:
@@ -161,17 +159,14 @@ def KocsmaItem():
         fegyver = 80
         fegyverDurability = 3
     elif item == 2:
-        inventory["sorosuveg"] = 1
+        fegyver = 40
+        fegyverDurability = 8
     elif item == 3:
         return 0
     elif item == 4:
         Choice1(stamina, morale, sörszam)
-        
-def ItemValaszto(helyszin):
-    if helyszin == "kocsma":
-        KocsmaItem()
 
-def KocsmaVerekedes():
+def KocsmaVerekedes(fegyver, fegyverDurability, hp, attack):
     szoveg = "Úgy döntesz, segítesz barátaidnak, de előtte szükséged lesz egy fegyverre.\n"
     irdki(szoveg)
-    KocsmaItem()
+    KocsmaItem(fegyver, fegyverDurability)
