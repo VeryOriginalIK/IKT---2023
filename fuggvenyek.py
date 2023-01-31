@@ -9,7 +9,6 @@ energiaital = 5
 hp = 100
 stamina = 100
 morale = 100
-helyszin = "kocsma"
 attack = (stamina+morale+fegyver)/10
 name = ""
 
@@ -117,15 +116,13 @@ def Choice1(stamina, morale, sörszam):
             time.sleep(3)
             print(f"\n─────────────────────────────────────────────────────────────\n─██████──██████─██████████████─██████████████─██████████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██████████─██░░██████████─\n─██░░██──██░░██─██░░██─────────██░░██─────────██░░██─────────\n─██░░██──██░░██─██░░██████████─██░░██─────────██░░██████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░██──██████─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██──██░░██─██░░██████████─\n─██░░░░██░░░░██─██░░██─────────██░░██──██░░██─██░░██─────────\n─████░░░░░░████─██░░██████████─██░░██████░░██─██░░██████████─\n───████░░████───██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─────██████─────██████████████─██████████████─██████████████─\n─────────────────────────────────────────────────────────────")
             menu()
-
+    #1. quest
     elif choice1 == 3:
         szoveg = f"Indulni készülsz. Az ajtóban valaki megállít.\n"
         irdki(szoveg)
         time.sleep(2)
         szoveg = f"Ha segítesz nekem ígérem megjutalmazlak, de sietnűnk kell!\nSuttogja az idegen miközben ide-oda nézeget, mintha keresne valakit."
-        #1. quest
         irdki(szoveg)
-        
         szoveg = f"\nMit teszel?\n1 - Elmész az idegenennel\t2 - Félrelököd és kimész\t3 - Visszamész a kocsmába\n"
         irdki(szoveg)
         try:
@@ -161,17 +158,15 @@ def KocsmaItem():
         fegyver = 80
         fegyverDurability = 3
     elif item == 2:
-        inventory["sorosuveg"] = 1
+        fegyver = 40
+        fegyverDurability = 8
     elif item == 3:
         return 0
     elif item == 4:
         Choice1(stamina, morale, sörszam)
         
-def ItemValaszto(helyszin):
-    if helyszin == "kocsma":
-        KocsmaItem()
-
 def KocsmaVerekedes():
     szoveg = "Úgy döntesz, segítesz barátaidnak, de előtte szükséged lesz egy fegyverre.\n"
     irdki(szoveg)
     KocsmaItem()
+    battle()
