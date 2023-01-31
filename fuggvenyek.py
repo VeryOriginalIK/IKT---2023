@@ -127,11 +127,6 @@ def KocsmaItem():
         irdki(szoveg)
         time.sleep(1)
         KocsmaItem()
-    if item.isnumeric == False:
-        szoveg = "Számot adj meg!"
-        irdki(szoveg)
-        time.sleep(1)
-        KocsmaItem()
     if item == 1:
         inventory["szek"] = 1
     elif item == 2:
