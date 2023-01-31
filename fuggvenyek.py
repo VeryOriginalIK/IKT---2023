@@ -332,6 +332,7 @@ def Choice1(stamina, morale, sörszam):
 def ElsoQuest():
     szoveg = f"Követed az idegent a piacra. Itt azt mondja:\n-Ahová mész ott szükséged lesz egy kardra!-\nOdamegy a kovácshoz és egy fényes pengével tér vissza.\n-Tedd el, az első ingyen van!"
     irdki(szoveg)
+    
 
 def KocsmaItem():
     szoveg = f"1 - Felkapod a széket\n2 - Fogsz egy sörösüveget\n3 - Puszta kézzel szállsz be a harcba\n4 - Mégsem akarsz még harcolni\n"
