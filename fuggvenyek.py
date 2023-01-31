@@ -451,19 +451,10 @@ def KocsmaVerekedes():
     szoveg = "Úgy döntesz, segítesz barátaidnak, de előtte szükséged lesz egy fegyverre.\n"
     irdki(szoveg)
     KocsmaItem()
-<<<<<<< HEAD
-<<<<<<< HEAD
     battle()
-=======
-=======
->>>>>>> b75fc56df6f58312e8f9061a30c2edec316129bc
     player = Character(name, hp, attack, morale)
     # enemyn = 
     # enemyhp =
     # enemyat = 
     enemy = Character(enemyn, enemyhp, enemyat, 0)
     battle(player, enemy)
-<<<<<<< HEAD
->>>>>>> b75fc56df6f58312e8f9061a30c2edec316129bc
-=======
->>>>>>> b75fc56df6f58312e8f9061a30c2edec316129bc
