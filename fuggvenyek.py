@@ -18,7 +18,7 @@ name = ""
 def irdki(szoveg):
     for i in range(len(szoveg)):
         print(szoveg[i], end='', flush=True); 
-        time.sleep(0.005)
+        time.sleep(0.01)
 
         
     #  basically animálja a printelést Undertale stílusban, csak a print helyett két sor
@@ -42,8 +42,6 @@ def menu():
         MentesOlvas()
     elif option == 3:
         Mentes()
-        sys.exit()
-    elif option == 4:
         sys.exit()
     
 
@@ -101,7 +99,7 @@ def Choice1(stamina, morale, sörszam):
                 print('.', end="")
                 time.sleep(1)
             time.sleep(1)
-            szoveg =f"\nEgy árokban ébredsz. Nem kellett volna annyit innod. Zúg a fejed."
+            szoveg =f"\nEgy árokban ébredsz. Nem kellett volna annyit innod. Zúg a fejed. "
             irdki(szoveg)
             time.sleep(3)
             szoveg ="Lassan hazadülöngélsz, már nincs kedved sehova menni."
