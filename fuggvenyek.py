@@ -237,8 +237,6 @@ def menu():
 
 #def harc():
     #Hajrá Donát
-from fuggvenyek import *
-
 class Character:
     def __init__(self, name, hp, atk, morale):
         self.name = name
