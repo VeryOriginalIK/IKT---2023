@@ -122,7 +122,7 @@ def Choice1(stamina, morale, sörszam):
         szoveg = f"Indulni készülsz. Az ajtóban valaki megállít.\n"
         irdki(szoveg)
         time.sleep(2)
-        szoveg = f"Ha segítesz nekem ígérem megjutalmazlak, de sietnűnk kell!\nSuttogja az idegen miközben ide-oda nézeget, mintha keresne valakit."
+        szoveg = f"-Ha segítesz nekem ígérem megjutalmazlak, de sietnűnk kell!\nSuttogja az idegen miközben ide-oda nézeget, mintha keresne valakit.-"
         #1. quest
         irdki(szoveg)
         
@@ -137,6 +137,7 @@ def Choice1(stamina, morale, sörszam):
         if helyszin == 1:
             szoveg = f"Követed az idegent\n"
             irdki(szoveg)
+            ElsoQuest()
         elif helyszin == 2:
             szoveg = f"Az idegen a falnak csapodik, majd egy kést ránt elő a mellénye zsebéből és a hasadba döfi!\n"
             irdki(szoveg)
@@ -146,7 +147,12 @@ def Choice1(stamina, morale, sörszam):
             szoveg = f"Mindenki a földön vonaglik és jajgatózik. Elrémít a látvány, úgy döntesz mégis az idegennel mész.\n"
             irdki(szoveg)
             morale -= 30
+            ElsoQuest()
 
+def ElsoQuest():
+    time.sleep(2)
+    szoveg = f"Követed az idegent a piacra, itt azt mondja:\n-Ahová menned kell ott szükséged lesz egy kardra!-\nOdamegy a kovácshoz és egy kardal tér vissza.\nTedd el, az első ingyen van!"
+    
 def KocsmaItem():
     szoveg = f"1 - Felkapod a széket\n2 - Fogsz egy sörösüveget\n3 - Puszta kézzel szállsz be a harcba\n4 - Mégsem akarsz még harcolni\n"
     irdki(szoveg)
