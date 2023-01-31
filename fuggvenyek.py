@@ -111,13 +111,31 @@ def Choice1(stamina, morale, sörszam):
     elif choice1 == 3:
         szoveg = f"Indulni készülsz. Az ajtóban valaki megállít.\n"
         irdki(szoveg)
-        #szoveg = f""
+        time.sleep(2)
+        szoveg = f"Ha segítesz nekem ígérem megjutalmazlak, de sietnűnk kell!\nSuttogja az idegen miközben ide-oda nézeget, mintha keresne valakit."
         #1. quest
-
-        #szoveg = f"Válassz, hova mész:\n"
-        #irdki(szoveg)
-        helyszin = int(sys.stdin.readline().strip())
-        #megírni
+        irdki(szoveg)
+        
+        szoveg = f"\nMit teszel?\n1 - Elmész az idegenennel\t2 - Félrelököd és kimész\t3 - Visszamész a kocsmába\n"
+        irdki(szoveg)
+        try:
+            helyszin = int(sys.stdin.readline().strip())
+        except:
+            szoveg = "Nincs ilyen lehetőség!"
+            irdki(szoveg)
+            time.sleep(1)
+        if helyszin == 1:
+            szoveg = f"Követed az idegent\n"
+            irdki(szoveg)
+        elif helyszin == 2:
+            szoveg = f"Az idegen a falnak csapodik, majd egy kést ránt elő a mellénye zsebéből és a hasadba döfi!\n"
+            irdki(szoveg)
+            time.sleep(2)
+            print(f"\n─────────────────────────────────────────────────────────────\n─██████──██████─██████████████─██████████████─██████████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██████████─██░░██████████─\n─██░░██──██░░██─██░░██─────────██░░██─────────██░░██─────────\n─██░░██──██░░██─██░░██████████─██░░██─────────██░░██████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░██──██████─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██──██░░██─██░░██████████─\n─██░░░░██░░░░██─██░░██─────────██░░██──██░░██─██░░██─────────\n─████░░░░░░████─██░░██████████─██░░██████░░██─██░░██████████─\n───████░░████───██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─────██████─────██████████████─██████████████─██████████████─\n─────────────────────────────────────────────────────────────")
+        elif helyszin == 3:
+            szoveg = f"Mindenki a földön vonaglik és jajgatózik. Elrémít a látvány, úgy döntesz mégis az idegennel mész.\n"
+            irdki(szoveg)
+            morale -= 30
 
 def KocsmaItem():
     szoveg = f"1 - Felkapod a széket\n2 - Fogsz egy sörösüveget\n3 - Puszta kézzel szállsz be a harcba\n4 - Mégsem akarsz még harcolni\n"
@@ -126,11 +144,6 @@ def KocsmaItem():
         item = int(sys.stdin.readline().strip())
     except:
         szoveg = "Nincs ilyen lehetőség!"
-        irdki(szoveg)
-        time.sleep(1)
-        KocsmaItem()
-    if item.isnumeric == False:
-        szoveg = "Számot adj meg!"
         irdki(szoveg)
         time.sleep(1)
         KocsmaItem()
