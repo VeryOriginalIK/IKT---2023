@@ -72,7 +72,14 @@ sörszam = 0
 def Choice1(stamina, morale, sörszam):
     szoveg = f"\n1 - Beavatkozol\t\t2 - Kérsz egy sört\t3 - Kimész\n"
     irdki(szoveg)
-    choice1 = sys.stdin.readline().strip()
+    try:
+        choice1 = int(sys.stdin.readline().strip())
+    except:
+        szoveg = "Nincs ilyen lehetőség!"
+        irdki(szoveg)
+        time.sleep(1)
+        os.system('cls')
+        Choice1(stamina, morale, sörszam)
     if choice1 == 1:
         KocsmaVerekedes()
         return 0
@@ -82,6 +89,7 @@ def Choice1(stamina, morale, sörszam):
             morale -= 10
             sörszam += 1
             szoveg = f"Már {sörszam} sört ittál."
+            irdki(szoveg)
             Choice1(stamina, morale, sörszam)
         else:
             szoveg = f"Ez már a 10. sör volt. Forog veled a szoba, majd minden elsötétül."
@@ -104,17 +112,17 @@ def Choice1(stamina, morale, sörszam):
         szoveg = f"Válassz, hova mész:\n"
         helyszin = sys.stdin.readline().strip()
         #megírni
-    else:
-        szoveg = "Nincs ilyen lehetőség!"
-        irdki(szoveg)
-        time.sleep(1)
-        os.system('cls')
-        Choice1(stamina, morale, sörszam)
         
 def KocsmaItem():
     szoveg = f"1 - Felkapod a széket\n2 - Fogsz egy sörösüveget\n3 - Puszta kézzel szállsz be a harcba\n4 - Mégsem akarsz még harcolni\n"
     irdki(szoveg)
-    item = sys.stdin.readline().strip()
+    try:
+        item = int(sys.stdin.readline().strip())
+    except:
+        szoveg = "Nincs ilyen lehetőség!"
+        irdki(szoveg)
+        time.sleep(1)
+        KocsmaItem()
     if item.isnumeric == False:
         szoveg = "Számot adj meg!"
         irdki(szoveg)
@@ -128,11 +136,7 @@ def KocsmaItem():
         return 0
     elif item == 4:
         Choice1(stamina, morale, sörszam)
-    else:
-        szoveg = "Nincs ilyen lehetőség!"
-        irdki(szoveg)
-        time.sleep(1)
-        KocsmaItem()
+        
 
 def ItemValaszto(helyszin):
     if helyszin == "kocsma":
