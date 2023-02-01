@@ -168,32 +168,7 @@ def Choice1(stamina, morale, sörszam):
             vege()
             menu()
     #1. quest
-    elif choice1 == 3:
-        szoveg = f"Indulni készülsz. Az ajtóban valaki megállít.\n"
-        irdki(szoveg)
-        time.sleep(2)
-        szoveg = f"-Ha segítesz nekem ígérem megjutalmazlak, de sietnűnk kell!-\nSuttogja az idegen miközben ide-oda nézeget, mintha keresne valakit."
-        irdki(szoveg)
-        szoveg = f"\nMit teszel?\n1 - Elmész az idegenennel\t2 - Félrelököd és kimész\t3 - Visszamész a kocsmába\n"
-        irdki(szoveg)
-        try:
-            helyszin = int(sys.stdin.readline().strip())
-        except:
-            szoveg = "Nincs ilyen lehetőség!"
-            irdki(szoveg)
-            time.sleep(1)
-        if helyszin == 1:
-            ElsoQuest()
-        elif helyszin == 2:
-            szoveg = f"Az idegen a falnak csapodik, majd egy kést ránt elő a mellénye zsebéből és a hasadba döfi!\n"
-            irdki(szoveg)
-            time.sleep(2)
-            print(f"\n─────────────────────────────────────────────────────────────\n─██████──██████─██████████████─██████████████─██████████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██████████─██░░██████████─\n─██░░██──██░░██─██░░██─────────██░░██─────────██░░██─────────\n─██░░██──██░░██─██░░██████████─██░░██─────────██░░██████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░██──██████─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██──██░░██─██░░██████████─\n─██░░░░██░░░░██─██░░██─────────██░░██──██░░██─██░░██─────────\n─████░░░░░░████─██░░██████████─██░░██████░░██─██░░██████████─\n───████░░████───██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─────██████─────██████████████─██████████████─██████████████─\n─────────────────────────────────────────────────────────────")
-        elif helyszin == 3:
-            szoveg = f"Mindenki a földön vonaglik és jajgatózik. Elrémít a látvány, úgy döntesz mégis az idegennel mész.\n"
-            irdki(szoveg)
-            morale -= 30
-            ElsoQuest()
+
 
 def ElsoQuest():
     time.sleep(3)
