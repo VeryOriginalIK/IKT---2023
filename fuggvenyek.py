@@ -82,7 +82,7 @@ def battle(player, enemy, fegyver, fegyverDurability):
 
         if choice == "1":
             enemy.hp -= player.atk
-            print(f"{name}", player.atk, f"Sebzéz {enemy}-ra/re.")
+            print(player.name, player.atk, f"Sebzéz {enemy.name}-ra/re.")
             fegyverDurability -= 1
             if fegyverDurability == 0:
                 fegyver = 0
