@@ -26,6 +26,9 @@ def irdki(szoveg):
     #  szoveg = (megadod a szöveget), aztán kövi sorban meghívod a függvényt a szoveg paraméterrel
     #  egyetlen hátránya (egyelőre a mostani verzióban), hogy \n nem néz ki olyan jól, mintha újra nyomtatod. 
 
+
+
+
 def kilep():
     szoveg = "Köszönjük, hogy játszottál."
     irdki(szoveg)
@@ -172,8 +175,12 @@ def Choice1(stamina, morale, sörszam):
         szoveg = f"Indulni készülsz. Az ajtóban valaki megállít.\n"
         irdki(szoveg)
         time.sleep(2)
-        szoveg = f"-Ha segítesz nekem ígérem megjutalmazlak, de sietnűnk kell!-\nSuttogja az idegen miközben ide-oda nézeget, mintha keresne valakit."
+        szoveg = f"-Ha segítesz nekem ígérem megjutalmazlak, de sietnűnk kell!-\n"
         irdki(szoveg)
+        time.sleep(2)
+        szoveg = f"Suttogja az idegen miközben ide-oda nézeget, mintha keresne valakit."
+        irdki(szoveg)
+        time.sleep(2)
         szoveg = f"\nMit teszel?\n1 - Elmész az idegenennel\t2 - Félrelököd és kimész\t3 - Visszamész a kocsmába\n"
         irdki(szoveg)
         try:
@@ -188,7 +195,7 @@ def Choice1(stamina, morale, sörszam):
             szoveg = f"Az idegen a falnak csapodik, majd egy kést ránt elő a mellénye zsebéből és a hasadba döfi!\n"
             irdki(szoveg)
             time.sleep(2)
-            print(f"\n─────────────────────────────────────────────────────────────\n─██████──██████─██████████████─██████████████─██████████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██████████─██░░██████████─\n─██░░██──██░░██─██░░██─────────██░░██─────────██░░██─────────\n─██░░██──██░░██─██░░██████████─██░░██─────────██░░██████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░██──██████─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██──██░░██─██░░██████████─\n─██░░░░██░░░░██─██░░██─────────██░░██──██░░██─██░░██─────────\n─████░░░░░░████─██░░██████████─██░░██████░░██─██░░██████████─\n───████░░████───██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─────██████─────██████████████─██████████████─██████████████─\n─────────────────────────────────────────────────────────────")
+            vege()
         elif helyszin == 3:
             szoveg = f"Mindenki a földön vonaglik és jajgatózik. Elrémít a látvány, úgy döntesz mégis az idegennel mész.\n"
             irdki(szoveg)
@@ -196,9 +203,32 @@ def Choice1(stamina, morale, sörszam):
             ElsoQuest()
 
 def ElsoQuest():
-    time.sleep(3)
-    szoveg = f"Követed az idegent a piacra. Itt azt mondja:\n-Ahová mész ott szükséged lesz egy kardra!-\nOdamegy a kovácshoz és egy fényes pengével tér vissza.\n-Tedd el, az első ingyen van!-\n"
+    time.sleep(1.5)
+    szoveg = f"Követed az idegent a piacra. Itt azt mondja:\n-Ahová mész ott szükséged lesz egy kardra!-\n"
     irdki(szoveg)
+    time.sleep(2)
+    szoveg = f"Odamegy a kovácshoz és egy fényes pengével tér vissza.\n-Tedd el, az első ingyen van!-\n"
+    irdki(szoveg)
+    time.sleep(2)
+    szoveg = f"Mit teszel?\n1 - Elteszed a kardot\t\t2 - Elutasítod az ajándékot\n"
+    irdki(szoveg)
+    try:
+        choice = int(sys.stdin.readline().strip())
+    except:
+        szoveg = "Nincs ilyen lehetőség!"
+        irdki(szoveg)
+        time.sleep(1)
+    if choice == 1:
+        szoveg = f"Elveszed a kardot az idegentől."
+        irdki(szoveg)
+        time.sleep(1)
+        szoveg = f"-Jolvan kövesd az utat az erdőig a fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!"
+        irdki(szoveg)
+    elif choice == 2:
+        szoveg = f"Csalódtam benned! Ha ilyen  gyáva vagy, akkor menj el!"
+        irdki(szoveg)
+        time.sleep(1)
+        vege()
     
 
 def KocsmaItem():
