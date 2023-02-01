@@ -8,7 +8,7 @@ energiaital = 5
 hp = 100
 stamina = 100
 morale = 100
-attack = (stamina+morale+fegyver)/10
+attack = (stamina+morale+fegyver)/4
 name = ""
 
 
@@ -77,7 +77,9 @@ class Character:
 
 
 
-def battle(player, enemy, fegyver, fegyverDurability):
+def battle(player, enemy, fegyver, fegyverDurability, energiaital, fightstarter):
+    szoveg = f"{fightstarter}"
+    irdki(szoveg)
     while player.hp > 0 and enemy.hp > 0:
         print("Harc lehetőségek:")
         print("1. Támadás")
@@ -87,7 +89,8 @@ def battle(player, enemy, fegyver, fegyverDurability):
 
         if choice == "1":
             enemy.hp -= player.atk
-            print(player.name, player.atk, f"Sebzéz {enemy.name}-ra/re.")
+            szoveg = f"{player.name}, {player.atk}, sebzett {enemy.name}-ra/re."
+            irdki(szoveg)
             fegyverDurability -= 1
             if fegyverDurability == 0:
                 fegyver = 0
@@ -97,24 +100,27 @@ def battle(player, enemy, fegyver, fegyverDurability):
             szoveg = "Ittál egy Spar Energy Drinket, a HP-d 30-al nő."
             irdki(szoveg)
         else:
-            print("nincs ilyen lehetőség.")
+            szoveg = "nincs ilyen lehetőség."
+            irdki(szoveg)
 
         if enemy.hp > 0:
             player.hp -= enemy.atk
-            print(f"{enemy}", enemy.atk, f"sebzett {name}-ra/re.")
+            szoveg = f"\n{enemy.name}, {enemy.atk}, sebzett {player.name}-ra/re."
+            irdki(szoveg)
 
     if player.hp > 0:
-        print(f"{name} megnyerte a csatát")
+        szoveg = f"\n{player.name} megnyerte a csatát"
+        irdki(szoveg)
     else:
-        print(f"Meghaltál :c")
+        szoveg = f"\nMeghaltál :c"
+        irdki(szoveg)
         vege()
-
-
 
 #sztori kezdete
 def Kocsma():
     szoveg = "Hogy hívnak?\n- "
     irdki(szoveg)
+    global name
     name = sys.stdin.readline().strip()
     szoveg = f"Üdv a játékban, {name}. Ajánljuk, hogy a játék elején növeld a képernyőd méretét a neked megfelelőre.\n"
     irdki(szoveg)
@@ -232,6 +238,8 @@ def ElsoQuest():
     
 
 def KocsmaItem():
+    global fegyver
+    global fegyverDurability
     szoveg = f"1 - Felkapod a széket\n2 - Fogsz egy sörösüveget\n3 - Puszta kézzel szállsz be a harcba\n4 - Mégsem akarsz még harcolni\n"
     irdki(szoveg)
     try:
@@ -258,7 +266,8 @@ def KocsmaVerekedes():
     KocsmaItem()
     player = Character(name, hp, attack, morale)
     enemyn = "Győző"
-    enemyhp = 400
-    enemyat = 50
+    enemyhp = 200
+    enemyat = 20
+    fightstarter = f"{enemyn} részegesen feléd ballag"
     enemy = Character(enemyn, enemyhp, enemyat, 0)
-    battle(player, enemy, fegyver, fegyverDurability)
+    battle(player, enemy, fegyver, fegyverDurability, energiaital, fightstarter)
