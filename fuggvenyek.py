@@ -36,9 +36,6 @@ def kilep():
     sys.exit()
     os.system('cls')
     
-def vege():
-    print(f"\n─────────────────────────────────────────────────────────────\n─██████──██████─██████████████─██████████████─██████████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██████████─██░░██████████─\n─██░░██──██░░██─██░░██─────────██░░██─────────██░░██─────────\n─██░░██──██░░██─██░░██████████─██░░██─────────██░░██████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░██──██████─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██──██░░██─██░░██████████─\n─██░░░░██░░░░██─██░░██─────────██░░██──██░░██─██░░██─────────\n─████░░░░░░████─██░░██████████─██░░██████░░██─██░░██████████─\n───████░░████───██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─────██████─────██████████████─██████████████─██████████████─\n─────────────────────────────────────────────────────────────")
-
 def menu():
     os.system('cls')
     szoveg = f"1 - Új játék\t2 - Mentés betöltés\t3 - Kilépés\n"
@@ -56,7 +53,10 @@ def menu():
         MentesOlvas()
     elif option == 3:
         kilep()
-    
+
+def vege():
+    print(f"\n─────────────────────────────────────────────────────────────\n─██████──██████─██████████████─██████████████─██████████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██████████─██░░██████████─\n─██░░██──██░░██─██░░██─────────██░░██─────────██░░██─────────\n─██░░██──██░░██─██░░██████████─██░░██─────────██░░██████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░██──██████─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██──██░░██─██░░██████████─\n─██░░░░██░░░░██─██░░██─────────██░░██──██░░██─██░░██─────────\n─████░░░░░░████─██░░██████████─██░░██████░░██─██░░██████████─\n───████░░████───██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─────██████─────██████████████─██████████████─██████████████─\n─────────────────────────────────────────────────────────────")
+    menu()
 
 #def harc():
     #Hajrá Donát
@@ -75,8 +75,6 @@ class Character:
                  }
         return stats
 
-
-
 def battle(player, enemy, fegyver, fegyverDurability, energiaital, fightstarter):
     szoveg = f"{fightstarter}"
     irdki(szoveg)
@@ -89,7 +87,7 @@ def battle(player, enemy, fegyver, fegyverDurability, energiaital, fightstarter)
 
         if choice == "1":
             enemy.hp -= player.atk
-            szoveg = f"{player.name}, {player.atk}, sebzett {enemy.name}-ra/re."
+            szoveg = f"{player.atk} életponttal sebezted {enemy.name}-t"
             irdki(szoveg)
             fegyverDurability -= 1
             if fegyverDurability == 0:
@@ -105,11 +103,11 @@ def battle(player, enemy, fegyver, fegyverDurability, energiaital, fightstarter)
 
         if enemy.hp > 0:
             player.hp -= enemy.atk
-            szoveg = f"\n{enemy.name}, {enemy.atk}, sebzett {player.name}-ra/re."
+            szoveg = f"\n{enemy.name} {enemy.atk} -at sebzett rád.\n"
             irdki(szoveg)
 
     if player.hp > 0:
-        szoveg = f"\n{player.name} megnyerte a csatát"
+        szoveg = f"\nMegnyerted a csatát"
         irdki(szoveg)
     else:
         szoveg = f"\nMeghaltál :c"
@@ -175,7 +173,7 @@ def Choice1(stamina, morale, sörszam):
             irdki(szoveg)
             time.sleep(3)
             vege()
-            menu()
+
     #1. quest
     elif choice1 == 3:
         szoveg = f"Indulni készülsz. Az ajtóban valaki megállít.\n"
@@ -210,7 +208,7 @@ def Choice1(stamina, morale, sörszam):
 
 def ElsoQuest():
     time.sleep(1.5)
-    szoveg = f"Követed az idegent a piacra. Itt azt mondja:\n-Ahová mész ott szükséged lesz egy kardra!-\n"
+    szoveg = f"Követed az idegent a piacra. \n-Ahová mész ott szükséged lesz egy fegyverre!-\n"
     irdki(szoveg)
     time.sleep(2)
     szoveg = f"Odamegy a kovácshoz és egy fényes pengével tér vissza.\n-Tedd el, az első ingyen van!-\n"
@@ -231,12 +229,11 @@ def ElsoQuest():
         szoveg = f"-Jolvan kövesd az utat az erdőig a fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!"
         irdki(szoveg)
     elif choice == 2:
-        szoveg = f"Csalódtam benned! Ha ilyen  gyáva vagy, akkor menj el!"
+        szoveg = f"Csalódtam benned! Ha ilyen gyáva vagy, akkor menj el!"
         irdki(szoveg)
         time.sleep(1)
         vege()
     
-
 def KocsmaItem():
     global fegyver
     global fegyverDurability
@@ -268,6 +265,6 @@ def KocsmaVerekedes():
     enemyn = "Győző"
     enemyhp = 200
     enemyat = 20
-    fightstarter = f"{enemyn} részegesen feléd ballag"
+    fightstarter = f"{enemyn} részegesen feléd ballag.\n"
     enemy = Character(enemyn, enemyhp, enemyat, 0)
     battle(player, enemy, fegyver, fegyverDurability, energiaital, fightstarter)
