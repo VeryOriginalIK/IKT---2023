@@ -80,15 +80,14 @@ def battle(player, enemy, fegyver, fegyverDurability, energiaital, fightstarter)
     szoveg = f"{fightstarter}"
     irdki(szoveg)
     while player.hp > 0 and enemy.hp > 0:
-        szoveg = f"{name}: {player.hp}\n{enemy.name}: {enemy.hp}"
+        szoveg = f"{name}: {player.hp}\n{enemy.name}: {enemy.hp}\n{energiaital} energiaitalod van.\n"
         irdki(szoveg)
-        szoveg = "Harc lehetőségek:"
+        szoveg = "Harc lehetőségek:\n"
         irdki(szoveg)
-        szoveg = f"1. Támadás\t2. Gyógyítás"
+        szoveg = f"1. Támadás\t\t2. Gyógyítás\n"
         irdki(szoveg)
 
         choice = input("")
-
         if choice == "1":
             attack = round((stamina+fegyver+morale)/(random.randrange(1 , 100))*10)
             enemy.hp -= attack
@@ -125,7 +124,7 @@ def battle(player, enemy, fegyver, fegyverDurability, energiaital, fightstarter)
             irdki(szoveg)
 
     if player.hp > 0:
-        szoveg = f"\nMegnyerted a csatát "
+        szoveg = f"\nMegnyerted a csatát\n"
         irdki(szoveg)
     else:
         szoveg = f"\nMeghaltál :c"
