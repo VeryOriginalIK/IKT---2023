@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import random
 questek = {}
 fegyver = 0
 fegyverDurability = 0
@@ -8,7 +9,7 @@ energiaital = 5
 hp = 100
 stamina = 100
 morale = 100
-attack = (stamina+morale+fegyver)/4
+attack = 0
 name = ""
 
 
@@ -53,6 +54,8 @@ def menu():
         MentesOlvas()
     elif option == 3:
         kilep()
+    else:
+        menu()
 
 def vege():
     print(f"\n─────────────────────────────────────────────────────────────\n─██████──██████─██████████████─██████████████─██████████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██████████─██░░██████████─\n─██░░██──██░░██─██░░██─────────██░░██─────────██░░██─────────\n─██░░██──██░░██─██░░██████████─██░░██─────────██░░██████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░██──██████─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██──██░░██─██░░██████████─\n─██░░░░██░░░░██─██░░██─────────██░░██──██░░██─██░░██─────────\n─████░░░░░░████─██░░██████████─██░░██████░░██─██░░██████████─\n───████░░████───██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─────██████─────██████████████─██████████████─██████████████─\n─────────────────────────────────────────────────────────────")
@@ -61,16 +64,14 @@ def vege():
 #def harc():
     #Hajrá Donát
 class Character:
-    def __init__(self, name, hp, atk, morale):
+    def __init__(self, name, hp, morale):
         self.name = name
         self.hp = hp
-        self.atk = atk
         self.MR = morale
 
     def get_stats(self):
         stats = {"Name": self.name,
                  "HP": self.hp,
-                 "ATK": self.atk,
                  "Moral": self.MR
                  }
         return stats
@@ -79,35 +80,52 @@ def battle(player, enemy, fegyver, fegyverDurability, energiaital, fightstarter)
     szoveg = f"{fightstarter}"
     irdki(szoveg)
     while player.hp > 0 and enemy.hp > 0:
-        print("Harc lehetőségek:")
-        print("1. Támadás")
-        print("2. Gyógyítás")
+        szoveg = f"{name}: {player.hp}\n{enemy.name}: {enemy.hp}"
+        irdki(szoveg)
+        szoveg = "Harc lehetőségek:"
+        irdki(szoveg)
+        szoveg = f"1. Támadás\t2. Gyógyítás"
+        irdki(szoveg)
 
         choice = input("")
 
         if choice == "1":
-            enemy.hp -= player.atk
-            szoveg = f"{player.atk} életponttal sebezted {enemy.name}-t"
+            attack = round((stamina+fegyver+morale)/(random.randrange(1 , 100))*10)
+            enemy.hp -= attack
+            szoveg = f"{attack} életponttal sebezted {enemy.name}-t "
             irdki(szoveg)
             fegyverDurability -= 1
             if fegyverDurability == 0:
                 fegyver = 0
         elif choice == "2":
-            player.hp += 30
-            energiaital -= 1
-            szoveg = "Ittál egy Spar Energy Drinket, a HP-d 30-al nő."
+            if energiaital > 0:    
+                player.hp += 30
+                energiaital -= 1
+                szoveg = "Ittál egy Spar Energy Drinket, a HP-d 30-al nő."
+                irdki(szoveg)
+            else:
+                szoveg = f"Kifogytál a piából.\n"
+                irdki(szoveg)
+                attack = round((stamina+fegyver+morale)/(random.randrange(1 , 100))*10)
+                enemy.hp -= attack
+            szoveg = f"{attack} életponttal sebezted {enemy.name}-t"
             irdki(szoveg)
+            fegyverDurability -= 1
+            if fegyverDurability == 0:
+                fegyver = 0
+
         else:
             szoveg = "nincs ilyen lehetőség."
             irdki(szoveg)
 
         if enemy.hp > 0:
-            player.hp -= enemy.atk
-            szoveg = f"\n{enemy.name} {enemy.atk} -at sebzett rád.\n"
+            enemyattack = round(random.randrange(20 , 80))
+            player.hp -= enemyattack
+            szoveg = f"\n{enemy.name} {enemyattack} -at sebzett rád.\n"
             irdki(szoveg)
 
     if player.hp > 0:
-        szoveg = f"\nMegnyerted a csatát"
+        szoveg = f"\nMegnyerted a csatát "
         irdki(szoveg)
     else:
         szoveg = f"\nMeghaltál :c"
@@ -261,10 +279,9 @@ def KocsmaVerekedes():
     szoveg = "Úgy döntesz, segítesz barátaidnak, de előtte szükséged lesz egy fegyverre.\n"
     irdki(szoveg)
     KocsmaItem()
-    player = Character(name, hp, attack, morale)
+    player = Character(name, hp, morale)
     enemyn = "Győző"
     enemyhp = 200
-    enemyat = 20
     fightstarter = f"{enemyn} részegesen feléd ballag.\n"
-    enemy = Character(enemyn, enemyhp, enemyat, 0)
+    enemy = Character(enemyn, enemyhp, 0)
     battle(player, enemy, fegyver, fegyverDurability, energiaital, fightstarter)
