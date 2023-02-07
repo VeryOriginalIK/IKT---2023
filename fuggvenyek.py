@@ -174,7 +174,6 @@ def Choice1(stamina, morale, sörszam):
             time.sleep(3)
             vege()
 
-    #1. quest
     elif choice1 == 3:
         szoveg = f"Indulni készülsz. Az ajtóban valaki megállít.\n"
         irdki(szoveg)
@@ -223,16 +222,29 @@ def ElsoQuest():
         irdki(szoveg)
         time.sleep(1)
     if choice == 1:
-        szoveg = f"Elveszed a kardot az idegentől."
+        szoveg = f"Elveszed a kardot az idegentől.\n"
         irdki(szoveg)
         time.sleep(1)
-        szoveg = f"-Jolvan kövesd az utat az erdőig a fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!"
+        szoveg = f"-Jolvan kövesd az utat az erdőig a fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!-\n"
         irdki(szoveg)
+        TutorialBoss()
     elif choice == 2:
         szoveg = f"Csalódtam benned! Ha ilyen gyáva vagy, akkor menj el!"
         irdki(szoveg)
         time.sleep(1)
         vege()
+
+def TutorialBoss():
+    time.sleep(4)
+    szoveg = f"Az eredei út végen egy kopár mezőt találsz. Úgy tűnik senki sincs a közelben, de olyan érzésed van mintha figyelnének.\n"
+    irdki(szoveg)
+    time.sleep(2)
+    szoveg = f"Elindulsz a láda felé amit a pusztaság közepén láttál meg. Mikor már majdnem odaértél rálépsz egy csontra, mej hangos reccsenéssel törik szét a lábad alatt!\n"
+    irdki(szoveg)
+    time.sleep(3)
+    szoveg = f"Hangos üvöltést hallasz a fák közül, a hang az egész testedben félelmet kelt. Már nincs időd elfutni mert egy szörny ront rád, harcolnod kell az életedér!"
+    irdki(szoveg)
+
     
 def KocsmaItem():
     global fegyver
