@@ -2,6 +2,7 @@ import os
 import sys
 import time
 import random
+
 questek = {}
 fegyver = 0
 fegyverDurability = 0
@@ -138,7 +139,7 @@ def battle(player, attack, fightstarter, enemy, fegyver, fegyverNev, fegyverDura
             irdki(szoveg)
 
     if player.hp > 0:
-        szoveg = f"{enemy.name}-nek vége.\n"
+        szoveg = f" {enemy.name}-nek vége van.\n"
         irdki(szoveg)
     else:
         time.sleep(3)
@@ -206,71 +207,10 @@ def Choice1(stamina, morale, sörszam):
             time.sleep(3)
             vege()
     elif choice1 == 3:
-        KocsmaKijarat()
+        return 0
     else:
         Choice1(stamina, morale, sörszam)
 
-    #1. quest
-    def KocsmaKijarat():
-        szoveg = f"Indulni készülsz. Az ajtóban viszont valaki megállít.\n"
-        irdki(szoveg)
-        time.sleep(2)
-        szoveg = f"-Ha segítesz nekem ígérem megjutalmazlak, de sietnűnk kell!-\n"
-        irdki(szoveg)
-        time.sleep(2)
-        szoveg = f"Suttogja az idegen miközben ide-oda nézeget, mintha keresne valakit."
-        irdki(szoveg)
-        time.sleep(2)
-        szoveg = f"\nMit teszel?\n1 - Elmész az idegenennel\t2 - Félrelököd és kimész\t3 - Visszamész a kocsmába\n"
-        irdki(szoveg)
-        try:
-            helyszin = int(sys.stdin.readline().strip())
-        except:
-            szoveg = "Nincs ilyen lehetőség!"
-            irdki(szoveg)
-            time.sleep(1)
-            KocsmaKijarat()
-        if helyszin == 1:
-                ElsoQuest()
-        elif helyszin == 2:
-                szoveg = f"A falnak csapódik, de egy kést ránt elő a mellénye zsebéből és a hasadba döfi!\n"
-                irdki(szoveg)
-                time.sleep(2)
-                vege()
-        elif helyszin == 3:
-                szoveg = f"Mindenki a földön vonaglik és jajgatózik. Elrémít a látvány, úgy döntesz mégis az idegennel mész.\n"
-                irdki(szoveg)
-                morale -= 30
-                ElsoQuest()
-        time.sleep(1.5)
-
-    def ElsoQuest():
-        szoveg = f"Követed az idegent a piacra. \n-Ahová mész ott szükséged lesz egy fegyverre!-\n"
-        irdki(szoveg)
-        time.sleep(2)
-        szoveg = f"Odamegy a kovácshoz és egy fényes pengével tér vissza.\n-Tedd el, az első ingyen van!-\n"
-        irdki(szoveg)
-        time.sleep(2)
-        szoveg = f"Mit teszel?\n1 - Elteszed a kardot\t\t2 - Elutasítod az ajándékot\n"
-        irdki(szoveg)
-        try:
-            choice = int(sys.stdin.readline().strip())
-        except:
-            szoveg = "Nincs ilyen lehetőség!"
-            irdki(szoveg)
-            time.sleep(1)
-        if choice == 1:
-            szoveg = f"Elveszed a kardot az idegentől."
-            irdki(szoveg)
-            time.sleep(1)
-            szoveg = f"-Jolvan kövesd az utat az erdőig a fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!"
-            irdki(szoveg)
-        elif choice == 2:
-            szoveg = f"Csalódtam benned! Ha ilyen gyáva vagy, akkor menj el!"
-            irdki(szoveg)
-            time.sleep(1)
-            vege()
-    
 def KocsmaItem():
     global fegyver
     global fegyverNev
@@ -319,4 +259,66 @@ def KocsmaVerekedes():
     time.sleep(0.2)
     enemy = Character(enemyn, enemyhp, 0)
     battle(player, attack, fightstarter, enemy, fegyver, fegyverNev, fegyverDurability, energiaital)
-    ElsoQuest()
+    szoveg = "Sikeresen levertétek Győzőéket, de már nincs kedved tovább maradni."
+    irdki(szoveg)
+
+    #1. quest
+def KocsmaKijarat(morale):
+    szoveg = f"Indulni készülsz. Az ajtóban viszont valaki megállít.\n"
+    irdki(szoveg)
+    time.sleep(2)
+    szoveg = f"-Ha segítesz nekem ígérem megjutalmazlak, de sietnűnk kell!-\n"
+    irdki(szoveg)
+    time.sleep(2)
+    szoveg = f"Suttogja az idegen miközben ide-oda nézeget, mintha keresne valakit."
+    irdki(szoveg)
+    time.sleep(2)
+    szoveg = f"\nMit teszel?\n1 - Elmész az idegenennel\t2 - Félrelököd és kimész\t3 - Visszamész a kocsmába\n"
+    irdki(szoveg)
+    try:
+        helyszin = int(sys.stdin.readline().strip())
+    except:
+        szoveg = "Nincs ilyen lehetőség!"
+        irdki(szoveg)
+        time.sleep(1)
+        KocsmaKijarat()
+    if helyszin == 1:
+            ElsoQuest()
+    elif helyszin == 2:
+            szoveg = f"A falnak csapódik, de egy kést ránt elő a mellénye zsebéből és a hasadba döfi!\n"
+            irdki(szoveg)
+            time.sleep(2)
+            vege()
+    elif helyszin == 3:
+            szoveg = f"Mindenki a földön vonaglik és jajgatózik. Elrémít a látvány, úgy döntesz mégis az idegennel mész.\n"
+            irdki(szoveg)
+            morale -= 30
+            ElsoQuest()
+    time.sleep(1.5)
+
+def ElsoQuest():
+    szoveg = f"Követed az idegent a piacra. \n-Ahová mész ott szükséged lesz egy fegyverre!-\n"
+    irdki(szoveg)
+    time.sleep(2)
+    szoveg = f"Odamegy a kovácshoz és egy fényes pengével tér vissza.\n-Tedd el, az első ingyen van!-\n"
+    irdki(szoveg)
+    time.sleep(2)
+    szoveg = f"Mit teszel?\n1 - Elteszed a kardot\t\t2 - Elutasítod az ajándékot\n"
+    irdki(szoveg)
+    try:
+        choice = int(sys.stdin.readline().strip())
+    except:
+        szoveg = "Nincs ilyen lehetőség!"
+        irdki(szoveg)
+        time.sleep(1)
+    if choice == 1:
+        szoveg = f"Elveszed a kardot az idegentől."
+        irdki(szoveg)
+        time.sleep(1)
+        szoveg = f"-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!"
+        irdki(szoveg)
+    elif choice == 2:
+        szoveg = f"Csalódtam benned! Ha ilyen gyáva vagy, akkor menj el!"
+        irdki(szoveg)
+        time.sleep(1)
+        vege()
