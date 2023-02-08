@@ -182,7 +182,7 @@ def Choice1(stamina, morale, sörszam):
 def ElsoQuest():
     irdki(f"Indulni készülsz. Az ajtóban valaki megállít.\n")
     time.sleep(2)
-    irdki(f"-Ha segítesz nekem ígérem megjutalmazlak, de sietnűnk kell!-\n")
+    irdki(f'\033[1m' + "-Ha segítesz nekem ígérem megjutalmazlak, de sietnűnk kell!-\n" + '\033[0m')
     time.sleep(2)
     irdki(f"Suttogja az idegen miközben ide-oda nézeget, mintha keresne valakit.")
     time.sleep(2)
@@ -203,8 +203,10 @@ def ElsoQuest():
         morale -= 30
         Piac()
 
-def Piac():
-    irdki(f"Követed az idegent a piacra. \n-Ahová mész ott szükséged lesz egy fegyverre!-\n")
+def Piac(fegyver, fegyverDurability, fegyverNev):
+    irdki(f"Követed az idegent a piacra.\n")
+    time.sleep(1)
+    irdki(f'\n\033[1m' + '-Ahová mész ott szükséged lesz egy fegyverre!-' + '\n\033[0m')
     time.sleep(2)
     irdki(f"Odamegy a kovácshoz és egy fényes pengével tér vissza.\n-Tedd el, az első ingyen van!-\n")
     time.sleep(2)
@@ -226,7 +228,7 @@ def Piac():
         # irdki(f"-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!")
         TutorialBoss()
     elif choice == 2:
-        irdki(f"-Csalódtam benned! Ha ilyen gyáva vagy, akkor menj el!-")
+        irdki(f'\n\033[1m' + "-Csalódtam benned! Ha ilyen gyáva vagy, akkor menj el!-" + '\n\033[0m')
         time.sleep(1)
         vege()
 
@@ -236,8 +238,7 @@ def TutorialBoss():
     time.sleep(2)
     irdki(f"Elindulsz a láda felé amit a pusztaság közepén láttál meg. Mikor már majdnem odaértél rálépsz egy csontra, mej hangos reccsenéssel törik szét a lábad alatt!\n")
     time.sleep(4)
-    szoveg = f"Hangos üvöltést hallasz a fák közül, a hang az egész testedben félelmet kelt. Már nincs időd elfutni mert egy szörny ront rád, harcolnod kell az életedér!"
-    irdki(szoveg)
+    irdki(f"Hangos üvöltést hallasz a fák közül, a hang az egész testedben félelmet kelt. Már nincs időd elfutni mert egy szörny ront rád, harcolnod kell az életedér!\n")
     player = Character(name, hp, attack, 0)
     enemyn = ""
     enemyhp = 400
