@@ -222,17 +222,17 @@ def Piac():
         irdki(szoveg)
         time.sleep(1)
         # szoveg = f"-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!"
-        print(f'\033[1m' + '-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!-' + '\033[0m')
-        irdki(f"-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!")
+        irdki(f'\n\033[1m' + '-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!-' + '\033[0m')
+        # irdki(f"-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!")
         TutorialBoss()
     elif choice == 2:
-        irdki(f"Csalódtam benned! Ha ilyen gyáva vagy, akkor menj el!")
+        irdki(f"-Csalódtam benned! Ha ilyen gyáva vagy, akkor menj el!-")
         time.sleep(1)
         vege()
 
 def TutorialBoss():
     time.sleep(4)
-    irdki(f"Az eredei út végen egy kopár mezőt találsz. Úgy tűnik senki sincs a közelben, de olyan érzésed van mintha figyelnének.\n")
+    irdki(f"\nAz eredei út végen egy kopár mezőt találsz. Úgy tűnik senki sincs a közelben, de olyan érzésed van mintha figyelnének.\n")
     time.sleep(2)
     irdki(f"Elindulsz a láda felé amit a pusztaság közepén láttál meg. Mikor már majdnem odaértél rálépsz egy csontra, mej hangos reccsenéssel törik szét a lábad alatt!\n")
     time.sleep(4)
