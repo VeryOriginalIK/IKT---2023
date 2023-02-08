@@ -1,6 +1,8 @@
 import os
 import sys
 import time
+import random
+
 questek = {}
 fegyver = 0
 fegyverDurability = 0
@@ -291,6 +293,7 @@ def TutorialBoss():
 def KocsmaItem():
     global fegyver
     global fegyverDurability
+    global fegyverNev
     szoveg = f"1 - Felkapod a széket\n2 - Fogsz egy sörösüveget\n3 - Puszta kézzel szállsz be a harcba\n4 - Mégsem akarsz még harcolni\n"
     irdki(szoveg)
     try:
@@ -303,10 +306,13 @@ def KocsmaItem():
     if item == 1:
         fegyver = 80
         fegyverDurability = 3
+        fegyverNev = "szek"
     elif item == 2:
         fegyver = 40
         fegyverDurability = 8
+        fegyverNev = "sörösüveg"
     elif item == 3:
+        fegyverDurability = 100
         return 0
     elif item == 4:
         Choice1(stamina, morale, sörszam)
