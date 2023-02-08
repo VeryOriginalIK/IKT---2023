@@ -269,8 +269,8 @@ def ElsoQuest():
         szoveg = f"Elveszed a kardot az idegentől."
         irdki(szoveg)
         time.sleep(1)
-        szoveg = f"-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!"
-        irdki(szoveg)
+        # szoveg = f"-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!"
+        print(f'\033[1m' + '-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!-' + '\033[0m')
         TutorialBoss()
     elif choice == 2:
         szoveg = f"Csalódtam benned! Ha ilyen gyáva vagy, akkor menj el!"
