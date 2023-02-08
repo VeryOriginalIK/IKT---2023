@@ -288,8 +288,6 @@ def TutorialBoss():
     irdki(szoveg)
 
     
-
-    
 def KocsmaItem():
     global fegyver
     global fegyverDurability
