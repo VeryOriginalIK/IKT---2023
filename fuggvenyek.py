@@ -274,7 +274,7 @@ def KocsmaItem():
     elif item == 4:
         Choice1(stamina, morale, sörszam)
         
-def KocsmaVerekedes():
+def KocsmaVerekedes(morale):
     irdki("Úgy döntesz, segítesz barátaidnak, de előtte szükséged lesz egy fegyverre.\n")
     KocsmaItem()
     player = Character(name, hp, attack, 0)
