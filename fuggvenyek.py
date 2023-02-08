@@ -79,12 +79,26 @@ def battle(player, enemy, fegyver, fegyverDurability, energiaital, fightstarter)
     szoveg = f"{fightstarter}"
     irdki(szoveg)
     while player.hp > 0 and enemy.hp > 0:
+
         print("Harc lehetőségek:")
         print("1. Támadás")
         print("2. Gyógyítás")
 
-        choice = input("")
 
+        szoveg = f"Te: {player.hp}\n"
+        irdki(szoveg)
+        time.sleep(0.1)
+        szoveg = f"{enemy.name}: {enemy.hp}\n\n"
+        irdki(szoveg)
+        time.sleep(0.1)
+        szoveg = f"{energiaital} energiaitalod van.\n"
+        irdki(szoveg)
+        time.sleep(0.2)
+        szoveg = "Harc lehetőségek:\n"
+        irdki(szoveg)
+        szoveg = f"1. Támadás\t\t2. Gyógyítás\n"
+        irdki(szoveg)
+        choice = input("")
         if choice == "1":
             enemy.hp -= player.atk
             szoveg = f"{player.atk} életponttal sebezted {enemy.name}-t"
@@ -93,10 +107,28 @@ def battle(player, enemy, fegyver, fegyverDurability, energiaital, fightstarter)
             if fegyverDurability == 0:
                 fegyver = 0
         elif choice == "2":
+
             player.hp += 30
             energiaital -= 1
             szoveg = "Ittál egy Spar Energy Drinket, a HP-d 30-al nő."
             irdki(szoveg)
+            if energiaital > 0:    
+                player.hp += 100
+                energiaital -= 1
+                szoveg = "Ittál egy Spar Energy Drinket, a HP-d 100-al nő. "
+                irdki(szoveg)
+            else:
+                szoveg = f"Kifogytál a piából.\n"
+                irdki(szoveg)
+                attack = round((stamina+fegyver+morale)/(random.randrange(1 , 100))*10)
+                enemy.hp -= attack
+                szoveg = f"{attack} életponttal sebezted {enemy.name}-t."
+                irdki(szoveg)
+                fegyverDurability -= 1
+            if fegyverDurability == 0:
+                fegyver = 0
+                szoveg = f"\nA harc a {fegyverNev}edet sem kímélte. Széttört a kezedben, de szerencsére az ökleid még megvannak!"
+                irdki(szoveg)
         else:
             szoveg = "nincs ilyen lehetőség."
             irdki(szoveg)
