@@ -155,7 +155,7 @@ def Choice1(stamina, morale, sörszam):
         os.system('cls')
         Choice1(stamina, morale, sörszam)
     if choice1 == 1:
-        KocsmaVerekedes()
+        KocsmaVerekedes(morale)
         return 0
     elif choice1 == 2:
         if sörszam < 9:
@@ -201,7 +201,7 @@ def ElsoQuest():
             irdki(f"A falnak csapódik, de egy kést ránt elő a mellénye zsebéből és a hasadba döfi!\n")
             time.sleep(2)
             vege()
-    elif helyszin == 3:
+        elif helyszin == 3:
             irdki(f"Mindenki a földön vonaglik és jajgatózik. Elrémít a látvány, úgy döntesz mégis az idegennel mész.\n")
             morale -= 30
             Piac()
@@ -218,7 +218,11 @@ def Piac():
         irdki("Nincs ilyen lehetőség!")
         time.sleep(1)
     if choice == 1:
-        irdki(f"Elveszed a kardot az idegentől.")
+        szoveg = f"Elveszed a kardot az idegentől."
+        fegyver = 200
+        fegyverDurability = 20
+        fegyverNev = "vajazó kés"
+        irdki(szoveg)
         time.sleep(1)
         irdki(f"-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!")
         TutorialBoss()
@@ -233,7 +237,15 @@ def TutorialBoss():
     time.sleep(2)
     irdki(f"Elindulsz a láda felé amit a pusztaság közepén láttál meg. Mikor már majdnem odaértél rálépsz egy csontra, mej hangos reccsenéssel törik szét a lábad alatt!\n")
     time.sleep(4)
-    irdki(f"Hangos üvöltést hallasz a fák közül, a hang az egész testedben félelmet kelt. Már nincs időd elfutni mert egy szörny ront rád, harcolnod kell az életedér!")
+    szoveg = f"Hangos üvöltést hallasz a fák közül, a hang az egész testedben félelmet kelt. Már nincs időd elfutni mert egy szörny ront rád, harcolnod kell az életedér!"
+    irdki(szoveg)
+    player = Character(name, hp, attack, 0)
+    enemyn = ""
+    enemyhp = 400
+    enemyat = 20
+    enemy = Character(enemyn, enemyhp, enemyat, 0)
+    fightstarter = ""
+    battle(player, enemy, fegyver, fegyverDurability, energiaital, fightstarter)
 
     
 def KocsmaItem():
@@ -266,7 +278,7 @@ def KocsmaItem():
 def KocsmaVerekedes():
     irdki("Úgy döntesz, segítesz barátaidnak, de előtte szükséged lesz egy fegyverre.\n")
     KocsmaItem()
-    player = Character(name, hp, attack, morale)
+    player = Character(name, hp, attack, 0)
     enemyn = "Győző"
     enemyhp = 200
     enemyat = 20
@@ -277,3 +289,33 @@ def KocsmaVerekedes():
     penz += 800
     irdki("Győzőéket elvertétek, de már nincs kedved ünnepelni. Elveszed kiterült ellenfeledtől 3 energiaitalát, meg találsz nála pár 100ast. Buszjegyre jó lesz.\n")
     ElsoQuest()
+    szoveg = f"Indulni készülsz. Az ajtóban valaki megállít.\n"
+    irdki(szoveg)
+    time.sleep(2)
+    szoveg = f"-Ha segítesz nekem ígérem megjutalmazlak, de sietnűnk kell!-\n"
+    irdki(szoveg)
+    time.sleep(2)
+    szoveg = f"Suttogja az idegen miközben ide-oda nézeget, mintha keresne valakit."
+    irdki(szoveg)
+    time.sleep(2)
+    szoveg = f"\nMit teszel?\n1 - Elmész az idegenennel\t2 - Félrelököd és kimész\t3 - Visszamész a kocsmába\n"
+    irdki(szoveg)
+    try:
+        helyszin = int(sys.stdin.readline().strip())
+    except:
+        szoveg = "Nincs ilyen lehetőség!"
+        irdki(szoveg)
+        time.sleep(1)
+    if helyszin == 1:
+        ElsoQuest()
+    elif helyszin == 2:
+        szoveg = f"A falnak csapódik, de egy kést ránt elő a mellénye zsebéből és a hasadba döfi!\n"
+        irdki(szoveg)
+        time.sleep(2)
+        vege()
+    elif helyszin == 3:
+        szoveg = f"Mindenki a földön vonaglik és jajgatózik. Elrémít a látvány, úgy döntesz mégis az idegennel mész.\n"
+        irdki(szoveg)
+        morale -= 30
+        ElsoQuest()
+        time.sleep(1.5)
