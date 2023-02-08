@@ -241,9 +241,11 @@ def TutorialBoss():
     time.sleep(2)
     szoveg = f"Elindulsz a láda felé amit a pusztaság közepén láttál meg. Mikor már majdnem odaértél rálépsz egy csontra, mej hangos reccsenéssel törik szét a lábad alatt!\n"
     irdki(szoveg)
-    time.sleep(3)
+    time.sleep(4)
     szoveg = f"Hangos üvöltést hallasz a fák közül, a hang az egész testedben félelmet kelt. Már nincs időd elfutni mert egy szörny ront rád, harcolnod kell az életedér!"
     irdki(szoveg)
+
+    
 
     
 def KocsmaItem():
