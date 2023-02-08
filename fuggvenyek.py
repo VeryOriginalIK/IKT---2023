@@ -109,6 +109,7 @@ def battle(player, attack, fightstarter, enemy, fegyver, fegyverNev, fegyverDura
             if fegyverDurability == 0:
                 fegyver = 0
                 szoveg = f"\nSajnos a harc a {fegyverNev}edet sem kímélte. Széttört {enemy.name} fején."
+                time.sleep(0.1)
                 irdki(szoveg)
         elif choice == "2":
             if energiaital > 0:    
