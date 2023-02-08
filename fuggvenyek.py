@@ -203,7 +203,10 @@ def ElsoQuest():
         morale -= 30
         Piac()
 
-def Piac(fegyver, fegyverDurability, fegyverNev):
+def Piac():
+    global fegyver
+    global fegyverDurability
+    global fegyverNev
     irdki(f"Követed az idegent a piacra.\n")
     time.sleep(1)
     irdki(f'\n\033[1m' + '-Ahová mész ott szükséged lesz egy fegyverre!-' + '\n\033[0m')
