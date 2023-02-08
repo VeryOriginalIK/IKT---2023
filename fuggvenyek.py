@@ -121,9 +121,9 @@ def battle(player, attack, fightstarter, enemy, fegyver, fegyverNev, fegyverDura
                 irdki(szoveg)
                 attack = round((stamina+fegyver+morale)/(random.randrange(1 , 100))*10)
                 enemy.hp -= attack
-            szoveg = f"{attack} életponttal sebezted {enemy.name}-t."
-            irdki(szoveg)
-            fegyverDurability -= 1
+                szoveg = f"{attack} életponttal sebezted {enemy.name}-t."
+                irdki(szoveg)
+                fegyverDurability -= 1
             if fegyverDurability == 0:
                 fegyver = 0
                 szoveg = f"\nA harc a {fegyverNev}edet sem kímélte. Széttört a kezedben, de szerencsére az ökleid még megvannak!"
