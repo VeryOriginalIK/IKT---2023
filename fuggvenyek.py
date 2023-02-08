@@ -25,9 +25,6 @@ def irdki(szoveg):
     for i in range(len(szoveg)):
         print(szoveg[i], end='', flush=True); 
         time.sleep(0.01)
-    #  basically animálja a printelést Undertale stílusban, csak a print helyett két sor
-    #  szoveg = (megadod a szöveget), aztán kövi sorban meghívod a függvényt a szoveg paraméterrel
-    #  egyetlen hátránya (egyelőre a mostani verzióban), hogy \n nem néz ki olyan jól, mintha újra nyomtatod. 
 
 def kilep():
     irdki("Köszönjük, hogy játszottál.")
