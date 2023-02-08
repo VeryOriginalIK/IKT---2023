@@ -201,10 +201,10 @@ def ElsoQuest():
             irdki(f"A falnak csapódik, de egy kést ránt elő a mellénye zsebéből és a hasadba döfi!\n")
             time.sleep(2)
             vege()
-        elif helyszin == 3:
-            irdki(f"Mindenki a földön vonaglik és jajgatózik. Elrémít a látvány, úgy döntesz mégis az idegennel mész.\n")
-            morale -= 30
-            Piac()
+    elif helyszin == 3:
+        irdki(f"Mindenki a földön vonaglik és jajgatózik. Elrémít a látvány, úgy döntesz mégis az idegennel mész.\n")
+        morale -= 30
+        Piac()
 
 def Piac():
     irdki(f"Követed az idegent a piacra. \n-Ahová mész ott szükséged lesz egy fegyverre!-\n")
