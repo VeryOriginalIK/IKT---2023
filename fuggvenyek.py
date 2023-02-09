@@ -14,7 +14,6 @@ morale = 100
 attack = (stamina+morale+fegyver)/4
 name = ""
 
-
 #def Mentes(hp, questek, inventory):
         ##Nahajrá Domonkos
 
@@ -25,6 +24,20 @@ def irdki(szoveg):
     for i in range(len(szoveg)):
         print(szoveg[i], end='', flush=True); 
         time.sleep(0.01)
+        
+#Először hogy mik közül választhat, majd listába a választható számokat.
+#Így nem kell minden lehetőségnél újra beírni
+def beker(szoveg, options):
+    irdki(szoveg)
+    option = 0
+    while option not in options:
+        try:
+            option = int(input(""))
+        except:
+           None
+        if option not in options:
+            irdki(f"Nincs ilyen lehetőség!\n")
+    return option
 
 def kilep():
     irdki("Köszönjük, hogy játszottál.")
@@ -34,13 +47,7 @@ def kilep():
     
 def menu():
     os.system('cls')
-    irdki(f"1 - Új játék\t2 - Mentés betöltés\t3 - Kilépés\n")
-    try:
-        option = int(sys.stdin.readline().strip())
-    except:
-        irdki("Nincs ilyen lehetőség!")
-        time.sleep(1)
-        menu()
+    option = beker(f"1 - Új játék\t2 - Mentés betöltés\t3 - Kilépés\n",[1, 2, 3])
     if option == 1:
         Kocsma()
     elif option == 2:
@@ -53,8 +60,8 @@ def vege():
     time.sleep(2)
     menu()
 
-#def harc():
-    #Hajrá Donát
+#harcrendszer
+
 class Character:
     def __init__(self, name, hp, atk, morale):
         self.name = name
@@ -79,10 +86,8 @@ def battle(player, enemy, fegyver, fegyverDurability, energiaital, fightstarter)
         time.sleep(0.1)
         irdki(f"{energiaital} energiaitalod van.\n")
         time.sleep(0.2)
-        irdki("Harc lehetőségek:\n")
-        irdki(f"1. Támadás\t\t2. Gyógyítás\n")
-        choice = input("")
-        if choice == "1":
+        option = beker(f"Harc lehetőségek:\n1. Támadás\t\t2. Gyógyítás\n",[1, 2])
+        if option == 1:
             attack = round((stamina+fegyver+morale)/(random.randrange(1 , 100))*10)
             enemy.hp -= attack
             if attack < 30:
@@ -97,7 +102,7 @@ def battle(player, enemy, fegyver, fegyverDurability, energiaital, fightstarter)
                 fegyver = 0
                 time.sleep(0.1)
                 irdki(f"\nSajnos a harc a {fegyverNev}edet sem kímélte. Széttört {enemy.name} fején.")
-        elif choice == "2":
+        elif option == 2:
             if energiaital > 0:    
                 player.hp += 100
                 energiaital -= 1
@@ -143,18 +148,11 @@ def Kocsma():
 
 sörszam = 0
 def Choice1(stamina, morale, sörszam):
-    irdki(f"\n1 - Beavatkozol\t\t2 - Kérsz egy sört\t3 - Kimész\n")
-    try:
-        choice1 = int(sys.stdin.readline().strip())
-    except:
-        irdki("Nincs ilyen lehetőség!")
-        time.sleep(1)
-        os.system('cls')
-        Choice1(stamina, morale, sörszam)
-    if choice1 == 1:
-        KocsmaVerekedes(morale)
+    option = beker(f"\n1 - Beavatkozol\t\t2 - Kérsz egy sört\t3 - Kimész\n",[1, 2, 3])
+    if option == 1:
+        KocsmaVerekedes(morale, energiaital, penz)
         return 0
-    elif choice1 == 2:
+    elif option == 2:
         if sörszam < 9:
             stamina -= 20
             morale -= 10
@@ -175,30 +173,25 @@ def Choice1(stamina, morale, sörszam):
             irdki("Lassan hazadülöngélsz, már nincs kedved sehova menni.")
             time.sleep(3)
             vege()
-    elif choice1 == 3:
+    elif option == 3:
         ElsoQuest()
     time.sleep(1.5)
 
 def ElsoQuest():
     irdki(f"Indulni készülsz. Az ajtóban valaki megállít.\n")
     time.sleep(2)
-    irdki(f'\033[1m' + "-Ha segítesz nekem ígérem megjutalmazlak, de sietnűnk kell!-\n" + '\033[0m')
+    irdki(f'\033[1m' + "-Ha segítesz nekem ígérem megjutalmazlak, de sietnünk kell!-\n" + '\033[0m')
     time.sleep(2)
     irdki(f"Suttogja az idegen miközben ide-oda nézeget, mintha keresne valakit.")
     time.sleep(2)
-    irdki(f"\nMit teszel?\n1 - Elmész az idegenennel\t2 - Félrelököd és kimész\t3 - Visszamész a kocsmába\n")
-    try:
-        helyszin = int(sys.stdin.readline().strip())
-    except:
-        irdki("Nincs ilyen lehetőség!")
-        time.sleep(1)
-    if helyszin == 1:
+    option = beker(f"\nMit teszel?\n1 - Elmész az idegenennel\t2 - Félrelököd és kimész\t3 - Visszamész a kocsmába\n",[1, 2, 3])
+    if option == 1:
         Piac()
-    elif helyszin == 2:
+    elif option == 2:
             irdki(f"A falnak csapódik, de egy kést ránt elő a mellénye zsebéből és a hasadba döfi!\n")
             time.sleep(2)
             vege()
-    elif helyszin == 3:
+    elif option == 3:
         irdki(f"Mindenki a földön vonaglik és jajgatózik. Elrémít a látvány, úgy döntesz mégis az idegennel mész.\n")
         morale -= 30
         Piac()
@@ -213,13 +206,8 @@ def Piac():
     time.sleep(2)
     irdki(f"Odamegy a kovácshoz és egy fényes pengével tér vissza.\n-Tedd el, az első ingyen van!-\n")
     time.sleep(2)
-    irdki(f"Mit teszel?\n1 - Elteszed a kardot\t\t2 - Elutasítod az ajándékot\n")
-    try:
-        choice = int(sys.stdin.readline().strip())
-    except:
-        irdki("Nincs ilyen lehetőség!")
-        time.sleep(1)
-    if choice == 1:
+    option = beker(f"Mit teszel?\n1 - Elteszed a kardot\t\t2 - Elutasítod az ajándékot\n",[1, 2])
+    if option == 1:
         szoveg = f"Elveszed a kardot az idegentől."
         fegyver = 200
         fegyverDurability = 20
@@ -230,7 +218,7 @@ def Piac():
         irdki(f'\n\033[1m' + '-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!-' + '\033[0m')
         # irdki(f"-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!")
         TutorialBoss()
-    elif choice == 2:
+    elif option == 2:
         irdki(f'\n\033[1m' + "-Csalódtam benned! Ha ilyen gyáva vagy, akkor menj el!-" + '\n\033[0m')
         time.sleep(1)
         vege()
@@ -239,9 +227,9 @@ def TutorialBoss():
     time.sleep(4)
     irdki(f"\nAz eredei út végen egy kopár mezőt találsz. Úgy tűnik senki sincs a közelben, de olyan érzésed van mintha figyelnének.\n")
     time.sleep(2)
-    irdki(f"Elindulsz a láda felé amit a pusztaság közepén láttál meg. Mikor már majdnem odaértél rálépsz egy csontra, mej hangos reccsenéssel törik szét a lábad alatt!\n")
+    irdki(f"Elindulsz a láda felé amit a pusztaság közepén láttál meg. Mikor már majdnem odaértél rálépsz egy csontra, mely hangos reccsenéssel törik szét a lábad alatt!\n")
     time.sleep(4)
-    irdki(f"Hangos üvöltést hallasz a fák közül, a hang az egész testedben félelmet kelt. Már nincs időd elfutni mert egy szörny ront rád, harcolnod kell az életedér!\n")
+    irdki(f"Hangos üvöltést hallasz a fák közül, a hang az egész testedben félelmet kelt. Már nincs időd elfutni mert egy szörny ront rád, harcolnod kell az életedért!\n")
     player = Character(name, hp, attack, 0)
     enemyn = ""
     enemyhp = 400
@@ -255,30 +243,24 @@ def KocsmaItem():
     global fegyver
     global fegyverDurability
     global fegyverNev
-    irdki(f"1 - Felkapod a széket\n2 - Fogsz egy sörösüveget\n3 - Puszta kézzel szállsz be a harcba\n4 - Mégsem akarsz még harcolni\n")
-    try:
-        item = int(sys.stdin.readline().strip())
-    except:
-        irdki("Nincs ilyen lehetőség!")
-        time.sleep(1)
-        KocsmaItem()
-    if item == 1:
+    option = beker(f"1 - Felkapod a széket\n2 - Fogsz egy sörösüveget\n3 - Puszta kézzel szállsz be a harcba\n4 - Mégsem akarsz még harcolni\n",[1, 2, 3 , 4])
+    if option == 1:
         fegyver = 80
         fegyverDurability = 3
-        fegyverNev = "szek"
-    elif item == 2:
+        fegyverNev = "szék"
+    elif option == 2:
         fegyver = 40
         fegyverDurability = 8
         fegyverNev = "sörösüveg"
         irdki("A pulthoz csapod az üveged végét, és kész is a bökő. ")
-    elif item == 3:
+    elif option == 3:
         fegyverDurability = 100
         irdki("Kemény legény vagy, pár suhancért nem kell fegyverhez nyúlnod. Puszta kézzel szállsz velük harcba. ")
         return 0
-    elif item == 4:
+    elif option == 4:
         Choice1(stamina, morale, sörszam)
         
-def KocsmaVerekedes(morale):
+def KocsmaVerekedes(morale, energiaital, penz):
     irdki("Úgy döntesz, segítesz barátaidnak, de előtte szükséged lesz egy fegyverre.\n")
     KocsmaItem()
     player = Character(name, hp, attack, 0)
@@ -292,33 +274,21 @@ def KocsmaVerekedes(morale):
     penz += 800
     irdki("Győzőéket elvertétek, de már nincs kedved ünnepelni. Elveszed kiterült ellenfeledtől 3 energiaitalát, meg találsz nála pár 100ast. Buszjegyre jó lesz.\n")
     ElsoQuest()
-    szoveg = f"Indulni készülsz. Az ajtóban valaki megállít.\n"
-    irdki(szoveg)
+    irdki(f"Indulni készülsz. Az ajtóban valaki megállít.\n")
     time.sleep(2)
-    szoveg = f"-Ha segítesz nekem ígérem megjutalmazlak, de sietnűnk kell!-\n"
-    irdki(szoveg)
+    irdki(f"-Ha segítesz nekem ígérem megjutalmazlak, de sietnűnk kell!-\n")
     time.sleep(2)
-    szoveg = f"Suttogja az idegen miközben ide-oda nézeget, mintha keresne valakit."
-    irdki(szoveg)
+    irdki(f"Suttogja az idegen miközben ide-oda nézeget, mintha keresne valakit.")
     time.sleep(2)
-    szoveg = f"\nMit teszel?\n1 - Elmész az idegenennel\t2 - Félrelököd és kimész\t3 - Visszamész a kocsmába\n"
-    irdki(szoveg)
-    try:
-        helyszin = int(sys.stdin.readline().strip())
-    except:
-        szoveg = "Nincs ilyen lehetőség!"
-        irdki(szoveg)
-        time.sleep(1)
-    if helyszin == 1:
+    option = beker(f"\nMit teszel?\n1 - Elmész az idegenennel\t2 - Félrelököd és kimész\t3 - Visszamész a kocsmába\n",[1, 2, 3])
+    if option == 1:
         ElsoQuest()
-    elif helyszin == 2:
-        szoveg = f"A falnak csapódik, de egy kést ránt elő a mellénye zsebéből és a hasadba döfi!\n"
-        irdki(szoveg)
+    elif option == 2:
+        irdki(f"A falnak csapódik, de egy kést ránt elő a mellénye zsebéből és a hasadba döfi!\n")
         time.sleep(2)
         vege()
-    elif helyszin == 3:
-        szoveg = f"Mindenki a földön vonaglik és jajgatózik. Elrémít a látvány, úgy döntesz mégis az idegennel mész.\n"
-        irdki(szoveg)
+    elif option == 3:
+        irdki(f"Mindenki a földön vonaglik és jajgatózik. Elrémít a látvány, úgy döntesz mégis az idegennel mész.\n")
         morale -= 30
         ElsoQuest()
         time.sleep(1.5)
