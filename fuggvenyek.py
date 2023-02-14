@@ -246,7 +246,13 @@ def Idk():
 
 
 def Vulkan():
-    time.sleep()
+    time.sleep(2)
+    irdki(f"Az idegentől kapott térkép alapján elindulsz az uticélod felé.\n", "", 2)
+    irdki(f"Napok telnek el mire meglátod a tűzhányót, úgy magasodik eléd mint a holnapi matekdoga.\n", "", 2)
+    irdki(f"Sok-sok idő után végre ott állsz a hegy lábánál, de még vár rád egy hosszú mászás.")
+    irdki(f"Végre ott állsz a vulkán tetején, amikor egy kő repül el a fejed mellett.\nMegfordulsz és egy óriási kőszörnyet látsz magad előtt.")
+    irdki(f"Nekedront és harcolni kezdtek!")
+
     
 
 
