@@ -30,8 +30,12 @@ def irdki(szoveg, karakter, sleep):
         szoveg = f"\033[92m{szoveg}\033[0m"
     if karakter == "" or karakter == "narrator":
         szoveg = f"\033[1m {szoveg} \033[0m"
+    if karakter == "matekt":
+        szoveg = f"\033[91m {szoveg} \033[0m"
     #if karakter == "enemy":
     #    szoveg = idk
+    if karakter == "anya":
+        szoveg = f"\033[94m {szoveg}\033[0m"
     for i in range(len(szoveg)):
         print(szoveg[i], end='', flush=True); 
         time.sleep(0.01)
@@ -75,7 +79,8 @@ def menu():
 
 
 def vege():
-    print(f"\n─────────────────────────────────────────────────────────────\n─██████──██████─██████████████─██████████████─██████████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██████████─██░░██████████─\n─██░░██──██░░██─██░░██─────────██░░██─────────██░░██─────────\n─██░░██──██░░██─██░░██████████─██░░██─────────██░░██████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░██──██████─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██──██░░██─██░░██████████─\n─██░░░░██░░░░██─██░░██─────────██░░██──██░░██─██░░██─────────\n─████░░░░░░████─██░░██████████─██░░██████░░██─██░░██████████─\n───████░░████───██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─────██████─────██████████████─██████████████─██████████████─\n─────────────────────────────────────────────────────────────", 5)
+    print(f"\n─────────────────────────────────────────────────────────────\n─██████──██████─██████████████─██████████████─██████████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██████████─██░░██████████─\n─██░░██──██░░██─██░░██─────────██░░██─────────██░░██─────────\n─██░░██──██░░██─██░░██████████─██░░██─────────██░░██████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░██──██████─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██──██░░██─██░░██████████─\n─██░░░░██░░░░██─██░░██─────────██░░██──██░░██─██░░██─────────\n─████░░░░░░████─██░░██████████─██░░██████░░██─██░░██████████─\n───████░░████───██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─────██████─────██████████████─██████████████─██████████████─\n─────────────────────────────────────────────────────────────")
+    time.sleep(10)
     menu()
 #harcrendszer
 
@@ -99,7 +104,7 @@ def tamadas():
         irdki("Na most jól betaláltál. ","", 0)
     elif attack > 300:
         irdki("Hát te aztán nem aprózod el! ","", 0)
-    print(f"{attack} életponttal sebezted {enemy.name}-t.", 0)
+    irdki(f"{attack} életponttal sebezted {enemy.name}-t.", "", 1)
     jatekos.fegyverDurability -= 1
     if jatekos.fegyverDurability == 0:
         irdki(f"\nSajnos a harc a {jatekos.fegyverNev}edet sem kímélte. Széttört {enemy.name} fején.", "", 0.1)
@@ -110,19 +115,21 @@ def tamadas():
 def battle():
 
     while jatekos.hp > 0 and enemy.hp > 0:
-        irdki(f"Te: {jatekos.hp}\n","", 0.1)
-        irdki(f"{enemy.name}: {enemy.hp}\n\n","", 0.1)
+        irdki(f"Te: {jatekos.hp}hp\n","", 0.1)
+        irdki(f"{enemy.name}: {enemy.hp}hp\n\n","", 0.1)
         irdki(f"{jatekos.energiaital} energiaitalod van.\n", "",0.2)
         option = beker(f"Harc lehetőségek:\n1. Támadás\t\t2. Gyógyítás\n",[1, 2])
         if option == 1:
+            os.system('cls')
             tamadas()
         elif option == 2:
+            os.system('cls')
             if jatekos.energiaital > 0:    
                 jatekos.hp += 100
                 jatekos.energiaital -= 1
-                print("Ittál egy Spar Energy Drinket, a HP-d 100-al nő. ", 0)
+                irdki(f"Ittál egy Spar Energy Drinket, a HP-d 100-al nő.", "", 1)
             else:
-                print(f"Kifogytál a piából.\n","", 0)
+                irdki(f"Kifogytál a piából.\n", "", 1)
                 tamadas()
 
         if enemy.hp > 0:
@@ -131,7 +138,7 @@ def battle():
             irdki(f"\n{enemy.name} {enemy.attack} -at sebzett rád.\n","", 0)
 
     if jatekos.hp > 0:
-        irdki(f" {enemy.name}-nek vége van.\n","", 0)
+        irdki(f"{enemy.name}-nek vége van.\n","", 0)
     else:
         irdki(f"\nMeghaltál :c","", 3)
         vege()
@@ -201,7 +208,7 @@ def Piac():
         vege()
 
 def TutorialBoss():
-    irdki(f"\nAz eredei út végen egy kopár mezőt találsz. Úgy tűnik senki sincs a közelben, de olyan érzésed van mintha figyelnének.\n", "", 4)
+    irdki(f"\nAz erdei út végen egy kopár mezőt találsz. Úgy tűnik senki sincs a közelben, de olyan érzésed van mintha figyelnének.\n", "", 4)
     irdki(f"Elindulsz a láda felé amit a pusztaság közepén láttál meg. Mikor már majdnem odaértél rálépsz egy csontra, mely hangos reccsenéssel törik szét a lábad alatt!\n","", 4)
     irdki(f"Hangos üvöltést hallasz a fák közül, a hang az egész testedben félelmet kelt. Már nincs időd elfutni mert egy szörny ront rád, harcolnod kell az életedért!\n", "",0)
     global enemy
@@ -213,6 +220,7 @@ def TutorialBoss():
     irdki(f"\nBátor kalandor hát visszatértél és a nyaklánc is megvan", "segito", 2)
     irdki(f"\nNe félj a jutalmadról se feledkeztem meg, tessék itt van 100 arany", "segito", 2)
     jatekos.penz += 100
+    Idk()
 
 
 
@@ -225,7 +233,17 @@ def Idk():
     elif option == 2:
         irdki(f"-Hát jó. Megértelek.-", "segito", 4)
         time.sleep(1)
-        irdki(f"")
+        irdki(f"\nMár lassan felkel a nap, egész éjjel az erdőben voltál", "narrator", 4)
+        irdki(f"\nAnyukád már halálra aggódta magát", "narrator", 4)
+        irdki(f"\nVégre hazaérsz, de anyukád már az ajtóban vár", "narrator", 4)
+        irdki(f"\nMit képzelsz magadról egész este nem válaszoltál az üzeneteimre!", "anya", 4)
+        irdki(f"\nHalálra aggódtam magam, ezért most egy jó ideig szobafogságban leszel fiatalúr", "anya", 4)
+        irdki(f"\nMásnap reggel elmész iskolába", "", 4)
+        irdki(f"\nKimerülten ülsz be az iskolapadba, éppen amikor már azt hiszed nem lehet rosszabb, beront a terembe a matek tanár és elkiáltja magát.", "narrator", 4)
+        irdki(f"\nDOLGOZAT", "matekt", 4)
+        irdki(f"\nAz előző este törtémései miatt teljesen kiment a fejedből és elfeljtettél tanulni", "narrator", 4)
+        irdki(f"\nMindenki vegyen elő papírt és tollat, akit puskázáson érek az 1-est kap!", "matekt", 4)
+
 
 def Vulkan():
     time.sleep()
