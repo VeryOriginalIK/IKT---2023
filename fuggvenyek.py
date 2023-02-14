@@ -66,7 +66,7 @@ def menu():
     os.system('cls')
     option = beker(f"1 - Új játék\t2 - Mentés betöltése\t3 - Kilépés\n",[1, 2, 3])
     if option == 1:
-        kar_keszites()   
+        kar_keszites(Jatekos)   
         Kocsma()
     elif option == 2:
         betoltes()
@@ -79,7 +79,7 @@ def vege():
     menu()
 #harcrendszer
 
-def kar_keszites():
+def kar_keszites(Jatekos):
     irdki("Hogy hívnak?\n-", "", 0)
     name = sys.stdin.readline().strip()
     global jatekos
@@ -99,7 +99,7 @@ def tamadas():
         irdki("Na most jól betaláltál. ","", 0)
     elif attack > 300:
         irdki("Hát te aztán nem aprózod el! ","", 0)
-    irdki(f"{attack} életponttal sebezted {enemy.name}-t.", 0)
+    print(f"{attack} életponttal sebezted {enemy.name}-t.", 0)
     jatekos.fegyverDurability -= 1
     if jatekos.fegyverDurability == 0:
         irdki(f"\nSajnos a harc a {jatekos.fegyverNev}edet sem kímélte. Széttört {enemy.name} fején.", "", 0.1)
@@ -108,6 +108,7 @@ def tamadas():
 
 
 def battle():
+
     while jatekos.hp > 0 and enemy.hp > 0:
         irdki(f"Te: {jatekos.hp}\n","", 0.1)
         irdki(f"{enemy.name}: {enemy.hp}\n\n","", 0.1)
@@ -119,15 +120,15 @@ def battle():
             if jatekos.energiaital > 0:    
                 jatekos.hp += 100
                 jatekos.energiaital -= 1
-                irdki("Ittál egy Spar Energy Drinket, a HP-d 100-al nő. ", 0)
+                print("Ittál egy Spar Energy Drinket, a HP-d 100-al nő. ", 0)
             else:
-                irdki(f"Kifogytál a piából.\n","", 0)
+                print(f"Kifogytál a piából.\n","", 0)
                 tamadas()
 
         if enemy.hp > 0:
-            enemyattack = round(random.randrange(5, 60))
-            jatekos.hp -= enemyattack
-            irdki(f"\n{enemy.name} {enemyattack} -at sebzett rád.\n","", 0)
+            enemy.attack = round(random.randrange(5, 60))
+            jatekos.hp -= enemy.attack
+            irdki(f"\n{enemy.name} {enemy.attack} -at sebzett rád.\n","", 0)
 
     if jatekos.hp > 0:
         irdki(f" {enemy.name}-nek vége van.\n","", 0)
@@ -206,6 +207,13 @@ def TutorialBoss():
     global enemy
     enemy = Enemy("", 400, 20)
     battle()
+    irdki(f"\nHősies csatában legyőzted a hátborzongató a szörnyet.", "", 2)
+    irdki(f"\nkinyitod a ládát és egy nyakláncot találsz benne, amint a kezedbe veszed hirtelen erősebbnek érzed magad.", "", 2)
+    irdki(f"\nVissza mész a piacra az idegenhez.", "", 2)
+    irdki(f"\nBátor kalandor hát visszatértél és a nyaklánc is megvan", "segito", 2)
+    irdki(f"\nNe félj a jutalmadról se feledkeztem meg, tessék itt van 100 arany", "segito", 2)
+    jatekos.penz += 100
+
 
 
 def Idk():
@@ -251,7 +259,7 @@ def KocsmaVerekedes():
     battle()
     jatekos.energiaital += 3
     jatekos.penz += 800
-    irdki("Győzőéket elvertétek, de már nincs kedved ünnepelni. Elveszed kiterült ellenfeledtől 3 energiaitalát, meg találsz nála pár 100ast. Buszjegyre jó lesz.\n", 0)
+    irdki("Győzőéket elvertétek, de már nincs kedved ünnepelni. Elveszed kiterült ellenfeledtől 3 energiaitalát, meg találsz nála pár 100ast. Buszjegyre jó lesz.\n", 2)
     ElsoQuest()
     irdki(f"Indulni készülsz. Az ajtóban valaki megállít.\n","", 2)
     irdki(f"-Ha segítesz nekem ígérem megjutalmazlak, de sietnűnk kell!-\n", "segito",2)
