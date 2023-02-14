@@ -242,7 +242,7 @@ def KocsmaVerekedes():
     battle()
     jatekos.energiaital += 3
     jatekos.penz += 800
-    irdki("Győzőéket elvertétek, de már nincs kedved ünnepelni. Elveszed kiterült ellenfeledtől 3 energiaitalát, meg találsz nála pár 100ast. Buszjegyre jó lesz.\n", 2)
+    irdki("Győzőéket elvertétek, de már nincs kedved ünnepelni. Elveszed kiterült ellenfeledtől 3 energiaitalát, meg találsz nála pár 100ast. Buszjegyre jó lesz.\n","", 2)
     ElsoQuest()
     irdki(f"Indulni készülsz. Az ajtóban valaki megállít.\n","", 2)
     irdki(f"-Ha segítesz nekem ígérem megjutalmazlak, de sietnűnk kell!-\n", "segito",2)
@@ -259,3 +259,8 @@ def KocsmaVerekedes():
         ElsoQuest()
 
 menu()
+
+# option = beker(f"\nBeledobod a vulkánba az ereklyét\n1 - igen elpusztítom\n2 - megtartod magadnak és használod az erejét",[1, 2, 3])
+# if option == 1:
+
+# elif option == 2:
