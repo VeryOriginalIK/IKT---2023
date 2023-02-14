@@ -191,7 +191,7 @@ def Piac():
         jatekos.fegyver = 200
         jatekos.fegyverDurability = 20
         jatekos.fegyverNev = "vajazó kés"
-        irdki(f"Elveszed a kardot az idegentől.", "",1)
+        irdki(f"Elveszed a kardot az idegentől.\n", "",1)
         # szoveg = f"-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!"
         irdki(f'-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!-',"segito", 4)
         # irdki(f"-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!")
@@ -201,7 +201,7 @@ def Piac():
         vege()
 
 def TutorialBoss():
-    irdki(f"\nAz eredei út végen egy kopár mezőt találsz. Úgy tűnik senki sincs a közelben, de olyan érzésed van mintha figyelnének.\n", "segito", 2)
+    irdki(f"\nAz eredei út végen egy kopár mezőt találsz. Úgy tűnik senki sincs a közelben, de olyan érzésed van mintha figyelnének.\n", "", 4)
     irdki(f"Elindulsz a láda felé amit a pusztaság közepén láttál meg. Mikor már majdnem odaértél rálépsz egy csontra, mely hangos reccsenéssel törik szét a lábad alatt!\n","", 4)
     irdki(f"Hangos üvöltést hallasz a fák közül, a hang az egész testedben félelmet kelt. Már nincs időd elfutni mert egy szörny ront rád, harcolnod kell az életedért!\n", "",0)
     global enemy
@@ -215,7 +215,24 @@ def TutorialBoss():
     jatekos.penz += 100
 
 
+
+def Idk():
+    irdki(f"\n-Van számodra még egy feladatom! Azt az amulettet gonosz varázslatokkal bűvölték meg, ezért el kell pusztítani!\nMessze a hegyek között van egy vulkán, ott meg lehet semmisíteni,de ez nem olyan egyszerű mint amilyennek hangzik, sokan örzik azt a vulkánt.\nArra kérlek pusztísd el. -\n", "segito", 2)
+    option = beker(f"Mit teszel?\n1 - Elviszed az amulettet a vulkánhoz\t\t2 - Inkább odaadod az idegennek\n",[1, 2])
+    if option == 1:
+        irdki(f"-Köszönöm, hogy segítesz nekem. Tessék egy térkép, így eljuthatsz a vulkánhoz.-", "segito", 4)
+        Vulkan()
+    elif option == 2:
+        irdki(f"-Hát jó. Megértelek.-", "segito", 4)
+        time.sleep(1)
+        irdki(f"")
+
+def Vulkan():
+    time.sleep()
     
+
+
+
 def KocsmaItem():
     option = beker(f"1 - Felkapod a széket\n2 - Fogsz egy sörösüveget\n3 - Puszta kézzel szállsz be a harcba\n4 - Mégsem akarsz még harcolni\n",[1, 2, 3 , 4])
     if option == 1:
