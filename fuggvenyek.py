@@ -29,15 +29,15 @@ def irdki(szoveg, karakter, sleep):
     if karakter == "segito":
         szoveg = f"\033[92m{szoveg}\033[0m"
     if karakter == "" or karakter == "narrator":
-        szoveg = f"\033[1m {szoveg} \033[0m"
+        szoveg = f"\033[1m{szoveg}\033[0m"
     if karakter == "matekt":
-        szoveg = f"\033[91m {szoveg} \033[0m"
+        szoveg = f"\033[91m{szoveg}\033[0m"
     #if karakter == "enemy":
     #    szoveg = idk
     if karakter == "anya":
-        szoveg = f"\033[94m {szoveg}\033[0m"
+        szoveg = f"\033[94m{szoveg}\033[0m"
     for i in range(len(szoveg)):
-        print(szoveg[i], end='', flush=True); 
+        print(szoveg[i], end='', flush=True);
         time.sleep(0.01)
     time.sleep(sleep)
         
@@ -120,10 +120,8 @@ def battle():
         irdki(f"{jatekos.energiaital} energiaitalod van.\n", "",0.2)
         option = beker(f"Harc lehetőségek:\n1. Támadás\t\t2. Gyógyítás\n",[1, 2])
         if option == 1:
-            os.system('cls')
             tamadas()
         elif option == 2:
-            os.system('cls')
             if jatekos.energiaital > 0:    
                 jatekos.hp += 100
                 jatekos.energiaital -= 1
@@ -209,26 +207,26 @@ def Piac():
 
 def TutorialBoss():
     irdki(f"\nAz erdei út végen egy kopár mezőt találsz. Úgy tűnik senki sincs a közelben, de olyan érzésed van mintha figyelnének.\n", "", 4)
-    irdki(f"Elindulsz a láda felé amit a pusztaság közepén láttál meg. Mikor már majdnem odaértél rálépsz egy csontra, mely hangos reccsenéssel törik szét a lábad alatt!\n","", 4)
-    irdki(f"Hangos üvöltést hallasz a fák közül, a hang az egész testedben félelmet kelt. Már nincs időd elfutni mert egy szörny ront rád, harcolnod kell az életedért!\n", "",0)
+    irdki(f"Elindulsz a láda felé, amit a pusztaság közepén láttál meg. Mikor már majdnem odaértél rálépsz egy csontra, mely hangos reccsenéssel törik szét a lábad alatt!\n","", 5)
+    irdki(f"Hangos üvöltést hallasz a fák közül, a hang az egész testedben félelmet kelt. Már nincs időd elfutni, mert egy szörny ront rád, harcolnod kell az életedért!\n", "",0)
     global enemy
     enemy = Enemy("", 400, 20)
     battle()
     irdki(f"\nHősies csatában legyőzted a hátborzongató a szörnyet.", "", 2)
-    irdki(f"\nkinyitod a ládát és egy nyakláncot találsz benne, amint a kezedbe veszed hirtelen erősebbnek érzed magad.", "", 2)
-    irdki(f"\nVissza mész a piacra az idegenhez.", "", 2)
-    irdki(f"\nBátor kalandor hát visszatértél és a nyaklánc is megvan", "segito", 2)
-    irdki(f"\nNe félj a jutalmadról se feledkeztem meg, tessék itt van 100 arany", "segito", 2)
+    irdki(f"\nKinyitod a ládát és egy nyakláncot találsz benne, amint a kezedbe veszed hirtelen erősebbnek érzed magad.", "", 2)
+    irdki(f"\nVisszamész a piacra az idegenhez.", "", 2)
+    irdki(f"\nBátor kalandor, hát visszatértél és a nyaklánc is megvan!", "segito", 2)
+    irdki(f"\nNe félj, a jutalmadról se feledkeztem meg, tessék itt van 100 arany.", "segito", 2)
     jatekos.penz += 100
     Idk()
 
 
 
 def Idk():
-    irdki(f"\n-Van számodra még egy feladatom! Azt az amulettet gonosz varázslatokkal bűvölték meg, ezért el kell pusztítani!\nMessze a hegyek között van egy vulkán, ott meg lehet semmisíteni,de ez nem olyan egyszerű mint amilyennek hangzik, sokan örzik azt a vulkánt.\nArra kérlek pusztísd el. -\n", "segito", 2)
+    irdki(f"\nDe van számodra még egy feladatom! Azt az amulettet gonosz varázslatokkal bűvölték meg, ezért el kell pusztítani!\nMessze a hegyek között van egy vulkán, ott meg lehet semmisíteni, de ez nem olyan egyszerű mint amilyennek hangzik, sokan őrzik azt a vulkánt.\nArra kérlek pusztísd el.\n", "segito", 2)
     option = beker(f"Mit teszel?\n1 - Elviszed az amulettet a vulkánhoz\t\t2 - Inkább odaadod az idegennek\n",[1, 2])
     if option == 1:
-        irdki(f"-Köszönöm, hogy segítesz nekem. Tessék egy térkép, így eljuthatsz a vulkánhoz.-", "segito", 4)
+        irdki(f"-Köszönöm, hogy segítesz nekem. Tessék egy térkép, így eljuthatsz a vulkánhoz.-\n", "segito", 4)
         Vulkan()
     elif option == 2:
         irdki(f"-Hát jó. Megértelek.-", "segito", 4)
@@ -249,9 +247,9 @@ def Vulkan():
     time.sleep(2)
     irdki(f"Az idegentől kapott térkép alapján elindulsz az uticélod felé.\n", "", 2)
     irdki(f"Napok telnek el mire meglátod a tűzhányót, úgy magasodik eléd mint a holnapi matekdoga.\n", "", 2)
-    irdki(f"Sok-sok idő után végre ott állsz a hegy lábánál, de még vár rád egy hosszú mászás.", "", 2)
+    irdki(f"Sok-sok idő után végre ott állsz a hegy lábánál, de még vár rád egy hosszú mászás. ", "", 2)
     irdki(f"Végre ott állsz a vulkán tetején, amikor egy kő repül el a fejed mellett.\nMegfordulsz és egy óriási kőszörnyet látsz magad előtt.", "", 2)
-    irdki(f"Nekedront és harcolni kezdtek!", "", 2)
+    irdki(f" Neked ront és harcolni kezdtek!\n", "", 2)
     global enemy
     enemy = Enemy("Lánglovag",600, 40)
     battle()
