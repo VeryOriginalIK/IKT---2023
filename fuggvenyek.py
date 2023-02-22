@@ -217,7 +217,7 @@ def TutorialBoss():
     global enemy
     enemy = Enemy("", 400, 20)
     battle()
-    irdki(f"\nHősies csatában legyőzted a hátborzongató a szörnyet.", "", 2)
+    irdki(f"\nHősies csatában legyőzted a hátborzongató szörnyet.", "", 2)
     irdki(f"\nKinyitod a ládát és egy nyakláncot találsz benne, amint a kezedbe veszed hirtelen erősebbnek érzed magad.", "", 2)
     irdki(f"\nVisszamész a piacra az idegenhez.", "", 2)
     irdki(f"\nBátor kalandor, hát visszatértél és a nyaklánc is megvan!", "segito", 2)
@@ -307,16 +307,27 @@ def Idk():
         if option == 2:
             Matekdoga(a)
 
+
+
 def Vulkan():
+    kar_keszites(Jatekos)
     time.sleep(2)
     irdki(f"Az idegentől kapott térkép alapján elindulsz az uticélod felé.\n", "", 2)
     irdki(f"Napok telnek el mire meglátod a tűzhányót, úgy magasodik eléd mint a holnapi matekdoga.\n", "", 2)
     irdki(f"Sok-sok idő után végre ott állsz a hegy lábánál, de még vár rád egy hosszú mászás. ", "", 2)
-    irdki(f"Végre ott állsz a vulkán tetején, amikor egy kő repül el a fejed mellett.\nMegfordulsz és egy óriási kőszörnyet látsz magad előtt.", "", 2)
+    irdki(f"Végre ott állsz a vulkán tetején, amikor egy kő repül el a fejed mellett.\nMegfordulsz és egy óriási kőszörnyet látsz magad előtt.\n", "", 2)
     irdki(f" Neked ront és harcolni kezdtek!\n", "", 2)
     global enemy
     enemy = Enemy("Kőpofa",600, 40)
     battle()
+    irdki(f"Nagyon elfáradtál a harcban, de még nem pihenhetsz, be kell fejezned a feladatot!\n", "", 4)
+    irdki(f"Mielőtt bevégeznéd a küldetésedet felmerűl benned a kérdés.:\nMiért ne tarthatnám meg? Amikor a kezemben tartom olyan erősnek érzem magam!\n", "", 4)
+    option = beker(f"\nHogyan döntesz?\n1 - Elpusztítod az amulettet\t\t2 - Megtartod az amulettet\n",[1, 2])
+    if option == 1:
+        irdki(f"\nNem engedsz a kísértésnek, odasétálsz a tűzhányó peremére és teljes erődből a forró lávába halyítod a nyakéket.\n", "narrator", 2)
+    if option == 2:
+        irdki(f"Elcsábít a hatalom melyet az amulett nyújt neked, ahelyett, hogy a vulkánba dobnád inkább a nyakadba akasztod.\nAzonnal elárasztja a testedet az erő, még soha nem érezted magad ilyen hatalmasnak!\n", "", 4)
+
     
     
 
