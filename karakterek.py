@@ -1,16 +1,17 @@
 class Jatekos:
-    def __init__(self, questek, fegyver, fegyverDurability, fegyverNev, penz, energiaital, hp, stamina, morale, sörszam, name):
+    def __init__(self, questek, fegyver, fegyverDurability, fegyverNev, penz, energiaital, hp, stamina, morale, sörszam, name, questszam):
         self.questek = questek
         self.fegyver = fegyver
-        self.fegyverDurability = fegyverDurability
+        self.fegyverDurability = int(fegyverDurability)
         self.fegyverNev = fegyverNev
-        self.penz = penz
-        self.energiaital = energiaital
-        self.hp = hp
-        self.stamina = stamina
-        self.morale = morale
-        self.sörszam = sörszam
+        self.penz = int(penz)
+        self.energiaital = int(energiaital)
+        self.hp = int(hp)
+        self.stamina = int(stamina)
+        self.morale = int(morale)
+        self.sörszam = int(sörszam)
         self.name = name
+        self.questszam = questszam
 
 class Enemy:
     def __init__(self, name, hp, attack):
