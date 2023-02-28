@@ -44,7 +44,7 @@ def irdki(szoveg, karakter, sleep):
     if karakter == "anya":
         szoveg = f"\033[94m{szoveg}\033[0m"
     for i in range(len(szoveg)):
-        print(szoveg[i], end='', flush=True);
+        print(szoveg[i], end='', flush=True)
         time.sleep(0.01)
     time.sleep(sleep)
         
@@ -227,7 +227,6 @@ def TutorialBoss():
     battle()
     irdki(f"\nHősies csatában legyőzted a hátborzongató szörnyet.", "", 2)
     jatekos.hp = 100
-    irdki(f"\nHősies csatában legyőzted a hátborzongató a szörnyet.", "", 2)
     irdki(f"\nKinyitod a ládát és egy nyakláncot találsz benne, amint a kezedbe veszed hirtelen erősebbnek érzed magad.", "", 2)
     irdki(f"\nVisszamész a piacra az idegenhez.", "", 2)
     irdki(f"\nBátor kalandor, hát visszatértél és a nyaklánc is megvan!", "segito", 2)
@@ -360,7 +359,6 @@ def Idk():
 
 
 def Vulkan():
-    kar_keszites(Jatekos)
     time.sleep(2)
     irdki(f"Az idegentől kapott térkép alapján elindulsz az uticélod felé.\n", "", 2)
     irdki(f"Napok telnek el mire meglátod a tűzhányót, úgy magasodik eléd mint a holnapi matekdoga.\n", "", 2)
@@ -368,7 +366,7 @@ def Vulkan():
     irdki(f"Végre ott állsz a vulkán tetején, amikor egy kő repül el a fejed mellett.\nMegfordulsz és egy óriási kőszörnyet látsz magad előtt.\n", "", 2)
     irdki(f" Neked ront és harcolni kezdtek!\n", "", 2)
     global enemy
-    enemy = Enemy("Kőpofa",1000, 40)
+    enemy = Enemy("Kőpofa",600, 40)
     battle()
     irdki(f"Nagyon elfáradtál a harcban, de még nem pihenhetsz, be kell fejezned a feladatot!\n", "", 4)
     irdki(f"Mielőtt bevégeznéd a küldetésedet felmerűl benned a kérdés.:\nMiért ne tarthatnám meg? Amikor a kezemben tartom olyan erősnek érzem magam!\n", "", 4)

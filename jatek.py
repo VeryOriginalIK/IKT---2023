@@ -1,4 +1,3 @@
 from fuggvenyek import *
 
-# menu()
-Vulkan()
+menu()
