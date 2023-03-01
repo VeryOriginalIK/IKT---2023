@@ -1,0 +1,3 @@
+from fuggvenyek import *
+
+menu()
