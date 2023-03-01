@@ -5,7 +5,7 @@ import random
 from karakterek import *
 import ast
 questek = []
-questszam = 1
+questszam = - 1
 
 def mentes():
     f = open("mentes.txt", "w", encoding="utf-8")
@@ -28,7 +28,7 @@ def betoltes():
         exec(jatekos.questek[jatekos.questszam])
     except:
         irdki("Még nincs mentésed!","", 3)
-        menu()
+        menu(questszam)
 
 def irdki(szoveg, karakter, sleep):
     if karakter == "segito":
@@ -66,10 +66,6 @@ def beker(szoveg, options):
             pass
         if option not in options:
             irdki(f"Nincs ilyen lehetőség!\n", "", 0)
-        try:
-            jatekos.questszam +=1
-        except:
-            pass
     return option
 
 def kilep():
@@ -77,22 +73,22 @@ def kilep():
     sys.exit()
     os.system('cls')
     
-def menu():
+def menu(questszam):
     os.system('cls')
     option = beker(f"1 - Új játék\t2 - Mentés betöltése\t3 - Kilépés\n",[1, 2, 3])
+    questszam += 1
     if option == 1:
-        kar_keszites(Jatekos)   
+        kar_keszites(Jatekos)
         Kocsma()
     elif option == 2:
         betoltes()
     elif option == 3:
         kilep()
 
-
 def vege():
     print(f"\n─────────────────────────────────────────────────────────────\n─██████──██████─██████████████─██████████████─██████████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██████████─██░░██████████─\n─██░░██──██░░██─██░░██─────────██░░██─────────██░░██─────────\n─██░░██──██░░██─██░░██████████─██░░██─────────██░░██████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░██──██████─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██──██░░██─██░░██████████─\n─██░░░░██░░░░██─██░░██─────────██░░██──██░░██─██░░██─────────\n─████░░░░░░████─██░░██████████─██░░██████░░██─██░░██████████─\n───████░░████───██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─────██████─────██████████████─██████████████─██████████████─\n─────────────────────────────────────────────────────────────")
     time.sleep(10)
-    menu()
+    menu(questszam)
 #harcrendszer
 
 def kar_keszites(Jatekos):
@@ -129,7 +125,6 @@ def battle():
         irdki(f"{enemy.name}: {enemy.hp}hp\n\n","", 0.1)
         irdki(f"{jatekos.energiaital} energiaitalod van.\n", "",0.2)
         option = beker(f"Harc lehetőségek:\n1. Támadás\t\t2. Gyógyítás\n",[1, 2])
-        jatekos.questszam -= 1
         if option == 1:
             tamadas()
         elif option == 2:
@@ -140,12 +135,10 @@ def battle():
             else:
                 irdki(f"Kifogytál a piából.\n", "", 1)
                 tamadas()
-
         if enemy.hp > 0:
             enemy.attack = round(random.randrange(5, 60))
             jatekos.hp -= enemy.attack
             irdki(f"\n{enemy.name} {enemy.attack} -at sebzett rád.\n","", 0)
-
     if jatekos.hp > 0:
         irdki(f"{enemy.name}-nek vége van.\n","", 0)
     else:
@@ -154,11 +147,13 @@ def battle():
 
 #sztori kezdete
 def Kocsma():
+    jatekos.questszam +=1
     print(f"                                ____                                     \n                   _           |---||            _                         \n                   ||__________|SSt||___________||                                \n                  /_ _ _ _ _ _ |:._|'_ _ _ _ _ _ _\`.                      \n                 /_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\:`.                   \n                /_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\::`.                 \t\t\t\t ____        _____           __                      __ \n               /:.___________________________________\:::`-._             \t\t\t\t/_   |     _/ ____\____     |__| ____ ________ _____/  |_  /\ \n           _.-'_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _`::::::`-.._        \t\t\t\t |   |     \   __\/ __ \    |  |/ __ \\___   // __ \   __\  \/ \n\t_.-' _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ `:::::::::`-._    \t\t\t\t |   |      |  | \  ___/    |  \  ___/ /    /\  ___/|  |   /\  \n\t,'_:._________________________________________________`:_.::::-';`   \t\t\t\t |___| /\   |__|  \___>  \__|  |\____  \\_____ \____ |  |   \/       \n      `.'/ || |:::::`.'/::::::::`.'/::::::::`.'/::::::|.`.'/.|     :|     \t\t\t\t       \/             \/\______|    \/       \/     |____                 \n       ||  || |::::::||::::::::::||::::::::::||:::::::|..||..|     ||     \t\t\t\t   _____           \n       ||  || |  __  || ::  ___  || ::  __   || ::    |..||;||     ||     \t\t\t\t  /  _  \     |  | ______   ____   ______ _____ _____     \n       ||  || | |::| || :: |:::| || :: |::|  || ::    |.|||:||_____||__   \t\t\t\t  /  _  \     |  | ______   ____   ______ _____ _____ \n       ||  || | |::| || :: |:::| || :: |::|  || ::    |.|||:||_|_|_||,(   \t\t\t\t /  /_\  \    |  |/ /  _ \_/ ___\ /  ___//     \\__  \  \n       ||_.|| | |::| || :: |:::| || :: |::|  || ::    |.'||..|    _||,|   \t\t\t\t/    |    \   |    <  <_> )  \___ \___ \|  Y Y  \/ __\_ \n    .-'::_.:'.:-.--.-::--.-:.--:-::--.--.--.-::--.--.-:.-::,'.--.'_|| |   \t\t\t\t\____|__  /   |__|_ \____/ \_____>_____>|_| |__ (____ /\n     );||_|__||_|__|_||__|_||::|_||__|__|__|_||__|__|_|;-'|__|_(,' || '-  \t\t\t\t        \/         \/          \/                   \/\n     ||||  || |. . . ||. . . . . ||. . . . . ||. . . .|::||;''||   ||:'   \n     ||||.;  _|._._._||._._._._._||._._._._._||._._._.|:'||,, ||,,           \n     '''''           ''-         ''-         ''-         '''  '''         ",)
     time.sleep(3)
     Choice1(False)
 
 def Choice1(kiirt):
+    jatekos.questszam +=1
     if kiirt == False:
         irdki(f"\nÉpp kinyitod a WC ajtót, amikor egy szék repül el az arcod előtt.\nMegígérted otthon, hogy ma nem verekszel, de a barátaidnak segítség kell.\nMit teszel?","", 2)
     option = beker(f"\n1 - Beavatkozol\t\t2 - Kérsz egy sört\t3 - Kimész\n",[1, 2, 3])
@@ -184,6 +179,7 @@ def Choice1(kiirt):
         ElsoQuest()
 
 def ElsoQuest():
+    jatekos.questszam +=1
     irdki(f"Indulni készülsz. Az ajtóban valaki megállít.\n", "",2)
     irdki(f"-Ha segítesz nekem ígérem megjutalmazlak, de sietnünk kell!\n","segito", 2)
     irdki(f"Suttogja az idegen miközben ide-oda nézeget, mintha keresne valakit.","", 2)
@@ -199,6 +195,7 @@ def ElsoQuest():
         Piac()
 
 def Piac():
+    jatekos.questszam +=1
     irdki(f"Követed az idegent a piacra.\n","", 1)
     irdki(f'-Ahová mész ott szükséged lesz egy fegyverre!-\n', "segito",2)
     irdki(f"Odamegy a kovácshoz és egy fényes pengével tér vissza.\n-","",1)
@@ -219,6 +216,7 @@ def Piac():
         TutorialBoss()
 
 def TutorialBoss():
+    jatekos.questszam +=1
     irdki(f"\nAz erdei út végen egy kopár mezőt találsz. Úgy tűnik senki sincs a közelben, de olyan érzésed van mintha figyelnének.\n", "", 4)
     irdki(f"Elindulsz a láda felé, amit a pusztaság közepén láttál meg. Mikor már majdnem odaértél rálépsz egy csontra, mely hangos reccsenéssel törik szét a lábad alatt!\n","", 5)
     irdki(f"Hangos üvöltést hallasz a fák közül, a hang az egész testedben félelmet kelt. Már nincs időd elfutni, mert egy szörny ront rád, harcolnod kell az életedért!\n", "",0)
@@ -235,6 +233,7 @@ def TutorialBoss():
     Idk()
 
 def Matekdoga():
+    jatekos.questszam +=1
     pont = 0
     irdki("\n1.Feladat", "narrator", 2)
     irdki("\nEgy derékszögű háromszőg két befogója 4 és 12 egység hosszúak\nMekkora az átfogó hossza?(Az eredményt 1 tizedesjegyre kerekítve add meg)\n", "", 4)
@@ -282,6 +281,7 @@ def Matekdoga():
             vege()    
 
 def Idk():
+    jatekos.questszam +=1
     irdki(f"\nDe van számodra még egy feladatom! Azt az amulettet gonosz varázslatokkal bűvölték meg, ezért el kell pusztítani!\nMessze a hegyek között van egy vulkán, ott meg lehet semmisíteni, de ez nem olyan egyszerű mint amilyennek hangzik, sokan őrzik azt a vulkánt.\nArra kérlek pusztísd el.\n", "segito", 2)
     option = beker(f"Mit teszel?\n1 - Elviszed az amulettet a vulkánhoz\t\t2 - Inkább odaadod az idegennek\n",[1, 2])
     if option == 1:
@@ -359,6 +359,7 @@ def Idk():
 
 
 def Vulkan():
+    jatekos.questszam +=1
     time.sleep(2)
     irdki(f"Az idegentől kapott térkép alapján elindulsz az uticélod felé.\n", "", 2)
     irdki(f"Napok telnek el mire meglátod a tűzhányót, úgy magasodik eléd mint a holnapi matekdoga.\n", "", 2)
@@ -376,12 +377,9 @@ def Vulkan():
     if option == 2:
         irdki(f"Elcsábít a hatalom melyet az amulett nyújt neked, ahelyett, hogy a vulkánba dobnád inkább a nyakadba akasztod.\nAzonnal elárasztja a testedet az erő, még soha nem érezted magad ilyen hatalmasnak!\n", "", 4)
 
-    
-    
-
-
 
 def KocsmaItem():
+    jatekos.questszam +=1
     option = beker(f"1 - Felkapod a széket\n2 - Fogsz egy sörösüveget\n3 - Puszta kézzel szállsz be a harcba\n4 - Mégsem akarsz még harcolni\n",[1, 2, 3 , 4])
     if option == 1:
         jatekos.fegyver = 80
@@ -399,6 +397,7 @@ def KocsmaItem():
         Choice1(True)
         
 def KocsmaVerekedes():
+    jatekos.questszam +=1
     irdki("Úgy döntesz, segítesz barátaidnak, de előtte szükséged lesz egy fegyverre.\n","", 0)
     KocsmaItem()
     global enemy
@@ -424,8 +423,8 @@ def KocsmaVerekedes():
         jatekos.morale -= 30
         ElsoQuest()
         
-questek = ["menu()","Kocsma()","Choice1(False)","KocsmaVerekedes()","ElsoQuest()","Piac()","TutorialBoss()","Idk()","Vulkan()","Matekdoga()"]
-menu()
+questek = ["menu(questszam)","Kocsma()","Choice1(False)","KocsmaVerekedes()","ElsoQuest()","Piac()","TutorialBoss()","Idk()","Vulkan()","Matekdoga()"]
+menu(questszam)
 
 
 # option = beker(f"\nBeledobod a vulkánba az ereklyét\n1 - igen elpusztítom\n2 - megtartod magadnak és használod az erejét",[1, 2, 3])
