@@ -379,6 +379,7 @@ def Vulkan():
         irdki(f"\nFáradság híján mindössze egy napig tart visszaérned a faluba, ahol az idegen már vár.", "", 2)
         irdki(f"\nElmondod neki mit találtál és hogy milyen mágikus képességekkel bír, de ő eggyátalán nem lepődik meg.", "", 2)
         irdki(f"\nÚgy gondolom készíthetnénk neked valamit abbol az anyagból, persze cska ha te is szeretnéd.", "segito", 2)
+        JoUt()
     if option == 2:
         irdki(f"\nElcsábít a hatalom melyet az amulett nyújt neked, ahelyett, hogy a vulkánba dobnád inkább a nyakadba akasztod.\nAzonnal elárasztja a testedet az erő, még soha nem érezted magad ilyen hatalmasnak!\n", "", 4)
         jatekos.hp = 300
@@ -402,10 +403,15 @@ def Vulkan():
             irdki(f"\nBelenyulsz az idegen zsebébe és egy térképet találsz nála", "", 2)
             irdki(f"\nNégy misztikus tárgy helyét muatatja a térkép\nA térkép hátulján a következő olvasható\n", "", 2)
             irdki(f"", "", 4)
-            
-    
-    
 
+def JoUt():       
+   option = beker(f"\nSzeretnéd, hogy készítsenek valamit neked?\n1 - Igen\t\t2 - Nem\n"[1, 2])
+   if option == 1:
+        jatekos.hp = 300
+        jatekos.fegyver += 200
+        jatekos.fegyverDurability += 1000
+        irdki(f"\nJó döntést hoztál a mágiának köszönhetően sokkal erősebb leszel!", "segito", 2)
+        irdki(f"\nEgyébként szólíts nyugodtan Bélának!")
 
 
 def KocsmaItem():
