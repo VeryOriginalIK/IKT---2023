@@ -291,7 +291,7 @@ def Idk():
         if option == 1:
             irdki("-Van nálam minden mi jó, energiaitaltól elkezdve fegyverekig, de csak egy fegyvert vehetsz-", "segito", 2)
             if jatekos.penz >= 1800:
-                option = beker(f"\npénz: {jatekos.penz}\n1 - Axe dezodor(+attack) - 800\n2 - lézerkard(++attack) - 1800\n3 - tovább mész\n", [1, 2, 3])
+                option = beker(f"\npénz: {jatekos.penz}\n1 - Axe dezodor(+attack) - 800\n2 - fénykard(++attack) - 1800\n3 - tovább mész\n", [1, 2, 3])
                 if option == 1:
                     jatekos.penz -= 800
                     jatekos.fegyver == 300
@@ -372,7 +372,14 @@ def Vulkan():
     irdki(f"Mielőtt bevégeznéd a küldetésedet felmerűl benned a kérdés.:\nMiért ne tarthatnám meg? Amikor a kezemben tartom olyan erősnek érzem magam!\n", "", 4)
     option = beker(f"\nHogyan döntesz?\n1 - Elpusztítod az amulettet\t\t2 - Megtartod az amulettet\n",[1, 2])
     if option == 1:
-        irdki(f"\nNem engedsz a kísértésnek, odasétálsz a tűzhányó peremére és teljes erődből a forró lávába halyítod a nyakéket.\n", "narrator", 2)
+        irdki(f"\nNem engedsz a kísértésnek, odasétálsz a tűzhányó peremére és teljes erődből a forró lávába halyítod a nyakéket.", "narrator", 2)
+        irdki(f"\nLátod ahogy az amulett elmerül a bugyogó anyagban és ez büszkességgel tölt el, végre valami ami sikerült.\n{time.sleep(2)}Már éppen elindultál lefele a vulkánról, mikor egy koppanást hallasz, megfordulsz és egy kis csillogó követ veszel észre.", "narrator", 2)
+        irdki(f"\nMegpróbállod felvenni a földről, de megégeti a kezed.", "", 2)
+        irdki(f"\nRáteríted a pulcsidat és úgy emeled fel, ugyanaz az érzést érzed mint amikor a nyakláncot tartotad a markodban, csak gyengébben.", "", 3)
+        irdki(f"\nMiközben hazafelé tartasz eggyátalán nem érzed magad féradtnak, még sohasem voltál ilyen energikus.", "", 2)
+        irdki(f"\nFáradság híján mindössze egy napig tart visszaérned a faluba, ahol az idegen már vár.", "", 2)
+        irdki(f"\nElmondod neki mit találtál és hogy milyen mágikus képességekkel bír, de ő eggyátalán nem lepődik meg.", "", 2)
+        irdki(f"\nÚgy gondolom készíthetnénk neked valamit abbol az anyagból, persze cska ha te is szeretnéd.", "segito", 2)
     if option == 2:
         irdki(f"Elcsábít a hatalom melyet az amulett nyújt neked, ahelyett, hogy a vulkánba dobnád inkább a nyakadba akasztod.\nAzonnal elárasztja a testedet az erő, még soha nem érezted magad ilyen hatalmasnak!\n", "", 4)
 
