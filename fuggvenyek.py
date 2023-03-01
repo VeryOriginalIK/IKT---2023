@@ -227,7 +227,7 @@ def TutorialBoss():
     battle()
     irdki(f"\nHősies csatában legyőzted a hátborzongató szörnyet.", "", 2)
     jatekos.hp = 100
-    irdki(f"\nKinyitod a ládát és egy nyakláncot találsz benne, amint a kezedbe veszed hirtelen erősebbnek érzed magad.", "", 2)
+    irdki(f"\nKinyitod a ládát és egy medált találsz benne, amint a kezedbe veszed hirtelen erősebbnek érzed magad.", "", 2)
     irdki(f"\nVisszamész a piacra az idegenhez.", "", 2)
     irdki(f"\nBátor kalandor, hát visszatértél és a nyaklánc is megvan!", "segito", 2)
     irdki(f"\nNe félj, a jutalmadról se feledkeztem meg, tessék itt van 100 arany.", "segito", 2)
@@ -268,7 +268,7 @@ def Matekdoga():
         vege()
     elif option == 2:
         global enemy
-        enemy = Enemy("", 30, 0)
+        enemy = Enemy("Dr. Csóka Gézáné", 30, 0)
         battle()
         irdki("\nEgy tanuló meglátta, hogy mit tettél a matek tanárral és kihívta a zsarukat", "", 3)
         irdki("\nItt a rendőrség azzonal jöjjön ki feltett kézzel, körbe vettük az épületet", "police", 3)
@@ -341,7 +341,6 @@ def Idk():
         irdki(f"\nDOLGOZAT", "matekt", 2)
         irdki(f"\nAz előző este törtémései miatt teljesen kiment a fejedből és elfeljtettél tanulni", "narrator", 2)
         irdki(f"\nMindenki vegyen elő papírt és tollat, akit puskázáson érek az 1-est kap!", "matekt", 2)
-        irdki("\nA tanár éppen valamit a az azstalánál keres", "narrator", 2)
         # option = beker("\nMegragadod az alkalmat, hogy elrejtsd a telefonod a padban?\n1 - igen\t2 - nem",[1, 2])
         # if option == 1:
         #     a = round(random.randint(1,2), 0)
@@ -381,8 +380,29 @@ def Vulkan():
         irdki(f"\nElmondod neki mit találtál és hogy milyen mágikus képességekkel bír, de ő eggyátalán nem lepődik meg.", "", 2)
         irdki(f"\nÚgy gondolom készíthetnénk neked valamit abbol az anyagból, persze cska ha te is szeretnéd.", "segito", 2)
     if option == 2:
-        irdki(f"Elcsábít a hatalom melyet az amulett nyújt neked, ahelyett, hogy a vulkánba dobnád inkább a nyakadba akasztod.\nAzonnal elárasztja a testedet az erő, még soha nem érezted magad ilyen hatalmasnak!\n", "", 4)
-
+        irdki(f"\nElcsábít a hatalom melyet az amulett nyújt neked, ahelyett, hogy a vulkánba dobnád inkább a nyakadba akasztod.\nAzonnal elárasztja a testedet az erő, még soha nem érezted magad ilyen hatalmasnak!\n", "", 4)
+        jatekos.hp = 300
+        jatekos.fegyver += 200
+        jatekos.fegyverDurability += 1000
+        irdki(f"\nVisszamész a piacra az idegenhez", "", 4)
+        irdki(f"\n-Féltem, hogy ide jutunk-\n-Azt hittem, hogy elég erős vagy, hogy ellenálj a sötét erők csábításának, de tévedtem-", "segito", 4)
+        irdki(f"\n-Adok egy utolsó lehetőséget, hogy megadd magad-", "segito", 4)
+        option = beker("\n1 - Megadod magad\t2 - Megküzdesz vele\n", [1, 2])
+        if option == 1:
+            irdki(f"\nEldobod az amulettet és térde esel\nAz amulett elszívta az összes erődet, mozdulni se bírsz", "", 2)
+            irdki(f"\n-Jól döntöttél {jatekos.name}, de életedet nem kímélhetem meg, túl sok mindent tudsz-", "segito", 2)
+            irdki(f"\nAz idegen a saját fegyvereddel vet véget életednek", "", 4)
+            vege()
+        elif option == 2:
+            irdki(f"\n-Ezt megfogod bánni-\n", "segito", 4)
+            enemy = Enemy("idegen",2000, 80)
+            battle()
+            jatekos.hp = 350
+            irdki(f"\nAz amulett elszívta az áldozatod lelkét, hirtelen erősebbnek érzed magad", "", 3)
+            irdki(f"\nBelenyulsz az idegen zsebébe és egy térképet találsz nála", "", 2)
+            irdki(f"\nNégy misztikus tárgy helyét muatatja a térkép\nA térkép hátulján a következő olvasható\n", "", 2)
+            irdki(f"", "", 4)
+            
     
     
 
