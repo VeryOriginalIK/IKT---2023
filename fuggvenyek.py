@@ -385,10 +385,14 @@ def Vulkan():
         option = beker(f"\n1 - Hamulett(+hp)\n2 - B.B.oxer(+attack)", [1, 2])
         if option == 1:
             jatekos.hp = 200
+            global hamulett
+            hamulett = 1
         elif option == 2:
             jatekos.fegyver += 100
             jatekos.fegyverDurability += 200
     if option == 2:
+        global evil
+        evil = 1
         irdki(f"\nElcsábít a hatalom melyet az amulett nyújt neked, ahelyett, hogy a vulkánba dobnád inkább a nyakadba akasztod.\nAzonnal elárasztja a testedet az erő, még soha nem érezted magad ilyen hatalmasnak!\n", "", 4)
         jatekos.hp = 300
         jatekos.fegyver += 200
@@ -411,13 +415,60 @@ def Vulkan():
             irdki(f"\nBelenyulsz az idegen zsebébe és egy térképet találsz nála", "", 2)
             irdki(f"\nNégy misztikus tárgy helyét muatatja a térkép, olyanoknak mint az amuletted", "", 2)
             irdki(f"\nÚgy döntesz összegyűjtöd az összeset és leigázod a világot", "", 4)
-            Döntes()
+            # Döntes()
 
-def Döntes():
-    irdki(f"\nMelyik tárgy levadászására indulsz el?", "", 2)
-    option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Sanders ezredes kabátja - KFC főhadiszállás\n3 - Mindenható kézi gránát - menny", [1, 2, 3])
-    
+# def Döntes():
+#     irdki(f"\nMelyik tárgy levadászására indulsz el?", "", 2)
+#     if kuldetes1 == 0 and kuldetes2 == 0 and kuldetes3 == 0:
+#         option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Sanders ezredes kabátja - KFC főhadiszállás\n3 - Mindenható kézi gránát - menny", [1, 2, 3])
+#         if option == 1:
 
+#         elif option == 2:
+
+#         elif option == 3:
+#     elif kuldetes1 == 1 and kuldetes2 == 0 and kuldetes3 == 0:
+#         option = beker("\n1 - Sanders ezredes kabátja - KFC főhadiszállás\n2 - Mindenható kézi gránát - menny", [1, 2])
+#         if option == 1:
+
+#         elif option == 2:
+
+#     elif kuldetes1 == 0 and kuldetes2 == 1 and kuldetes3 == 0:
+#     option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Mindenható kézi gránát - menny", [1, 2])
+#     if option == 1:
+
+#     elif option == 2:
+
+#     elif kuldetes1 == 0 and kuldetes2 == 0 and kuldetes3 == 1:
+#     option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Sanders ezredes kabátja - KFC főhadiszállás", [1, 2])
+#     if option == 1:
+
+#     elif option == 2:
+
+#     elif kuldetes1 == 1 and kuldetes2 == 1 and kuldetes3 == 0:
+
+#     elif kuldetes1 == 1 and kuldetes2 == 0 and kuldetes3 == 1:
+
+#     elif kuldetes1 == 0 and kuldetes2 == 1 and kuldetes3 == 1:
+        
+#     elif kuldetes1 == 1 and kuldetes2 == 1 and kuldetes3 == 1:
+
+def KFC():
+    irdki(f"\nElindulsz felkutatni Sanders ezredest a KFC megalkotóját, hogy eltulajdonítsd tőle a kabátja, ami misztikus erővel ruházza fel viselőjét", "", 2)
+    irdki(f"\nEgy hosszú utazás után megtalálod a bázist", "", 4)
+    irdki(f"\nNem gondoltad volna, hogy ennyire védve lesz", "", 2)
+    irdki(f"\nSzerencsére van egy terved", "", 2)
+    irdki(f"\nAzt mondtad az őröknek, hogy elloptad a KFC titkos receptét és szeretnél az ezredessel beszélni", "", 2)
+    irdki(f"\nAz őrök elvezetnek egyenesen az ezredesig", "", 2)
+    irdki(f"\nAz ezredes kerül veled szembe a testőrével", "", 2)
+    irdki(f"\n- Jól halottam, hogy te vagy az aki ellopta a receptem -", "matekt", 2)
+    irdki(f"\n- Nem is értem miért nem ölettelek meg egyből, Guacamole öld meg -", "matekt", 2)
+    enemy = Enemy("Guacamole",750, 50)
+    battle()
+    if evil == 1:
+        jatekos.hp = 350
+        jatekos.hp += 50
+    elif hamulett == 1:
+        jatekos.hp = 200
 
 
 def KocsmaItem():
