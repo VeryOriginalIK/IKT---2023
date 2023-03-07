@@ -416,8 +416,20 @@ def Vulkan():
 def Döntes():
     irdki(f"\nMelyik tárgy levadászására indulsz el?", "", 2)
     option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Sanders ezredes kabátja - KFC főhadiszállás\n3 - Mindenható kézi gránát - menny", [1, 2, 3])
-    
+    if option == 1:
+        TapsihapsiLaba()
 
+def TapsihapsiLaba():
+    irdki(f"\nA mágikus tárgyak közül Tapsihapsi lábát választottad. Ehhez azonban a halálcsillagra kell utaznod.", "", 4)
+    irdki(f"\nMégis hogyan juthattnál el az űrbe, hát mi sem egyszerűbb mint szerezni egy űrhajót!", "", 2)
+    irdki(f"\nSzerencsédre Elon Musk éppen a Balatonnál tartózkodik, tehát elutazol hozzá és megkéred, hogy adja kölcsön az eggyik rakétáját.", "", 4)
+    irdki(f"\nElon Musk nagyon kedves volt és felajánlotta a legrégebbi modellt, hogy elutazz vele.", "", 2)
+    irdki(f"\nÚjdonsült rakétatulajdonosként elindulsz a halálcsillag felé, hogy megszerezd a LÁBAT!", "", 2)
+    irdki(f"\nMikor a fémből épített hold közelébe érsz elkapnak egy vonósugárral és az 1-es számú hangárba húznak.", "", 2)
+    irdki(f"\nKinézve az űrhajó ablakán egy teljes osztag rohamosztagost látsz, akik feléd menetelnek.", "", 2)
+    irdki(f"\nGyorsan elbújsz a hajó padlójában, hogy ne találjanak meg. A terved sikerül mert senki sem vett észre.", "", 2)
+    irdki(f"\nKiszöksz a rakétából és Tapsihapsi végtagjának keresésére indulsz.", "", 2)
+    irdki(f"\nSajnos egy nemvárt személlyel találkozol menet közben, magával a Nagyurral!")
 
 
 def KocsmaItem():
