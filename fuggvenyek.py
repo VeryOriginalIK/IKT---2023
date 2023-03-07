@@ -380,7 +380,14 @@ def Vulkan():
         irdki(f"\nMiközben hazafelé tartasz eggyátalán nem érzed magad féradtnak, még sohasem voltál ilyen energikus.", "", 2)
         irdki(f"\nFáradság híján mindössze egy napig tart visszaérned a faluba, ahol az idegen már vár.", "", 2)
         irdki(f"\nElmondod neki mit találtál és hogy milyen mágikus képességekkel bír, de ő eggyátalán nem lepődik meg.", "", 2)
-        irdki(f"\nÚgy gondolom készíthetnénk neked valamit abbol az anyagból, persze cska ha te is szeretnéd.", "segito", 2)
+        irdki(f"\nÚgy gondolom készíthetnénk neked valamit abbol az anyagból, persze csak ha te is szeretnéd.", "segito", 2)
+        irdki(f"\nKét tárgyat tudnék neked készíteni, az egyik megnöveli az életed, a másik az erődet növeli meg", "segito", 3)
+        option = beker(f"\n1 - Hamulett(+hp)\n2 - B.B.oxer(+attack)", [1, 2])
+        if option == 1:
+            jatekos.hp = 200
+        elif option == 2:
+            jatekos.fegyver += 100
+            jatekos.fegyverDurability += 200
     if option == 2:
         irdki(f"\nElcsábít a hatalom melyet az amulett nyújt neked, ahelyett, hogy a vulkánba dobnád inkább a nyakadba akasztod.\nAzonnal elárasztja a testedet az erő, még soha nem érezted magad ilyen hatalmasnak!\n", "", 4)
         jatekos.hp = 300
@@ -402,10 +409,13 @@ def Vulkan():
             jatekos.hp = 350
             irdki(f"\nAz amulett elszívta az áldozatod lelkét, hirtelen erősebbnek érzed magad", "", 3)
             irdki(f"\nBelenyulsz az idegen zsebébe és egy térképet találsz nála", "", 2)
-            irdki(f"\nNégy misztikus tárgy helyét muatatja a térkép\nA térkép hátulján a következő olvasható\n", "", 2)
-            irdki(f"", "", 4)
-            
-    
+            irdki(f"\nNégy misztikus tárgy helyét muatatja a térkép, olyanoknak mint az amuletted", "", 2)
+            irdki(f"\nÚgy döntesz összegyűjtöd az összeset és leigázod a világot", "", 4)
+            Döntes()
+
+def Döntes():
+    irdki(f"\nMelyik tárgy levadászására indulsz el?", "", 2)
+    option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Sanders ezredes kabátja - KFC főhadiszállás\n3 - Mindenható kézi gránát - menny", [1, 2, 3])
     
 
 
