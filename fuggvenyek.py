@@ -37,6 +37,10 @@ def irdki(szoveg, karakter, sleep):
         szoveg = f"\033[1m{szoveg}\033[0m"
     if karakter == "matekt":
         szoveg = f"\033[91m{szoveg}\033[0m"
+    if karakter == "genyo":
+        szoveg = f"\033[93m{szoveg}\033[0m"
+    if karakter == "isten":
+        szoveg = f"\033[96m{szoveg}\033[0m"
     #if karakter == "enemy":
     #    szoveg = idk
     if karakter == "police":
@@ -385,11 +389,9 @@ def Vulkan():
         option = beker(f"\n1 - Hamulett(+hp)\n2 - B.B.oxer(+attack)", [1, 2])
         if option == 1:
             jatekos.hp = 200
-            global hamulett
-            hamulett = 1
         elif option == 2:
-            jatekos.fegyver += 100
-            jatekos.fegyverDurability += 200
+            jatekos.fegyver = 100
+            jatekos.fegyverDurability = 200
     if option == 2:
         global evil
         evil = 1
@@ -409,31 +411,120 @@ def Vulkan():
         elif option == 2:
             irdki(f"\n-Ezt megfogod bánni-\n", "segito", 4)
             enemy = Enemy("idegen",2000, 80)
+            global hp
+            hp = jatekos.hp
             battle()
-            jatekos.hp = 350
+            jatekos.hp = hp
+            jatekos.hp += 50
+            jatekos.penz += 1000
+            jatekos.energiaital += 20
             irdki(f"\nAz amulett elszívta az áldozatod lelkét, hirtelen erősebbnek érzed magad", "", 3)
             irdki(f"\nBelenyulsz az idegen zsebébe és egy térképet találsz nála", "", 2)
             irdki(f"\nNégy misztikus tárgy helyét muatatja a térkép, olyanoknak mint az amuletted", "", 2)
             irdki(f"\nÚgy döntesz összegyűjtöd az összeset és leigázod a világot", "", 4)
             # Döntes()
 
+def Heaven():
+    if evil == 1:
+        irdki("\nAz elmúlt napok történései után nem fogsz olyan könnyen eljutni a mennybe", "", 2)
+        irdki("\nHa egyenesen próbálsz meg bejutni oda fentre azzal mindenkit magadra uszítasz", "", 2)
+        irdki("\nDe nincs is nagyon más választásod", "", 2)
+        irdki("\nnéhány hét kutatás után rá találtál egy ősi idegen technológiára, ami lehetővé teszi a világok közötti utazást", "", 2)
+        irdki("\nEgy barlangban találod magad és ott van előtted a kapu", "", 2)
+        irdki("\nDe még mielőtt használni tudnád egy fura kis sárga lény ugrik eléd", "", 2)
+        irdki("\nAz amulett nélkül nem értenéd, amit mond de az lefordítja neked", "", 2)
+        irdki("\nMár messziről éreztem a sötét aurád", "genyo", 2)
+        irdki("\nNem fogom engedni, hogy használd a kaput", "genyo", 2)
+        global enemy
+        enemy = Enemy("Maykrs", 500, 80)
+        hp = jatekos.hp
+        battle()
+        jatekos.hp = hp
+        jatekos.hp += 50
+        irdki("\nNem volt nagy kihívás neked", "", 2)
+        irdki("\nBeindítod a kaput és átlépsz rajta", "", 2)
+        irdki("\nA menny kapui tárulnak eléd, nem is hezitálsz az amulettel felrobbantod a kapukat", "", 2)
+        irdki("\nHatalmas pánik tör ki, de neked csak egy célod van megszerezni a mindenható kézigránátot", "", 2)
+        irdki("\nVakító fényesség tárul eléd, ami megszólít", "", 2)
+        irdki("\nEljött ez a nap is ", "isten", 2)
+        irdki("\nA prófécia beteljesedett", "isten", 2)
+        irdki("\nRéges régen egy messzi messzi galaxysban megjövendölték, hogy egy nap a bűn megtestesítője eljön és leigázza a világot", "isten", 2)
+        irdki("\nHosszú éveken keresztül készültem, hogy megállítsalak", "isten", 2)
+        irdki("\nEgy percet se hezitálsz megtámadod Istent", "", 2)
+        global enemy
+        enemy = Enemy("Isten", 3000, 100)
+        hp = jatekos.hp
+        battle()
+        jatekos.hp = hp
+        jatekos.hp += 200
+        jatekos.fegyver += 200
+        irdki("\nMegölted Istent és a lelkét elszívta az amulett", "", 2)
+        irdki("\nMiután eltűnt a teste csak a kézigránát maradt ott", "", 2)
+        irdki("\nFelveszed és sietsz el onnan mert Isten nélkül a menny megszűnik létezni", "", 2)
+        irdki("\nVisszamész a búvóhelyedre", "", 2)
+        kuldetes3 += 1
+        Döntes()
+    else:
+        irdki("\n- Sajnálom, de ahoz, hogy eljuss oda fentre meg kell halnod, de itt ez a totem, ha kész vagy akkor csak törd ketté és máris visszatérsz a testedbe", "segito", 2)
+        irdki("\nEz most fájni fog", "segito", 2)
+        irdki("\nHatalmas fényesség vesz körül a menny kapui előtt találod magad", "", 2)
+        irdki("\nA kapu őr megszólít", "", 2)
+        irdki(f"\nÜdv {jatekos.name} gyermekem", "isten", 2)
+        irdki("\nFáradj be hosszú utad volt", "isten", 2)
+        irdki("\nMerre indulsz el:", "", 2)
+        option = beker("\n1 - Templom\n2 - piac\n", [1, 2])
+        if option == 1:
+            irdki("\nEreklyékkel van tele a templom, de pont amikor elvennéd egy árnyék támad rád hátulról", "", 2)
+            global enemy
+            enemy = Enemy("árnyharcos", 500, 60)
+            hp = jatekos.hp
+            battle()
+            Hazateres()
+        elif option == 2:
+            irdki("\nElmész a piacra, ami tele van angyalokkal", "", 2)
+            irdki("\nOdamész az egyik standhoz", "", 2)
+            irdki("\nÜdvözöllek látom új vagy itt", "isten", 2)
+            irdki("\nTessék itt van néhány energiaital a Földről", "isten", 2)
+            jatekos.energiaital += 10
+            irdki("\nElindulsz a templom felé", "", 4)
+            irdki("\nEreklyékkel van tele a templom, de pont amikor elvennéd egy árnyék támad rád hátulról", "", 2)
+            global enemy
+            enemy = Enemy("árnyharcos", 500, 60)
+            hp = jatekos.hp
+            battle()
+            Hazateres()
+
+def Hazateres():
+    kuldetes3 += 1
+    irdki("\nAz utolsó ütésdre eltűnik az árnyék", "", 2)
+    irdki("\nElveszed a gránátot, majd előveszed a totemet és hazamész", "", 2)
+    irdki("\n- látom sikerrel jártál, add ide elpusztítom és már készítem is belőle a fegyvered, apropó fegyver melyiket akarod -", "segito", 2)
+    option = beker("\n1 - Mindenható gránát vető\n2 - Szent kobak"[1, 2])
+    if option == 1:
+        jatekos.fegyver = 200
+        jatekos.fegyverDurability = 100
+    elif option == 2:
+        hp = jatekos.hp
+        hp += 150
+        jatekos.hp = hp
+    Döntes()
 # def Döntes():
 #     irdki(f"\nMelyik tárgy levadászására indulsz el?", "", 2)
 #     if kuldetes1 == 0 and kuldetes2 == 0 and kuldetes3 == 0:
-#         option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Sanders ezredes kabátja - KFC főhadiszállás\n3 - Mindenható kézi gránát - menny", [1, 2, 3])
+#         option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Sanders ezredes kabátja - KFC főhadiszállás\n3 - Mindenható kézigránát - menny", [1, 2, 3])
 #         if option == 1:
 
 #         elif option == 2:
 
 #         elif option == 3:
 #     elif kuldetes1 == 1 and kuldetes2 == 0 and kuldetes3 == 0:
-#         option = beker("\n1 - Sanders ezredes kabátja - KFC főhadiszállás\n2 - Mindenható kézi gránát - menny", [1, 2])
+#         option = beker("\n1 - Sanders ezredes kabátja - KFC főhadiszállás\n2 - Mindenható kézigránát - menny", [1, 2])
 #         if option == 1:
 
 #         elif option == 2:
 
 #     elif kuldetes1 == 0 and kuldetes2 == 1 and kuldetes3 == 0:
-#     option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Mindenható kézi gránát - menny", [1, 2])
+#     option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Mindenható kézigránát - menny", [1, 2])
 #     if option == 1:
 
 #     elif option == 2:
@@ -467,8 +558,8 @@ def KFC():
     if evil == 1:
         jatekos.hp = 350
         jatekos.hp += 50
-    elif hamulett == 1:
-        jatekos.hp = 200
+    else:
+        jatekos.hp = hp
 
 
 def KocsmaItem():
