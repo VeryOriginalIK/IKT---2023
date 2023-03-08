@@ -370,7 +370,7 @@ def Vulkan():
     enemy = Enemy("Kőpofa",600, 40)
     battle()
     irdki(f"Nagyon elfáradtál a harcban, de még nem pihenhetsz, be kell fejezned a feladatot!\n", "", 4)
-    irdki(f"Mielőtt bevégeznéd a küldetésedet felmerűl benned a kérdés.:\nMiért ne tarthatnám meg? Amikor a kezemben tartom olyan erősnek érzem magam!\n", "", 4)
+    irdki(f"Mielőtt bevégeznéd a küldetésedet felmerűl benned a kérdés.:\n-Miért ne tarthatnám meg? Amikor a kezemben tartom olyan erősnek érzem magam!-\n", "", 4)
     option = beker(f"\nHogyan döntesz?\n1 - Elpusztítod az amulettet\t\t2 - Megtartod az amulettet\n",[1, 2])
     if option == 1:
         irdki(f"\nNem engedsz a kísértésnek, odasétálsz a tűzhányó peremére és teljes erődből a forró lávába halyítod a nyakéket.", "narrator", 2)
@@ -420,7 +420,7 @@ def Vulkan():
 
 def Döntes():
     irdki(f"\nMelyik tárgy levadászására indulsz el?", "", 2)
-    option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Sanders ezredes kabátja - KFC főhadiszállás\n3 - Mindenható kézi gránát - menny", [1, 2, 3])
+    option = beker(f"\n1 - tapsihapsi lába - halálcsillag\n2 - Sanders ezredes kabátja - KFC főhadiszállás\n3 - Mindenható kézi gránát - menny", [1, 2, 3])
     if option == 1:
         TapsihapsiLaba()
 
@@ -434,7 +434,20 @@ def TapsihapsiLaba():
     irdki(f"\nKinézve az űrhajó ablakán egy teljes osztag rohamosztagost látsz, akik feléd menetelnek.", "", 2)
     irdki(f"\nGyorsan elbújsz a hajó padlójában, hogy ne találjanak meg. A terved sikerül mert senki sem vett észre.", "", 2)
     irdki(f"\nKiszöksz a rakétából és Tapsihapsi végtagjának keresésére indulsz.", "", 2)
-    irdki(f"\nSajnos egy nemvárt személlyel találkozol menet közben, magával a Nagyurral!")
+    irdki(f"\nSajnos egy nemvárt személlyel találkozol menet közben, magával az Uralkodóval!", "", 2)
+    irdki(f"\nA nagyúr felemeli a kezét és elkezd villámokat szorni rád.", "", 2)
+    global enemy
+    enemy = Enemy("Uralkodó",2000, 80)
+    battle()
+    jatekos.hp = 350
+    irdki(f"\nHatalmas küzdelmek árán legyőzted az uralkodót, de még nem szerezted meg azt amiért jöttél, úgyhogy elindulsz megkeresni.", "", 4)
+    irdki(f"\nMerre mész tovább?", "", 2)
+    option = beker(f"\n1 - a raktár felé\n2 - a konyha felé\n3 - a börtönök felé", [1, 2, 3])
+    if option == 1:
+        irdki(f"\nElindulsz a raktár irányába hátha ott találod a mágikus erekjét.", "", 2)
+        irdki(f"\nNyitva talállod az ajtót úgyhogy bemész a helyisébe, felkapcsolódik a lámpa és egy zsúfolt szobában talállod magad.", "", 4)
+        irdki(f"\nKörbejárod a szobát de nem találsz semmi használhatót, mindössze egy gumikacsát ami valahogyan követ téged.", "", 4)
+        irdki(f"\nKimész a raktérbó, és máshol keresgélsz tovább.", "", 2)
 
 # def Döntes():
 #     irdki(f"\nMelyik tárgy levadászására indulsz el?", "", 2)
