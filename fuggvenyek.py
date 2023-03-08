@@ -392,6 +392,7 @@ def Vulkan():
             jatekos.fegyverDurability += 200
     if option == 2:
         global evil
+        global hamulett
         evil = 1
         irdki(f"\nElcsábít a hatalom melyet az amulett nyújt neked, ahelyett, hogy a vulkánba dobnád inkább a nyakadba akasztod.\nAzonnal elárasztja a testedet az erő, még soha nem érezted magad ilyen hatalmasnak!\n", "", 4)
         jatekos.hp = 300
@@ -415,6 +416,7 @@ def Vulkan():
             irdki(f"\nBelenyulsz az idegen zsebébe és egy térképet találsz nála", "", 2)
             irdki(f"\nNégy misztikus tárgy helyét muatatja a térkép, olyanoknak mint az amuletted", "", 2)
             irdki(f"\nÚgy döntesz összegyűjtöd az összeset és leigázod a világot", "", 4)
+            KFC()
             # Döntes()
 
 # def Döntes():
@@ -453,24 +455,39 @@ def Vulkan():
 #     elif kuldetes1 == 1 and kuldetes2 == 1 and kuldetes3 == 1:
 
 def KFC():
-    irdki(f"\nElindulsz felkutatni Sanders ezredest a KFC megalkotóját, hogy eltulajdonítsd tőle a kabátja, ami misztikus erővel ruházza fel viselőjét", "", 2)
+    irdki(f"\nElindulsz felkutatni Sanders ezredest a KFC megalkotóját, hogy eltulajdonítsd tőle a kabátja, ami számodra ismeretlen erővel ruházza fel viselőjét", "", 2)
     irdki(f"\nEgy hosszú utazás után megtalálod a bázist", "", 4)
     irdki(f"\nNem gondoltad volna, hogy ennyire védve lesz", "", 2)
     irdki(f"\nSzerencsére van egy terved", "", 2)
     irdki(f"\nAzt mondtad az őröknek, hogy elloptad a KFC titkos receptét és szeretnél az ezredessel beszélni", "", 2)
     irdki(f"\nAz őrök elvezetnek egyenesen az ezredesig", "", 2)
-    irdki(f"\nAz ezredes kerül veled szembe a testőrével", "", 2)
+    irdki(f"\nAz ezredes kerül veled szembe a ttábornokával", "", 2)
     irdki(f"\n- Jól halottam, hogy te vagy az aki ellopta a receptem -", "matekt", 2)
-    irdki(f"\n- Nem is értem miért nem ölettelek meg egyből, Guacamole öld meg -", "matekt", 2)
-    enemy = Enemy("Guacamole",750, 50)
+    irdki(f"\n- Nem is értem miért nem ölettelek meg egyből, Grander tábornok öld meg -", "matekt", 2)
+    global enemy
+    enemy = Enemy("Grander tábornok",750, 50)
     battle()
     if evil == 1:
-        jatekos.hp = 350
-        jatekos.hp += 50
+        jatekos.hp = 400
+        irdki("\n- Ez lehetetlen -", "matekt", 2)
+        irdki("\n- Senki nem tudta még legyőzni -", "matekt", 2)
+        irdki("\n- Nincs más választásom magam kell, hogy elbánjak veled -", "matekt", 2)
+        enemy = Enemy("Sanders ezredes",2500, 100)
+        battle()
     elif hamulett == 1:
         jatekos.hp = 200
+    irdki("\n- Ez lehetetlen -", "matekt", 2)
+    irdki("\n- Senki nem tudta még legyőzni -", "matekt", 2)
+    irdki("\n-Áruld el mit akarsz tőlem -", "matekt", 2)
+    irdki("\nElmondod neki, hogy a kabátja sötét hatalmat rejt magában és hogy el kell pusztítani", "", 2)
+    irdki("\n- Ennél nevetségesebb mesét még nem hallotam -", "matekt", 3)
+    irdki("\nA tábornokom haláláért most megfizetsz", "matekt", 2)
+    enemy = Enemy("Sanders ezredes", 1000, 70)
+    battle()
+    if hamulett == 1:
+        jatekos.hp = 200
 
-
+        
 def KocsmaItem():
     jatekos.questszam +=1
     option = beker(f"1 - Felkapod a széket\n2 - Fogsz egy sörösüveget\n3 - Puszta kézzel szállsz be a harcba\n4 - Mégsem akarsz még harcolni\n",[1, 2, 3 , 4])
