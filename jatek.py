@@ -1,3 +1,3 @@
 from fuggvenyek import *
 
-menu()
+menu(questszam)
