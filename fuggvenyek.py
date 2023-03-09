@@ -108,8 +108,8 @@ def kar_keszites(Jatekos):
 
 
 def tamadas():
-    # attack = round((jatekos.stamina+jatekos.fegyver+jatekos.morale)/(random.randrange(1 , 100))*10)
-    attack = 10000000000
+    attack = round((jatekos.stamina+jatekos.fegyver+jatekos.morale)/(random.randrange(1 , 100))*10)
+    # attack = 10000000000
     enemy.hp -= attack
     if attack < 30:
         irdki("Hát ez lecsúszott. ","", 0)
@@ -391,12 +391,23 @@ def Vulkan():
         option = beker(f"\n1 - Hamulett(+hp)\n2 - B.B.oxer(+attack)", [1, 2])
         if option == 1:
             jatekos.hp = 200
+            irdki("\nA hamulett olyan mennyiségű bűzzel ruház fel, ami felér egy golyóállómellénynyel", "", 2)
         elif option == 2:
             jatekos.fegyver = 100
             jatekos.fegyverDurability = 200
+            irdki("\nÚj fegyvereddel könnyedén kiütöd ellenségeid fogsorát", "", 2)
+        irdki("\nBátor kalandor mielőtt még tovább mennénk had mutatkozzak be az én nevem Gáspár Laci", "segito", 2)
+        irdki("\nRöviden az én történetem annyi, hogy bebuktam az énekes szakmát és varázs tárgyak kutatásába kezdtem", "segito", 2)
+        irdki("\nLétezik még három hasonló erővel bíró tárgy, arra kérlek, hogy gyűjtsd őket össze és hozd nekem el, hogy megakadályozzuk, hogy rossz kezekbe kerüljön", "segito", 2)
+        global kuldetes1
+        global kuldetes2
+        global kuldetesa3
+        kuldetes1 = 0
+        kuldetes2 = 0
+        kuldetesa3 = 0
+        Döntes()
     if option == 2:
         global evil
-        global hamulett
         evil = 1
         irdki(f"\nElcsábít a hatalom melyet az amulett nyújt neked, ahelyett, hogy a vulkánba dobnád inkább a nyakadba akasztod.\nAzonnal elárasztja a testedet az erő, még soha nem érezted magad ilyen hatalmasnak!\n", "", 4)
         jatekos.hp = 300
@@ -553,9 +564,9 @@ def Döntes():
     global kuldetes1
     global kuldetes2
     global kuldetesa3
-    irdki(f"\nMelyik tárgy levadászására indulsz el?", "", 2)
     if kuldetes1 == 0 and kuldetes2 == 0 and kuldetesa3 == 0:
-        option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Sanders ezredes kabátja - KFC főhadiszállás\n3 - Mindenható kézigránát - menny", [1, 2, 3])
+        irdki(f"\nMelyik tárgy levadászására indulsz el?", "", 2)
+        option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Sanders ezredes kabátja - KFC főhadiszállás\n3 - Mindenható kézigránát - menny\n", [1, 2, 3])
         if option == 1:
             TapsihapsiLaba()
         elif option == 2:
@@ -565,31 +576,40 @@ def Döntes():
             kuldetesa3 += 1
             Heaven()
     elif kuldetes1 == 1 and kuldetes2 == 0 and kuldetesa3 == 0:
-        option = beker("\n1 - Sanders ezredes kabátja - KFC főhadiszállás\n2 - Mindenható kézigránát - menny", [1, 2])
+        irdki(f"\nMelyik tárgy levadászására indulsz el?", "", 2)
+        option = beker("\n1 - Sanders ezredes kabátja - KFC főhadiszállás\n2 - Mindenható kézigránát - menny\n", [1, 2])
         if option == 1:
+            kuldetes2 += 1
             KFC()
         elif option == 2:
             kuldetesa3 += 1
             Heaven()
     elif kuldetes1 == 0 and kuldetes2 == 1 and kuldetesa3 == 0:
-        option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Mindenható kézigránát - menny", [1, 2])
+        irdki(f"\nMelyik tárgy levadászására indulsz el?", "", 2)
+        option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Mindenható kézigránát - menny\n", [1, 2])
         if option == 1:
+            kuldetes1 += 1
             TapsihapsiLaba()
         elif option == 2:
             kuldetesa3 += 1
             Heaven()
     elif kuldetes1 == 0 and kuldetes2 == 0 and kuldetesa3 == 1:
-        option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Sanders ezredes kabátja - KFC főhadiszállás", [1, 2])
+        irdki(f"\nMelyik tárgy levadászására indulsz el?", "", 2)
+        option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Sanders ezredes kabátja - KFC főhadiszállás\n", [1, 2])
         if option == 1:
+            kuldetes1 += 1
             TapsihapsiLaba()
         elif option == 2:
+            kuldetes2 += 1
             KFC()
     elif kuldetes1 == 1 and kuldetes2 == 1 and kuldetesa3 == 0:
         kuldetesa3 += 1
         Heaven()
     elif kuldetes1 == 1 and kuldetes2 == 0 and kuldetesa3 == 1:
+        kuldetes2 += 1
         KFC()
     elif kuldetes1 == 0 and kuldetes2 == 1 and kuldetesa3 == 1:
+        kuldetes1 += 1
         TapsihapsiLaba()
     # elif kuldetes1 == 1 and kuldetes2 == 1 and kuldetes3 == 1:
 
