@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="js/jquery.terminal.min.js"></script>
+<script src="js/typewriter.js"></script>
+<link rel="stylesheet" href="css/jquery.terminal.min.css"/>
+</head>
+<body style="overflow: hidden;">
+  <div>
+        <script>
+            $(document).ready(function() {
+                $('body').terminal({
+                  1: function() {
+                    this.echo('Átirányítás...');
+                    setTimeout(() => {
+                      window.parent.location.href = "index.html";
+                    }, 2000);
+                  },            
+                  2: function() {
+                    this.echo('Átirányítás...');
+                    setTimeout(() => {
+                      window.parent.location.href = "speedrun.html";
+                    }, 2000);
+                  }, 
+                  4: function() {
+                    this.echo('Átirányítás...');
+                    setTimeout(() => {
+                      window.parent.location.href = "rolunk.html";
+                    }, 2000);
+                  }, 
+                  3: function() {
+                    this.echo('Átirányítás...');
+                    setTimeout(() => {
+                      window.parent.location.href = "konyvtarak.html";
+                    }, 2000);
+                  }
+                }, {
+                  greetings: '\nÜdv az oldalunkon!\n1 - A Játékról\t2 - Speedrunok\t3 - Felhasznált könyvtárak\t4 - Rólunk'
+                });
+              });          
+        </script>
+  </div>
+</body>
+</html>
