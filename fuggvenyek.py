@@ -42,8 +42,8 @@ def irdki(szoveg, karakter, sleep):
         szoveg = f"\033[93m{szoveg}\033[0m"
     if karakter == "isten":
         szoveg = f"\033[96m{szoveg}\033[0m"
-    #if karakter == "enemy":
-    #    szoveg = idk
+    if karakter == "te":
+        szoveg = f"\033[33m{szoveg}\033[0m]" 
     if karakter == "police":
         szoveg = f"\033[94m{szoveg}\033[0m"
     if karakter == "anya":
@@ -94,7 +94,6 @@ def vege():
     print(f"\n─────────────────────────────────────────────────────────────\n─██████──██████─██████████████─██████████████─██████████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██████████─██░░██████████─\n─██░░██──██░░██─██░░██─────────██░░██─────────██░░██─────────\n─██░░██──██░░██─██░░██████████─██░░██─────────██░░██████████─\n─██░░██──██░░██─██░░░░░░░░░░██─██░░██──██████─██░░░░░░░░░░██─\n─██░░██──██░░██─██░░██████████─██░░██──██░░██─██░░██████████─\n─██░░░░██░░░░██─██░░██─────────██░░██──██░░██─██░░██─────────\n─████░░░░░░████─██░░██████████─██░░██████░░██─██░░██████████─\n───████░░████───██░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─\n─────██████─────██████████████─██████████████─██████████████─\n─────────────────────────────────────────────────────────────")
     time.sleep(10)
     menu(questszam)
-#harcrendszer
 
 def kar_keszites(Jatekos):
     irdki("Hogy hívnak?\n-", "", 0)
@@ -109,7 +108,6 @@ def kar_keszites(Jatekos):
 
 def tamadas():
     attack = round((jatekos.stamina+jatekos.fegyver+jatekos.morale)/(random.randrange(1 , 100))*10)
-    # attack = 10000000000
     enemy.hp -= attack
     if attack < 30:
         irdki("Hát ez lecsúszott. ","", 0)
@@ -212,9 +210,7 @@ def Piac():
         jatekos.fegyverDurability = 20
         jatekos.fegyverNev = "vajazó kés"
         irdki(f"Elveszed a kardot az idegentől.\n", "",1)
-        # szoveg = f"-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!"
         irdki(f'-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!-',"segito", 4)
-        # irdki(f"-Jólvan, kövesd az utat az erdőig. A fák között találsz majd egy ösvényt, az elvezet a helyre ahova menned kell.\nHa találsz ott egy medált kérlek hozd vissza nekem!")
         TutorialBoss()
     elif option == 2:
         irdki(f"-Hát jó, ha ilyen keménynek érzed magad-", "segito", 4)
@@ -292,7 +288,7 @@ def Idk():
     irdki(f"\nDe van számodra még egy feladatom! Azt az amulettet gonosz varázslatokkal bűvölték meg, ezért el kell pusztítani!\nMessze a hegyek között van egy vulkán, ott meg lehet semmisíteni, de ez nem olyan egyszerű mint amilyennek hangzik! Sokan őrzik azt a vulkánt.\nArra kérlek, pusztísd el.\n", "segito", 2)
     option = beker(f"Mit teszel?\n1 - Elviszed az amulettet a vulkánhoz\t\t2 - Inkább odaadod az idegennek\n",[1, 2])
     if option == 1:
-        irdki(f"\n-Köszönöm, hogy segítesz nekem. Tessék, egy térkép, így eljuthatsz a vulkánhoz.-", "segito", 4)
+        irdki(f"\n-Köszönöm, hogy segítesz nekem. Tessék, egy térkép, így eljuthatsz a vulkánhoz.-", "segito", 2)
         irdki("\n-Még mielőtt továbbmész szeretnél vásárolni tőlem valamit?-", "segito", 2)
         option = beker("\n1 - igen\t2 - nem\n", [1, 2])
         if option == 1:
@@ -377,11 +373,11 @@ def Vulkan():
     enemy = Enemy("Kőpofa",600, 40)
     battle()
     irdki(f"Nagyon elfáradtál a harcban, de még nem pihenhetsz, be kell fejezned a feladatot!\n", "", 4)
-    irdki(f"Mielőtt bevégeznéd a küldetésedet felmerűl benned a kérdés.:\n-Miért ne tarthatnám meg? Amikor a kezemben tartom olyan erősnek érzem magam!-\n", "", 4)
+    irdki(f"Mielőtt befejeznéd a küldetésedet felmerűl benned a kérdés:\n-Miért ne tarthatnám meg? Amikor a kezemben tartom olyan erősnek érzem magam!-\n", "", 4)
     option = beker(f"\nHogyan döntesz?\n1 - Elpusztítod az amulettet\t\t2 - Megtartod az amulettet\n",[1, 2])
     if option == 1:
         irdki(f"\nNem engedsz a kísértésnek, odasétálsz a tűzhányó peremére és teljes erődből a forró lávába halyítod a nyakéket.", "narrator", 2)
-        irdki(f"\nLátod ahogy az amulett elmerül a bugyogó anyagban és ez büszkességgel tölt el, végre valami ami sikerült.\n{time.sleep(2)}Már éppen elindultál lefele a vulkánról, mikor egy koppanást hallasz, megfordulsz és egy kis csillogó követ veszel észre.", "narrator", 2)
+        irdki(f"\nLátod ahogy az amulett elmerül a bugyogó anyagban és ez büszkességgel tölt el, végre valami ami sikerült.\nMár éppen elindultál lefele a vulkánról, mikor egy koppanást hallasz, megfordulsz és egy kis csillogó követ veszel észre.", "narrator", 2)
         irdki(f"\nMegpróbálod felvenni a földről, de megégeti a kezed.", "", 2)
         irdki(f"\nRáteríted a pulcsidat és úgy emeled fel, ugyanaz az érzést érzed mint amikor a nyakláncot tartotad a markodban, csak gyengébben.", "", 3)
         irdki(f"\nMiközben hazafelé tartasz eggyátalán nem érzed magad féradtnak, még sohasem voltál ilyen energikus.", "", 2)
@@ -475,13 +471,6 @@ def Hazateres():
         jatekos.hp = hp
     Döntes()
 
-
-# def Döntes():
-#     irdki(f"\nMelyik tárgy levadászására indulsz el?", "", 2)
-#     option = beker(f"\n1 - tapsihapsi lába - halálcsillag\n2 - Sanders ezredes kabátja - KFC főhadiszállás\n3 - Mindenható kézi gránát - menny", [1, 2, 3])
-#     if option == 1:
-#         TapsihapsiLaba()
-
 def TapsihapsiLaba():
     irdki(f"\nA mágikus tárgyak közül Tapsihapsi lábát választottad. Ehhez azonban a Halálcsillagra kell utaznod.", "", 4)
     irdki(f"\nMégis hogyan juthatnál el az űrbe? Hát mi sem egyszerűbb mint szerezni egy űrhajót!", "", 2)
@@ -510,7 +499,7 @@ def TapsihapsiLaba():
         irdki(f"\nNyitva találod az ajtót úgyhogy bemész a helyisébe, felkapcsolódik a lámpa és egy zsúfolt szobában talállod magad. ", "", 4)
         irdki(f"\nKörbejárod a szobát, de nem találsz semmi használhatót. Mindössze egy gumikacsát, ami valahogyan követ téged. ", "", 4)
         irdki(f"\nKimész a raktérből, és máshol keresgélsz tovább.", "", 2)
-
+    Döntes()
 
 def Döntes():
     if jatekos.kuldetes1 == 0 and jatekos.kuldetes2 == 0 and jatekos.kuldetes3 == 0:
@@ -560,7 +549,45 @@ def Döntes():
     elif jatekos.kuldetes1 == 0 and jatekos.kuldetes2 == 1 and jatekos.kuldetes3 == 1:
         jatekos.kuldetes1 += 1
         TapsihapsiLaba()
-    # elif jatekos.kuldetes1 == 1 and jatekos.kuldetes2 == 1 and jatekos.kuldetes3 == 1:
+    elif kuldetes1 == 1 and kuldetes2 == 1 and kuldetes3 == 1:
+        Finale()
+
+def Finale():
+    if evil == 1:
+        irdki(f"\nÖsszegyűjtötted az összes tárgyat, hamarosan te leszel a világ ura, de a semiből egy nagyon ismerős alak ugrik elő.", "", 2)
+        irdki(f"\nÁllj meg {jatekos.name}, nem hagyhatom, hogy leigázd a világot! ", "anya", 2)
+        irdki(f"\nÉs ezt te mégis, hogy akarod véghez vinni? ", "te", 2)
+        irdki(f"\nÉn vagyok a legerősebb a világon, MEGÁLLÍTHATATLAN VAGYOK!!! ", "te", 2)
+        irdki(f"\nAzt csak hiszed, én te vagyok egy másik univerzumból, ahol elpusztítottam az amulettet! ", "anya", 2)
+        irdki(f"\nAz elpusztított tárgyak darabjaiból egy olyan készüléket készítettünk, ami képes univerzumok között utazni! ", "anya", 2)
+        irdki(f"\nAz eddig látott variánsaim közül te vagy a legrosszabb. ", "anya", 2)
+        irdki(f"\nÖsszegyűjtöd minden energiád, hogy legyőzd ezt a szélhámost. ", "", 2)
+        global enemy
+        nev = jatekos.name[::-1]
+        enemy = Enemy(nev, 4000, 100)
+        battle()
+        irdki("\nHatalmas küzdelemben legyőzted magad és elvetted az univerzum ugrót. ", "", 2)
+        irdki("\nNem kellett sok idő, hogy uralmad alá vond az egész univerzumot. ", "", 2)
+        vege()
+    else:
+        irdki("\nGratulálok, sikerült mindet összegyűjtened, de küldetésed még nem ér itt véget. ", "segito", 2)
+        irdki("\nKészítettem a megmaradt darabokból egy készüléket, aminek a segítségével képes leszel univerzumok között utazni! ", "segito", 2)
+        irdki("\nÚti célod a C-117 Föld", "segito", 2)
+        irdki("\nEz egy olyan valóság, ahol nem pusztítod el az amulettet és le akarod igázni a világot, le kell győznöd magad. ", "segito", 2)
+        irdki("\nSok szerencsét! ", "segito", 2)
+        irdki("\nEgy pillanat alatt a másik univerzumban találod magad veled szembe pedig e világi éned. ", "", 2)
+        irdki(f"\nÁllj meg {jatekos.name[::-1]}, nem hagyhatom, hogy leigázd a világot! ", "anya", 2)
+        irdki(f"\nÉs ezt te mégis, hogy akarod véghez vinni?", "te", 2)
+        irdki(f"\nÉn vagyok a legerősebb a világon, MEGÁLLÍTHATATLAN VAGYOK! ", "te", 2)
+        irdki(f"\nAzt csak hiszed, én te vagyok egy másik univerzumból, ahol elpusztítottam az amulettet. ", "anya", 2)
+        irdki(f"\nAz elpusztított tárgyak darabjaiból egy olyan készüléket készítettünk, ami képes univerzumok között utazni. ", "anya", 2)
+        irdki("\nEz a csata dönti el az összes univerzum sorsát!\nGonosz éned nem késlekedik, egyből neked ront.", "", 2)
+        nev = jatekos.name[::-1]
+        enemy = Enemy(nev, 2000, 80)
+        irdki("\nEz lehetetlen..." , "te", 2)
+        irdki("\nMiután visszatértél univerzumodba úgy döntesz, hogy járni fogod a világokat és segítesz ahol csak tudsz. ", "", 2)
+        irdki("Köszönjük, hogy játszottál!")
+        vege()
 
 def KFC():
     irdki(f"\nElindulsz felkutatni Sanders ezredest, a KFC megalkotóját, hogy eltulajdonítsd tőle a kabátját, ami számodra ismeretlen erővel ruházza fel viselőjét.", "", 2)
