@@ -42,6 +42,8 @@ def irdki(szoveg, karakter, sleep):
         szoveg = f"\033[93m{szoveg}\033[0m"
     if karakter == "isten":
         szoveg = f"\033[96m{szoveg}\033[0m"
+    if karakter == "te":
+        szoveg = f"\033[33m{szoveg}\033[0m]" 
     #if karakter == "enemy":
     #    szoveg = idk
     if karakter == "police":
@@ -436,9 +438,6 @@ def Vulkan():
             irdki(f"\nBelenyulsz az idegen zsebébe és egy térképet találsz nála", "", 2)
             irdki(f"\nNégy misztikus tárgy helyét muatatja a térkép, olyanoknak mint az amuletted", "", 2)
             irdki(f"\nÚgy döntesz összegyűjtöd az összeset és leigázod a világot", "", 4)
-            global kuldetes1
-            global kuldetes2
-            global kuldetesa3
             kuldetes1 = 0
             kuldetes2 = 0
             kuldetesa3 = 0
@@ -558,6 +557,7 @@ def TapsihapsiLaba():
         irdki(f"\nNyitva talállod az ajtót úgyhogy bemész a helyisébe, felkapcsolódik a lámpa és egy zsúfolt szobában talállod magad.", "", 4)
         irdki(f"\nKörbejárod a szobát de nem találsz semmi használhatót, mindössze egy gumikacsát ami valahogyan követ téged.", "", 4)
         irdki(f"\nKimész a raktérbó, és máshol keresgélsz tovább.", "", 2)
+        Döntes()
 
 
 def Döntes():
@@ -611,7 +611,44 @@ def Döntes():
     elif kuldetes1 == 0 and kuldetes2 == 1 and kuldetesa3 == 1:
         kuldetes1 += 1
         TapsihapsiLaba()
-    # elif kuldetes1 == 1 and kuldetes2 == 1 and kuldetes3 == 1:
+    elif kuldetes1 == 1 and kuldetes2 == 1 and kuldetesa3 == 1:
+        Finale()
+
+def Finale():
+    if evil == 1:
+        irdki(f"\nÖsszegyűjtötted az összes tárgyat, hamarosan te leszel a világ ura, de a semiből egy nagyon ismerős alak ugrik elő", "", 2)
+        irdki(f"\nÁllj meg {jatekos.name}, nem hagyhatom, hogy leigázd a világot", "anya", 2)
+        irdki(f"\nÉs ezt te mégis, hogy akarod véghez vinni", "te", 2)
+        irdki(f"\nÉn vagyok a legerősebb a világon, MEGÁLLÍTHATATLAN VAGYOK", "te", 2)
+        irdki(f"\nAzt csak hiszed, én te vagyok egy másik univerzumból, ahol elpusztítottam az amulettet", "anya", 2)
+        irdki(f"\nAz elpusztított tárgyak darabjaiból egy olyan készüléket készítettünk, ami képes univerzumok között utazni", "anya", 2)
+        irdki(f"\nAz eddig látott variánsaim közül te vagy a legrosszabb", "anya", 2)
+        irdki(f"\nÖsszegyűjtöd minden energiád, hogy legyőzd ezt a szélhámost", "", 2)
+        global enemy
+        nev = jatekos.name[::-1]
+        enemy = Enemy(nev, 4000, 100)
+        battle()
+        irdki("\nHatalmas küzdelemben legyőzted magad és elvetted az univerzum ugrót", "", 2)
+        irdki("\nNem kellett sok idő, hogy uralmad alá vond az egész univerzumot", "", 2)
+        vege()
+    else:
+        irdki("\nGratulálok sikerült mindet összegyűjtened, de küldetésed még nem ér itt véget", "segito", 2)
+        irdki("\nKészítettem a megmaradt darabokból egy készüléket, aminek a segítségével képes leszel univerzumok között utazni", "segito", 2)
+        irdki("\nÚti célod a C-117 Föld", "segito", 2)
+        irdki("\nEz egy olyan valóság, ahol nem pusztítod el az amulettet és leakarod igázni a világot, le kell győznöd magad", "segito", 2)
+        irdki("\nSok szerencsét", "segito", 2)
+        irdki("\nEgy pillanat alatt a másik univerzumban találod magad veled szembe pedig e világi éned", "", 2)
+        irdki(f"\nÁllj meg {jatekos.name[::-1]}, nem hagyhatom, hogy leigázd a világot", "anya", 2)
+        irdki(f"\nÉs ezt te mégis, hogy akarod véghez vinni", "te", 2)
+        irdki(f"\nÉn vagyok a legerősebb a világon, MEGÁLLÍTHATATLAN VAGYOK", "te", 2)
+        irdki(f"\nAzt csak hiszed, én te vagyok egy másik univerzumból, ahol elpusztítottam az amulettet", "anya", 2)
+        irdki(f"\nAz elpusztított tárgyak darabjaiból egy olyan készüléket készítettünk, ami képes univerzumok között utazni", "anya", 2)
+        irdki("\nEz  a csata dönti el az összes univerzum sorsát\nGonosz éned nem késlekedik egyből neked ront", "", 2)
+        nev = jatekos.name[::-1]
+        enemy = Enemy(nev, 2000, 80)
+        irdki("\nEz lehetetlen...", "te", 2)
+        irdki("\nMiután visszatértél univerzumodba úgy döntesz, hogy járni fogod a világokat és segítesz ahol csak tudsz", "", 2)
+        vege()
 
 def KFC():
     irdki(f"\nElindulsz felkutatni Sanders ezredest a KFC megalkotóját, hogy eltulajdonítsd tőle a kabátja, ami számodra ismeretlen erővel ruházza fel viselőjét", "", 2)
