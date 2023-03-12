@@ -131,14 +131,17 @@ def battle():
         option = beker(f"Harc lehetőségek:\n1. Támadás\t\t2. Gyógyítás\n",[1, 2])
         if option == 1:
             tamadas()
+            os.system('cls')
         elif option == 2:
             if jatekos.energiaital > 0:    
                 jatekos.hp += 100
                 jatekos.energiaital -= 1
                 irdki(f"Ittál egy Spar Energy Drinket, a HP-d 100-al nő.", "", 1)
+                os.system('cls')
             else:
                 irdki(f"Kifogytál a piából.\n", "", 1)
                 tamadas()
+                os.system('cls')
         if enemy.hp > 0:
             enemy.attack = round(random.randrange(5, 60))
             jatekos.hp -= enemy.attack
@@ -495,12 +498,129 @@ def TapsihapsiLaba():
     irdki(f"\nMerre mész tovább?", "", 2)
     option = beker(f"\n1 - a raktár felé\n2 - a konyha felé\n3 - a börtönök felé", [1, 2, 3])
     if option == 1:
-        irdki(f"\nElindulsz a raktár irányába hátha ott találod a mágikus ereklyét. ", "", 2)
-        irdki(f"\nNyitva találod az ajtót úgyhogy bemész a helyisébe, felkapcsolódik a lámpa és egy zsúfolt szobában talállod magad. ", "", 4)
-        irdki(f"\nKörbejárod a szobát, de nem találsz semmi használhatót. Mindössze egy gumikacsát, ami valahogyan követ téged. ", "", 4)
+        irdki(f"\nElindulsz a raktár irányába hátha ott találod a mágikus erekjét.", "", 2)
+        irdki(f"\nNyitva talállod az ajtót úgyhogy bemész a helyisébe, felkapcsolódik a lámpa és egy zsúfolt szobában talállod magad.", "", 4)
+        irdki(f"\nKörbejárod a szobát de nem találsz semmi használhatót, mindössze egy gumikacsát ami valahogyan követ téged.", "", 4)
         irdki(f"\nKimész a raktérből, és máshol keresgélsz tovább.", "", 2)
-    Döntes()
-
+        irdki("\nMerre mész tovább", "", 2)
+        option = beker("\n1- a konyha felé\n2 - a börtönök felé", [1, 2])
+        if option == 1:
+            irdki("\nAhogyan a konyha felé közeledsz egyre finomabb illatok érik az orrod", "", 2)
+            irdki("\nBent nem találsz senkit csak egy 3 fogásos vacsorát", "", 2)
+            irdki("\nNem is késlekedsz és evésbe kezdesz", "", 2)
+            hp = jatekos.hp
+            hp += 100
+            irdki("\nA lakoma után sokkal energetikusabbnak érzed magad", "", 2)
+            irdki("\nMár csak egy hely maradt, amit még nem néztél meg a börtön", "", 2)
+            irdki("\nEgy rohamosztagos örzi a cellákat, mivel elmetrükköt nem tudsz rajta csinálni meg kell küzdened vele", "", 2)
+            enemy = Enemy("Rohamosztagos", 400, 20)
+            jatekos.hp = hp
+            battle()
+            jatekos.hp = hp     
+            irdki("\nBemész a börtönbe, az egyik cella nyitva van és tapsihapsi van benne láncon", "", 2)
+            irdki("\nHapsikám.. te mire.. készülsz...", "isten", 2)
+            irdki("\nGondolkodás nélkül levágod gyermekkorod hősének a lábát, aki ebbe belehal", "", 2)
+            if evil == 1:
+                jatekos.stamina += 500
+                irdki("\nAhogy lábadra veszed sokkal gyorabbnak érzed magad", "", 2)
+                irdki("\nVisszamész bázisodra", "", 2)
+                Döntes()
+            else:
+                irdki("\nVisszamész a piacra", "", 2)
+                irdki("\nGratulálok, viszont van egy rossz hírem ezeknek a maradványait még nem tudom felhasználni, de itt van pár energiaital a fáradozásodért", "segito", 2)
+                jatekos.energiaital += 10
+                Döntes()
+        elif option == 2:
+            irdki("\nEgy rohamosztagos örzi a cellákat, mivel elmetrükköt nem tudsz rajta csinálni meg kell küzdened vele", "", 2)
+            enemy = Enemy("Rohamosztagos", 400, 20)
+            jatekos.hp = hp
+            battle()
+            jatekos.hp = hp     
+            irdki("\nBemész a börtönbe, az egyik cella nyitva van és tapsihapsi van benne láncon", "", 2)
+            irdki("\nHapsikám.. te mire.. készülsz...", "isten", 2)
+            irdki("\nGondolkodás nélkül levágod gyermekkorod hősének a lábát, aki ebbe belehal", "", 2)
+            if evil == 1:
+                jatekos.stamina += 500
+                irdki("\nAhogy lábadra veszed sokkal gyorabbnak érzed magad", "", 2)
+                irdki("\nVisszamész bázisodra", "", 2)
+                Döntes()
+            else:
+                irdki("\nVisszamész a piacra", "", 2)
+                irdki("\nGratulálok, viszont van egy rossz hírem ezeknek a maradványait még nem tudom felhasználni, de itt van pár energiaital a fáradozásodért", "segito", 2)
+                jatekos.energiaital += 10
+                Döntes()
+    elif option == 2:
+        irdki("\nAhogyan a konyha felé közeledsz egyre finomabb illatok érik az orrod", "", 2)
+        irdki("\nBent nem találsz senkit csak egy 3 fogásos vacsorát", "", 2)
+        irdki("\nNem is késlekedsz és evésbe kezdesz", "", 2)
+        hp = jatekos.hp
+        hp += 100
+        irdki("\nA lakoma után sokkal energetikusabbnak érzed magad", "", 2)
+        irdki("\nMerre mész tovább", "", 2)
+        option = beker("\n1- a raktér felé\n2 - a börtönök felé", [1, 2])
+        if option == 1:
+            irdki(f"\nElindulsz a raktár irányába hátha ott találod a mágikus erekjét.", "", 2)
+            irdki(f"\nNyitva talállod az ajtót úgyhogy bemész a helyisébe, felkapcsolódik a lámpa és egy zsúfolt szobában talállod magad.", "", 4)
+            irdki(f"\nKörbejárod a szobát de nem találsz semmi használhatót, mindössze egy gumikacsát ami valahogyan követ téged.", "", 4)
+            irdki(f"\nKimész a raktérből, és máshol keresgélsz tovább.", "", 2)
+            irdki("\nMár csak egy hely maradt, amit még nem néztél meg a börtön", "", 2)
+            irdki("\nEgy rohamosztagos örzi a cellákat, mivel elmetrükköt nem tudsz rajta csinálni meg kell küzdened vele", "", 2)
+            enemy = Enemy("Rohamosztagos", 400, 20)
+            jatekos.hp = hp
+            battle()
+            jatekos.hp = hp     
+            irdki("\nBemész a börtönbe, az egyik cella nyitva van és tapsihapsi van benne láncon", "", 2)
+            irdki("\nHapsikám.. te mire.. készülsz...", "isten", 2)
+            irdki("\nGondolkodás nélkül levágod gyermekkorod hősének a lábát, aki ebbe belehal", "", 2)
+            if evil == 1:
+                jatekos.stamina += 500
+                irdki("\nAhogy lábadra veszed sokkal gyorabbnak érzed magad", "", 2)
+                irdki("\nVisszamész bázisodra", "", 2)
+                Döntes()
+            else:
+                irdki("\nVisszamész a piacra", "", 2)
+                irdki("\nGratulálok, viszont van egy rossz hírem ezeknek a maradványait még nem tudom felhasználni, de itt van pár energiaital a fáradozásodért", "segito", 2)
+                jatekos.energiaital += 10
+                Döntes()
+        elif option == 2:
+            irdki("\nEgy rohamosztagos örzi a cellákat, mivel elmetrükköt nem tudsz rajta csinálni meg kell küzdened vele", "", 2)
+            enemy = Enemy("Rohamosztagos", 400, 20)
+            jatekos.hp = hp
+            battle()
+            jatekos.hp = hp     
+            irdki("\nBemész a börtönbe, az egyik cella nyitva van és tapsihapsi van benne láncon", "", 2)
+            irdki("\nHapsikám.. te mire.. készülsz...", "isten", 2)
+            irdki("\nGondolkodás nélkül levágod gyermekkorod hősének a lábát, aki ebbe belehal", "", 2)
+            if evil == 1:
+                jatekos.stamina += 500
+                irdki("\nAhogy lábadra veszed sokkal gyorabbnak érzed magad", "", 2)
+                irdki("\nVisszamész bázisodra", "", 2)
+                Döntes()
+            else:
+                irdki("\nVisszamész a piacra", "", 2)
+                irdki("\nGratulálok, viszont van egy rossz hírem ezeknek a maradványait még nem tudom felhasználni, de itt van pár energiaital a fáradozásodért", "segito", 2)
+                jatekos.energiaital += 10
+                Döntes()
+    elif option == 3:
+        irdki("\nEgy rohamosztagos örzi a cellákat, mivel elmetrükköt nem tudsz rajta csinálni meg kell küzdened vele", "", 2)
+        enemy = Enemy("Rohamosztagos", 400, 20)
+        jatekos.hp = hp
+        battle()
+        jatekos.hp = hp     
+        irdki("\nBemész a börtönbe, az egyik cella nyitva van és tapsihapsi van benne láncon", "", 2)
+        irdki("\nHapsikám.. te mire.. készülsz...", "isten", 2)
+        irdki("\nGondolkodás nélkül levágod gyermekkorod hősének a lábát, aki ebbe belehal", "", 2)
+        if evil == 1:
+            jatekos.stamina += 500
+            irdki("\nAhogy lábadra veszed sokkal gyorabbnak érzed magad", "", 2)
+            irdki("\nVisszamész bázisodra", "", 2)
+            Döntes()
+        else:
+            irdki("\nVisszamész a piacra", "", 2)
+            irdki("\nGratulálok, viszont van egy rossz hírem ezeknek a maradványait még nem tudom felhasználni, de itt van pár energiaital a fáradozásodért", "segito", 2)
+            jatekos.energiaital += 10
+            Döntes()
+        
 def Döntes():
     if jatekos.kuldetes1 == 0 and jatekos.kuldetes2 == 0 and jatekos.kuldetes3 == 0:
         irdki(f"\nMelyik tárgy levadászására indulsz el?", "", 2)
