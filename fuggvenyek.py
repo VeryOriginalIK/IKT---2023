@@ -135,14 +135,17 @@ def battle():
         option = beker(f"Harc lehetőségek:\n1. Támadás\t\t2. Gyógyítás\n",[1, 2])
         if option == 1:
             tamadas()
+            os.system('cls')
         elif option == 2:
             if jatekos.energiaital > 0:    
                 jatekos.hp += 100
                 jatekos.energiaital -= 1
                 irdki(f"Ittál egy Spar Energy Drinket, a HP-d 100-al nő.", "", 1)
+                os.system('cls')
             else:
                 irdki(f"Kifogytál a piából.\n", "", 1)
                 tamadas()
+                os.system('cls')
         if enemy.hp > 0:
             enemy.attack = round(random.randrange(5, 60))
             jatekos.hp -= enemy.attack
@@ -576,7 +579,7 @@ def TapsihapsiLaba():
             irdki("\nHapsikám.. te mire.. készülsz...", "isten", 2)
             irdki("\nGondolkodás nélkül levágod gyermekkorod hősének a lábát, aki ebbe belehal", "", 2)
             if evil == 1:
-                stamina += 500
+                jatekos.stamina += 500
                 irdki("\nAhogy lábadra veszed sokkal gyorabbnak érzed magad", "", 2)
                 irdki("\nVisszamész bázisodra", "", 2)
                 Döntes()
@@ -595,7 +598,7 @@ def TapsihapsiLaba():
             irdki("\nHapsikám.. te mire.. készülsz...", "isten", 2)
             irdki("\nGondolkodás nélkül levágod gyermekkorod hősének a lábát, aki ebbe belehal", "", 2)
             if evil == 1:
-                stamina += 500
+                jatekos.stamina += 500
                 irdki("\nAhogy lábadra veszed sokkal gyorabbnak érzed magad", "", 2)
                 irdki("\nVisszamész bázisodra", "", 2)
                 Döntes()
@@ -628,7 +631,7 @@ def TapsihapsiLaba():
             irdki("\nHapsikám.. te mire.. készülsz...", "isten", 2)
             irdki("\nGondolkodás nélkül levágod gyermekkorod hősének a lábát, aki ebbe belehal", "", 2)
             if evil == 1:
-                stamina += 500
+                jatekos.stamina += 500
                 irdki("\nAhogy lábadra veszed sokkal gyorabbnak érzed magad", "", 2)
                 irdki("\nVisszamész bázisodra", "", 2)
                 Döntes()
@@ -647,7 +650,7 @@ def TapsihapsiLaba():
             irdki("\nHapsikám.. te mire.. készülsz...", "isten", 2)
             irdki("\nGondolkodás nélkül levágod gyermekkorod hősének a lábát, aki ebbe belehal", "", 2)
             if evil == 1:
-                stamina += 500
+                jatekos.stamina += 500
                 irdki("\nAhogy lábadra veszed sokkal gyorabbnak érzed magad", "", 2)
                 irdki("\nVisszamész bázisodra", "", 2)
                 Döntes()
@@ -666,7 +669,7 @@ def TapsihapsiLaba():
         irdki("\nHapsikám.. te mire.. készülsz...", "isten", 2)
         irdki("\nGondolkodás nélkül levágod gyermekkorod hősének a lábát, aki ebbe belehal", "", 2)
         if evil == 1:
-            stamina += 500
+            jatekos.stamina += 500
             irdki("\nAhogy lábadra veszed sokkal gyorabbnak érzed magad", "", 2)
             irdki("\nVisszamész bázisodra", "", 2)
             Döntes()
