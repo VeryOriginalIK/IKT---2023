@@ -34,19 +34,19 @@ def betoltes():
 def irdki(szoveg, karakter, sleep):
     if karakter == "segito":
         szoveg = f"\033[92m{szoveg}\033[0m"
-    if karakter == "" or karakter == "narrator":
+    elif karakter == "" or karakter == "narrator":
         szoveg = f"\033[1m{szoveg}\033[0m"
-    if karakter == "matekt":
+    elif karakter == "matekt":
         szoveg = f"\033[91m{szoveg}\033[0m"
-    if karakter == "genyo":
+    elif karakter == "genyo":
         szoveg = f"\033[93m{szoveg}\033[0m"
-    if karakter == "isten":
+    elif karakter == "isten":
         szoveg = f"\033[96m{szoveg}\033[0m"
-    if karakter == "te":
+    elif karakter == "te":
         szoveg = f"\033[33m{szoveg}\033[0m]" 
-    if karakter == "police":
+    elif karakter == "police":
         szoveg = f"\033[94m{szoveg}\033[0m"
-    if karakter == "anya":
+    elif karakter == "anya":
         szoveg = f"\033[94m{szoveg}\033[0m"
     for i in range(len(szoveg)):
         print(szoveg[i], end='', flush=True)
@@ -239,7 +239,7 @@ def TutorialBoss():
     Idk()
 
 def Matekdoga():
-    jatekos.questszam +=1
+    jatekos.questszam = 13
     pont = 0
     irdki("\n1.Feladat", "narrator", 2)
     irdki("\nEgy derékszögű háromszőg két befogója 4 és 12 egység hosszúak\nMekkora az átfogó hossza?(Az eredményt 1 tizedesjegyre kerekítve add meg)\n", "", 4)
@@ -252,7 +252,7 @@ def Matekdoga():
     if valasz == "psszt":
         pont += 1
     os.system('cls')
-    input("\n3.Feladat\nÍrd le a szinusz tétel bizonyítását: ", "", 4)
+    irdki("\n3.Feladat\nÍrd le a szinusz tétel bizonyítását: ", "", 4)
     irdki("\nEsélytelen hogy ezt a feladatot megcsináld! (Túl kicsi az iq szinted)", "", 3)
     irdki(" Beadod a dolgozatot és amikor már indulnál haza a tanár megállít", "", 3)
     irdki(f"\n{jatekos.name}, te maradj csak itt.", "matekt", 3)
@@ -348,18 +348,6 @@ def Idk():
         irdki(f"\nAz előző este törtémései miatt teljesen kiment a fejedből és elfeljtettél tanulni", "narrator", 2)
         irdki(f"\nMindenki vegyen elő papírt és tollat, akit puskázáson érek az 1-est kap!", "matekt", 2)
         irdki("\nA tanár éppen valamit a az asztalánál keres", "narrator", 2)
-        # option = beker("\nMegragadod az alkalmat, hogy elrejtsd a telefonod a padban?\n1 - igen\t2 - nem",[1, 2])
-        # if option == 1:
-        #     a = round(random.randint(1,2), 0)
-        #     if a == 1:
-        #         irdki("\nSikeres elrejtetted, a doga során lesz lehetőséged puskázni\n", "narrator", 2)
-        #         irdki("Vigyázz, ez nem azt jelenti, hogy nem bukhatsz le", "matekt", 2)
-        #         Matekdoga(a)
-        #     elif a == 2:
-        #         irdki("\nMaga meg mit csinál?", "matekt", 2)
-        #         irdki("\nAzonnal hozd ki azt a telefont és köszönd meg, hogy nem írom rá az egyest egyből", "matekt", 2)
-        #         Matekdoga(a)
-        # if option == 2:
         Matekdoga()
 
 
@@ -433,6 +421,7 @@ def Vulkan():
             Döntes()
 
 def Heaven():
+        jatekos.questszam +=1
         irdki("\n- Sajnálom, de ahoz, hogy eljuss oda fentre meg kell halnod. De itt ez a totem, ha kész vagy akkor csak törd ketté és máris visszatérsz a testedbe", "segito", 2)
         irdki("\nEz most fájni fog", "segito", 2)
         irdki("\nHatalmas fényesség vesz körül a menny kapui előtt találod magad", "", 2)
@@ -475,6 +464,7 @@ def Hazateres():
     Döntes()
 
 def TapsihapsiLaba():
+    jatekos.questszam +=1
     irdki(f"\nA mágikus tárgyak közül Tapsihapsi lábát választottad. Ehhez azonban a Halálcsillagra kell utaznod.", "", 4)
     irdki(f"\nMégis hogyan juthatnál el az űrbe? Hát mi sem egyszerűbb mint szerezni egy űrhajót!", "", 2)
     irdki(f"\nSzerencsédre Elon Musk éppen a Balatonnál tartózkodik, tehát elutazol hozzá és megkéred, hogy adja kölcsön az eggyik rakétáját. ", "", 4)
@@ -622,6 +612,7 @@ def TapsihapsiLaba():
             Döntes()
         
 def Döntes():
+    jatekos.questszam +=1
     if jatekos.kuldetes1 == 0 and jatekos.kuldetes2 == 0 and jatekos.kuldetes3 == 0:
         irdki(f"\nMelyik tárgy levadászására indulsz el?", "", 2)
         option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Sanders ezredes kabátja - KFC főhadiszállás\n3 - Mindenható kézigránát - menny\n", [1, 2, 3])
@@ -669,7 +660,7 @@ def Döntes():
     elif jatekos.kuldetes1 == 0 and jatekos.kuldetes2 == 1 and jatekos.kuldetes3 == 1:
         jatekos.kuldetes1 += 1
         TapsihapsiLaba()
-    elif kuldetes1 == 1 and kuldetes2 == 1 and kuldetes3 == 1:
+    elif jatekos.kuldetes1 == 1 and jatekos.kuldetes2 == 1 and jatekos.kuldetes3 == 1:
         Finale()
 
 def Finale():
@@ -710,13 +701,14 @@ def Finale():
         vege()
 
 def KFC():
+    jatekos.questszam +=1
     irdki(f"\nElindulsz felkutatni Sanders ezredest, a KFC megalkotóját, hogy eltulajdonítsd tőle a kabátját, ami számodra ismeretlen erővel ruházza fel viselőjét.", "", 2)
     irdki(f"\nEgy hosszú utazás után megtalálod a bázist.", "", 4)
     irdki(f"\nNem gondoltad volna, hogy ennyire védve lesz.", "", 2)
     irdki(f"\nSzerencsére van egy terved.", "", 2)
     irdki(f"\nAzt mondtad az őröknek, hogy elloptad a KFC titkos receptét és szeretnél az ezredessel beszélni.", "", 2)
     irdki(f"\nAz őrök elvezetnek egyenesen az ezredesig.", "", 1)
-    print(f"⣿⣿⣿⣿⣿⣿⣿⡿⢟⣋⣭⣥⣭⣭⣍⡉⠉⠙⠛⠻⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⡏⠁⠠⠶⠛⠻⠿⣿⣿⣿⣿⣷⡄⠄⠄⠄⠄⠉⠻⢿⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⠟⠄⢀⡴⢊⣴⣶⣶⣾⣿⣿⣿⣿⢿⡄⠄⠄⠄⠄⠄⠄⠙⢿⣿⣿⣿\n⣿⣿⡿⠁⠄⠙⡟⠁⣾⣿⣿⣿⣿⣿⣿⣿⣿⣎⠃⠄⠄⠄⠄⠄⠄⠄⠈⢻⣿⣿\n⣿⡟⠄⠄⠄⠄⡇⠰⠟⠛⠛⠿⠿⠟⢋⢉⠍⢩⣠⡀⠄⠄⠄⠄⠄⠄⠄⠄⢹⣿\n⣿⠁⠄⠄⠄⠄⠰⠁⣑⣬⣤⡀⣾⣦⣶⣾⣖⣼⣿⠁⠄⠄⠄⠄⠄⠄⠄⠄⠄⢿\n⡏⠄⠄⠄⠄⠄⠄⠄⠨⣿⠟⠰⠻⠿⣣⡙⠿⣿⠋⠄⢀⡀⣀⠄⣀⣀⢀⣀⣀⢸\n⡇⠄⠄⠄⠄⠄⠄⠄⠄⣠⠄⠚⠛⠉⠭⣉⢁⣿⠄⢀⡿⢾⣅⢸⡗⠂⢿⣀⡀⢸\n⡇⠄⠄⠄⠄⠄⠄⠄⠄⠘⢧⣄⠄⣻⣿⣿⣾⠟⣀⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢸\n⣿⠄⠄⠄⠄⠄⠄⠄⠄⢠⡀⠄⠄⣿⣿⠟⢁⣴⣿⢸⡄⠄⢦⣤⣤⣤⣤⣄⡀⣼\n⣿⣧⠄⠄⠄⠄⠄⠄⢠⡸⣿⠒⠄⠈⠛⠄⠁⢹⡟⣾⡇⠄⠈⢿⣿⣿⣿⣿⣿⣿\n⣿⣿⣧⣠⣴⣦⠄⠄⢸⣷⡹⣧⣖⡔⠄⠱⣮⣻⣷⣿⣿⠄⠄⠘⣿⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⡇⠄⠄⠸⠿⠿⠚⠛⠁⠂⠄⠉⠉⡅⢰⡆⢰⡄⠄⠘⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⣷⣤⡀⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⣿⠄⣷⠘⣧⣠⣾⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣤⣄⣀⣀⡀⠄⣀⣀⣹⣦⣽⣾⣿⣿⣿⣿⣿⣿⣿⣿")
+    print(f"\n⣿⣿⣿⣿⣿⣿⣿⡿⢟⣋⣭⣥⣭⣭⣍⡉⠉⠙⠛⠻⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⡏⠁⠠⠶⠛⠻⠿⣿⣿⣿⣿⣷⡄⠄⠄⠄⠄⠉⠻⢿⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⠟⠄⢀⡴⢊⣴⣶⣶⣾⣿⣿⣿⣿⢿⡄⠄⠄⠄⠄⠄⠄⠙⢿⣿⣿⣿\n⣿⣿⡿⠁⠄⠙⡟⠁⣾⣿⣿⣿⣿⣿⣿⣿⣿⣎⠃⠄⠄⠄⠄⠄⠄⠄⠈⢻⣿⣿\n⣿⡟⠄⠄⠄⠄⡇⠰⠟⠛⠛⠿⠿⠟⢋⢉⠍⢩⣠⡀⠄⠄⠄⠄⠄⠄⠄⠄⢹⣿\n⣿⠁⠄⠄⠄⠄⠰⠁⣑⣬⣤⡀⣾⣦⣶⣾⣖⣼⣿⠁⠄⠄⠄⠄⠄⠄⠄⠄⠄⢿\n⡏⠄⠄⠄⠄⠄⠄⠄⠨⣿⠟⠰⠻⠿⣣⡙⠿⣿⠋⠄⢀⡀⣀⠄⣀⣀⢀⣀⣀⢸\n⡇⠄⠄⠄⠄⠄⠄⠄⠄⣠⠄⠚⠛⠉⠭⣉⢁⣿⠄⢀⡿⢾⣅⢸⡗⠂⢿⣀⡀⢸\n⡇⠄⠄⠄⠄⠄⠄⠄⠄⠘⢧⣄⠄⣻⣿⣿⣾⠟⣀⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢸\n⣿⠄⠄⠄⠄⠄⠄⠄⠄⢠⡀⠄⠄⣿⣿⠟⢁⣴⣿⢸⡄⠄⢦⣤⣤⣤⣤⣄⡀⣼\n⣿⣧⠄⠄⠄⠄⠄⠄⢠⡸⣿⠒⠄⠈⠛⠄⠁⢹⡟⣾⡇⠄⠈⢿⣿⣿⣿⣿⣿⣿\n⣿⣿⣧⣠⣴⣦⠄⠄⢸⣷⡹⣧⣖⡔⠄⠱⣮⣻⣷⣿⣿⠄⠄⠘⣿⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⡇⠄⠄⠸⠿⠿⠚⠛⠁⠂⠄⠉⠉⡅⢰⡆⢰⡄⠄⠘⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⣷⣤⡀⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⣿⠄⣷⠘⣧⣠⣾⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣤⣄⣀⣀⡀⠄⣀⣀⣹⣦⣽⣾⣿⣿⣿⣿⣿⣿⣿⣿")
     irdki(f"\nAz ezredes kerül veled szembe tábornokával együtt.", "", 2)
     irdki(f"\n- Jól halottam, hogy te vagy az aki ellopta a receptem? -", "matekt", 2)
     irdki(f"\n- Nem is értem miért nem ölettelek meg egyből. Grander tábornok, öld meg! ", "matekt", 2)
@@ -809,5 +801,5 @@ def KocsmaVerekedes():
         jatekos.morale -= 30
         ElsoQuest()
         
-questek = ["menu(questszam)","Kocsma()","Choice1(False)","KocsmaVerekedes()","ElsoQuest()","Piac()","TutorialBoss()","Idk()","Vulkan()","Matekdoga()"]
+questek = ["menu(questszam)","Kocsma()","Choice1(False)","KocsmaVerekedes()","ElsoQuest()","Piac()","TutorialBoss()","Idk()","Vulkan()","Döntes()","Heaven()", "KFC()", "TapsihapsiLaba()","Matekdoga()"]
 menu(questszam)
