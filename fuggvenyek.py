@@ -131,22 +131,20 @@ def battle():
         option = beker(f"Harc lehetőségek:\n1. Támadás\t\t2. Gyógyítás\n",[1, 2])
         if option == 1:
             tamadas()
-            os.system('cls')
         elif option == 2:
             if jatekos.energiaital > 0:    
                 jatekos.hp += 100
                 jatekos.energiaital -= 1
                 irdki(f"Ittál egy Spar Energy Drinket, a HP-d 100-al nő.", "", 1)
-                os.system('cls')
             else:
                 irdki(f"Kifogytál a piából.\n", "", 1)
                 tamadas()
-                os.system('cls')
         if enemy.hp > 0:
             enemy.attack = round(random.randrange(5, 60))
             jatekos.hp -= enemy.attack
             irdki(f"\n{enemy.name} {enemy.attack} -at sebzett rád.\n","", 0)
     if jatekos.hp > 0:
+        os.system('cls')
         irdki(f" {enemy.name}-nek vége van.\n","", 0)
     else:
         irdki(f"\nMeghaltál :c","", 3)
@@ -433,10 +431,48 @@ def Vulkan():
             Döntes()
 
 def Heaven():
-        irdki("\n- Sajnálom, de ahoz, hogy eljuss oda fentre meg kell halnod. De itt ez a totem, ha kész vagy akkor csak törd ketté és máris visszatérsz a testedbe", "segito", 2)
+    if evil == 1:
+        irdki("\nAz elmúlt napok történései után nem fogsz olyan könnyen eljutni a mennybe", "", 2)
+        irdki("\nHa egyenesen próbálsz meg bejutni oda fentre azzal mindenkit magadra uszítasz", "", 2)
+        irdki("\nDe nincs is nagyon más választásod", "", 2)
+        irdki("\nnéhány hét kutatás után rá találtál egy ősi idegen technológiára, ami lehetővé teszi a világok közötti utazást", "", 2)
+        irdki("\nEgy barlangban találod magad és ott van előtted a kapu", "", 2)
+        irdki("\nDe még mielőtt használni tudnád egy fura kis sárga lény ugrik eléd", "", 2)
+        irdki("\nAz amulett nélkül nem értenéd, amit mond de az lefordítja neked", "", 2)
+        irdki("\nMár messziről éreztem a sötét aurád", "genyo", 2)
+        irdki("\nNem fogom engedni, hogy használd a kaput", "genyo", 2)
+        global enemy
+        enemy = Enemy("Maykrs", 500, 80)
+        hp = jatekos.hp
+        battle()
+        jatekos.hp = hp
+        jatekos.hp += 50
+        irdki("\nNem volt nagy kihívás neked", "", 2)
+        irdki("\nBeindítod a kaput és átlépsz rajta", "", 2)
+        irdki("\nA menny kapui tárulnak eléd, nem is hezitálsz az amulettel felrobbantod a kapukat", "", 2)
+        irdki("\nHatalmas pánik tör ki, de neked csak egy célod van megszerezni a mindenható kézigránátot", "", 2)
+        irdki("\nVakító fényesség tárul eléd, ami megszólít", "", 2)
+        irdki("\nEljött ez a nap is ", "isten", 2)
+        irdki("\nA prófécia beteljesedett", "isten", 2)
+        irdki("\nRéges régen egy messzi messzi galaxysban megjövendölték, hogy egy nap a bűn megtestesítője eljön és leigázza a világot", "isten", 2)
+        irdki("\nHosszú éveken keresztül készültem, hogy megállítsalak", "isten", 2)
+        irdki("\nEgy percet se hezitálsz megtámadod Istent", "", 2)
+        enemy = Enemy("Isten", 3000, 100)
+        hp = jatekos.hp
+        battle()
+        jatekos.hp = hp
+        jatekos.hp += 200
+        jatekos.fegyver += 200
+        irdki("\nMegölted Istent és a lelkét elszívta az amulett", "", 2)
+        irdki("\nMiután eltűnt a teste csak a kézigránát maradt ott", "", 2)
+        irdki("\nFelveszed és sietsz el onnan mert Isten nélkül a menny megszűnik létezni", "", 2)
+        irdki("\nVisszamész a búvóhelyedre", "", 2)
+        Döntes()
+    else:
+        irdki("\n- Sajnálom, de ahoz, hogy eljuss oda fentre meg kell halnod, de itt ez a totem, ha kész vagy akkor csak törd ketté és máris visszatérsz a testedbe", "segito", 2)
         irdki("\nEz most fájni fog", "segito", 2)
         irdki("\nHatalmas fényesség vesz körül a menny kapui előtt találod magad", "", 2)
-        irdki("\nA kapuőr megszólít", "", 2)
+        irdki("\nA kapu őr megszólít", "", 2)
         irdki(f"\nÜdv {jatekos.name} gyermekem", "isten", 2)
         irdki("\nFáradj be hosszú utad volt", "isten", 2)
         irdki("\nMerre indulsz el:", "", 2)
@@ -669,7 +705,7 @@ def Döntes():
     elif jatekos.kuldetes1 == 0 and jatekos.kuldetes2 == 1 and jatekos.kuldetes3 == 1:
         jatekos.kuldetes1 += 1
         TapsihapsiLaba()
-    elif kuldetes1 == 1 and kuldetes2 == 1 and kuldetes3 == 1:
+    elif jatekos.kuldetes1 == 1 and jatekos.kuldetes2 == 1 and jatekos.kuldetes3 == 1:
         Finale()
 
 def Finale():
@@ -725,6 +761,8 @@ def KFC():
     hp = jatekos.hp
     battle()
     jatekos.hp = hp
+    if evil == 1:
+        jatekos.hp += 50
     irdki("\n- Ez lehetetlen, eddig még senki nem tudta legyőzni! -", "matekt", 2)
     irdki("\n- Mégis mit akarsz tőlem? -", "matekt", 2)
     irdki("\nElmodod neki, hogy a kabátja kell neked, de mielőtt megmagyaráznád félbeszakít.", "", 2)
