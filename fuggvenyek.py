@@ -259,7 +259,7 @@ def Matekdoga():
     irdki("\nGratulálok, hibátlan dolgozat, de van egy rossz hírem", "matekt", 3)
     irdki("\nEz a jegy így még mindig nem elég, hogy ne bukj meg.", "matekt", 3)
     irdki("\n Ha most el tudod mondani a cosinus tételt, akkor átengedlek", "matekt", 3)
-    option = beker(f"\n1 - Megróbálod elmondani a tételt\t2 - Megküzdesz a tanárral",[1, 2])
+    option = beker(f"\n1 - Megróbálod elmondani a tételt\t2 - Megküzdesz a tanárral\n",[1, 2])
     if option == 1:
         for i in range(0,3):
             print('.', end="")
@@ -378,7 +378,7 @@ def Vulkan():
         irdki(f"\nElmondod neki mit találtál és hogy milyen mágikus képességekkel bír, de ő eggyátalán nem lepődik meg.", "", 2)
         irdki(f"\nÚgy gondolom készíthetnénk neked valamit abbol az anyagból, persze csak ha te is szeretnéd.", "segito", 2)
         irdki(f"\nKét tárgyat tudnék neked készíteni, az egyik megnöveli az életed, a másik az erődet növeli meg.", "segito", 3)
-        option = beker(f"\n1 - Hamulett(+hp)\n2 - B.B.oxer(+attack)", [1, 2])
+        option = beker(f"\n1 - Hamulett(+hp)\n2 - B.B.oxer(+attack)\n", [1, 2])
         if option == 1:
             jatekos.hp = 200
             irdki("\nA hamulett olyan mennyiségű bűzzel ruház fel, ami felér egy golyóálló mellénynyel.", "", 2)
@@ -491,7 +491,7 @@ def Hazateres():
     irdki("\nAz utolsó ütésdre eltűnik az árnyék", "", 2)
     irdki("\nElveszed a gránátot, majd előveszed a totemet és hazamész", "", 2)
     irdki("\n- látom sikerrel jártál, add ide elpusztítom és már készítem is belőle a fegyvered, apropó fegyver melyiket akarod -", "segito", 2)
-    option = beker("\n1 - Mindenható gránát vető\n2 - Szentelt vízből font kevlár mellény",[1, 2])
+    option = beker("\n1 - Mindenható gránát vető\n2 - Szentelt vízből font kevlár mellény\n",[1, 2])
     if option == 1:
         jatekos.fegyver = 200
         jatekos.fegyverDurability = 100
@@ -524,14 +524,14 @@ def TapsihapsiLaba():
         jatekos.hp += 50
     irdki(f"\nHatalmas küzdelmek árán legyőzted az uralkodót, de még nem szerezted meg azt, amiért jöttél, úgyhogy elindulsz megkeresni. ", "", 4)
     irdki(f"\nMerre mész tovább?", "", 2)
-    option = beker(f"\n1 - a raktár felé\n2 - a konyha felé\n3 - a börtönök felé", [1, 2, 3])
+    option = beker(f"\n1 - a raktár felé\n2 - a konyha felé\n3 - a börtönök felé\n", [1, 2, 3])
     if option == 1:
         irdki(f"\nElindulsz a raktár irányába hátha ott találod a mágikus erekjét.", "", 2)
         irdki(f"\nNyitva talállod az ajtót úgyhogy bemész a helyisébe, felkapcsolódik a lámpa és egy zsúfolt szobában talállod magad.", "", 4)
         irdki(f"\nKörbejárod a szobát de nem találsz semmi használhatót, mindössze egy gumikacsát ami valahogyan követ téged.", "", 4)
         irdki(f"\nKimész a raktérből, és máshol keresgélsz tovább.", "", 2)
         irdki("\nMerre mész tovább", "", 2)
-        option = beker("\n1- a konyha felé\n2 - a börtönök felé", [1, 2])
+        option = beker("\n1- a konyha felé\n2 - a börtönök felé\n", [1, 2])
         if option == 1:
             irdki("\nAhogyan a konyha felé közeledsz egyre finomabb illatok érik az orrod", "", 2)
             irdki("\nBent nem találsz senkit csak egy 3 fogásos vacsorát", "", 2)
@@ -585,7 +585,7 @@ def TapsihapsiLaba():
         hp += 100
         irdki("\nA lakoma után sokkal energetikusabbnak érzed magad", "", 2)
         irdki("\nMerre mész tovább", "", 2)
-        option = beker("\n1- a raktér felé\n2 - a börtönök felé", [1, 2])
+        option = beker("\n1- a raktér felé\n2 - a börtönök felé\n", [1, 2])
         if option == 1:
             irdki(f"\nElindulsz a raktár irányába hátha ott találod a mágikus erekjét.", "", 2)
             irdki(f"\nNyitva talállod az ajtót úgyhogy bemész a helyisébe, felkapcsolódik a lámpa és egy zsúfolt szobában talállod magad.", "", 4)
@@ -655,6 +655,7 @@ def Döntes():
         irdki(f"\nMelyik tárgy levadászására indulsz el?", "", 2)
         option = beker("\n1 - tapsihapsi lába - halálcsillag\n2 - Sanders ezredes kabátja - KFC főhadiszállás\n3 - Mindenható kézigránát - menny\n", [1, 2, 3])
         if option == 1:
+            jatekos.kuldetes1 += 1
             TapsihapsiLaba()
         elif option == 2:
             jatekos.kuldetes2 += 1
@@ -702,6 +703,7 @@ def Döntes():
         Finale()
 
 def Finale():
+    global enemy
     if evil == 1:
         irdki(f"\nÖsszegyűjtötted az összes tárgyat, hamarosan te leszel a világ ura, de a semiből egy nagyon ismerős alak ugrik elő.", "", 2)
         irdki(f"\nÁllj meg {jatekos.name}, nem hagyhatom, hogy leigázd a világot! ", "anya", 2)
@@ -711,9 +713,7 @@ def Finale():
         irdki(f"\nAz elpusztított tárgyak darabjaiból egy olyan készüléket készítettünk, ami képes univerzumok között utazni! ", "anya", 2)
         irdki(f"\nAz eddig látott variánsaim közül te vagy a legrosszabb. ", "anya", 2)
         irdki(f"\nÖsszegyűjtöd minden energiád, hogy legyőzd ezt a szélhámost. ", "", 2)
-        global enemy
-        nev = jatekos.name[::-1]
-        enemy = Enemy(nev, 4000, 100)
+        enemy = Enemy(jatekos.name[::-1], 4000, 100)
         battle()
         irdki("\nHatalmas küzdelemben legyőzted magad és elvetted az univerzum ugrót. ", "", 2)
         irdki("\nNem kellett sok idő, hogy uralmad alá vond az egész univerzumot. ", "", 2)
@@ -731,8 +731,7 @@ def Finale():
         irdki(f"\nAzt csak hiszed, én te vagyok egy másik univerzumból, ahol elpusztítottam az amulettet. ", "anya", 2)
         irdki(f"\nAz elpusztított tárgyak darabjaiból egy olyan készüléket készítettünk, ami képes univerzumok között utazni. ", "anya", 2)
         irdki("\nEz a csata dönti el az összes univerzum sorsát!\nGonosz éned nem késlekedik, egyből neked ront.", "", 2)
-        nev = jatekos.name[::-1]
-        enemy = Enemy(nev, 2000, 80)
+        enemy = Enemy(jatekos.name[::-1], 2000, 80)
         irdki("\nEz lehetetlen..." , "te", 2)
         irdki("\nMiután visszatértél univerzumodba úgy döntesz, hogy járni fogod a világokat és segítesz ahol csak tudsz. ", "", 2)
         irdki("Köszönjük, hogy játszottál!")
@@ -791,6 +790,7 @@ def KFC():
             option = beker("\n1 - KFC titkos szósz a fegyveredre(+atttack)\n2 - Csirke nyaklánc(+hp)", [1, 2])
             if option == 1:
                 jatekos.fegyver += 100
+                jatekos.fegyverDurability += 100
             elif option == 2:
                 jatekos.hp += 100
             Döntes()
