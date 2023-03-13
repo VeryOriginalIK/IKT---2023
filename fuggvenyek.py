@@ -372,7 +372,11 @@ def Vulkan():
     irdki(f" Neked ront és harcolni kezdtek!\n", "", 2)
     global enemy
     enemy = Enemy("Kőpofa",600, 40)
+    hp = jatekos.hp
     battle()
+    jatekos.h = hp
+    global evil
+    evil = 0
     irdki(f"Nagyon elfáradtál a harcban, de még nem pihenhetsz, be kell fejezned a feladatot!\n", "", 4)
     irdki(f"Mielőtt befejeznéd a küldetésedet felmerűl benned a kérdés:\n-Miért ne tarthatnám meg? Amikor a kezemben tartom olyan erősnek érzem magam!-\n", "", 4)
     option = beker(f"\nHogyan döntesz?\n1 - Elpusztítod az amulettet\t\t2 - Megtartod az amulettet\n",[1, 2])
@@ -399,7 +403,6 @@ def Vulkan():
         irdki("\nLétezik még három hasonló erővel bíró tárgy, arra kérlek, hogy gyűjtsd őket össze és hozd nekem el, hogy megakadályozzuk, hogy rossz kezekbe kerüljön.", "segito", 2)
         Döntes()
     if option == 2:
-        global evil
         evil = 1
         irdki(f"\nElcsábít a hatalom melyet az amulett nyújt neked, ahelyett, hogy a vulkánba dobnád inkább a nyakadba akasztod.\nAzonnal elárasztja a testedet az erő, még soha nem érezted magad ilyen hatalmasnak!\n", "", 4)
         jatekos.hp = 300
@@ -417,7 +420,6 @@ def Vulkan():
         elif option == 2:
             irdki(f"\n-Ezt meg fogod bánni-\n", "segito", 4)
             enemy = Enemy("idegen",2000, 80)
-            global hp
             hp = jatekos.hp
             battle()
             jatekos.hp = hp
